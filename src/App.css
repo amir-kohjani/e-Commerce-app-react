@@ -1,3 +1,4 @@
+@import '~antd/dist/antd.css';
 .App {
   text-align: center;
 }
@@ -7,10 +8,73 @@
   pointer-events: none;
 }
 
+textarea:focus, input:focus{
+  outline: none;
+}
+
+@font-face {
+  font-family: digikala;
+  src: url(../public/font/Digikala.eot);
+  src: url(../public/font/Digikala.eot?#iefix) format("eot"), url(../public//font/Digikala.woff2) format("woff2"), url(../public/font/Digikala.woff) format("woff"), url(../public/font/Digikala.ttf) format("truetype")
+}
+
+@font-face {
+  font-family: IRANYekan;
+  src: url(../public/font/699085bd.eot);
+  src: url(../public/font/699085bd.eot?#iefix) format("embedded-opentype"), url(../public/font/a80f71ff.woff2) format("woff2"), url(../public/font/088dfe8a.woff) format("woff"), url(../public/font/2c83275a.ttf) format("truetype");
+  font-weight: 300;
+  font-style: normal
+}
+
+@font-face {
+  font-family: IRANYekan;
+  src: url(../public/font/5bea6c32.eot);
+  src: url(../public/font/5bea6c32.eot?#iefix) format("embedded-opentype"), url(../public/font/1fdcadec.woff2) format("woff2"), url(../public/font/56a1baa4.woff) format("woff"), url(../public/font/79533773.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: IRANYekan;
+  font-style: normal;
+  font-weight: 500;
+  src: url(../public/font/6a51276d.eot);
+  src: url(../public/font/6a51276d.eot?#iefix) format("embedded-opentype"), url(../public/font/492984b8.woff) format("woff"), url(../public/font/d41d8cd9.ttf) format("truetype")
+}
+
+@font-face {
+  font-family: IRANYekan;
+  src: url(../public/font/7c912e00.eot);
+  src: url(../public/font/7c912e00.eot?#iefix) format("embedded-opentype"), url(../public/font/fe12f13a.woff2) format("woff2"), url(../public/font/2d7cc7cd.woff) format("woff"), url(../public/font/a7d41f91.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal
+}
+
+@font-face {
+  font-family: IRANYekan;
+  src: url(../public/font/cea3492e.eot);
+  src: url(../public/font/cea3492e.eot?#iefix) format("embedded-opentype"), url(../public/font/1d9f5870.woff) format("woff"), url(../public/font/f2ab2738.ttf) format("truetype");
+  font-weight: 900;
+  font-style: normal
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+h1,h2,h3,h4,h5,h6,span {
+  text-align: right;
+}
+
+span{
+  text-align: center;
+}
+
+p{
+  text-align:right;
 }
 
 .App-header {
@@ -36,3 +100,213 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.slider-div .slider-list .slick-track .slick-current {
+  width: 280px;
+}
+
+.price-label {
+  margin-bottom: 4px;
+  margin-right: 2px;
+}
+
+.price-label:before {
+  content: "\F06C\00FE0E";
+  font-size: 16px;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.5;
+  width: 16px;
+  height: 16px;
+  font-family: digikala;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+  line-height: 1;
+  box-sizing: inherit;
+}
+.cart-label:before {
+  content: "\F030";
+  font-size: 18pt;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.5;
+  width: 16px;
+  height: 16px;
+  font-family: digikala;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+  line-height: 1;
+  box-sizing: inherit;
+}
+.user-label:before {
+
+  content: "\F0B5";
+  font-size: 18pt;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.5;
+  width: 16px;
+  height: 16px;
+  font-family: digikala;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+  line-height: 1;
+  box-sizing: inherit;
+}
+.shoppingCar-label:after {
+
+  content: "\F0AB";
+  font-size: 18pt;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.5;
+
+  font-family: digikala;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+  line-height: 1;
+  box-sizing: inherit;
+}
+.filter-label:after {
+
+  content: "\F05E";
+  font-size: 18pt;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.5;
+
+  font-family: digikala;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+  line-height: 1;
+  box-sizing: inherit;
+}
+.add-label:after {
+
+  content: "\F052";
+  font-size: 18pt;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.5;
+
+  font-family: digikala;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+  line-height: 1;
+  box-sizing: inherit;
+}
+.remove-label:after {
+
+  content: "\F05A";
+  font-size: 18pt;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.5;
+
+  font-family: digikala;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+  line-height: 1;
+  box-sizing: inherit;
+}
+.edite-label:after {
+
+  content: "\F05C";
+  font-size: 18pt;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.5;
+
+  font-family: digikala;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+  line-height: 1;
+  box-sizing: inherit;
+}
+
+.phone-label:after {
+
+  content: "\F02E";
+  font-size: 18pt;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.5;
+
+  font-family: digikala;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+  line-height: 1;
+  box-sizing: inherit;
+}
+
+.select-label:after {
+  content: "\F02E";
+  font-family: digikala;
+  font-size: 100%;
+}
+

@@ -1,25 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'antd/dist/antd.css';
+import { BrowserRouter as Router, Route ,Routes} from "react-router-dom"
 
+import Footer from './components/Footer';
+import Header from './components/Header/Header';
+
+import Home from './pages/Home';
+import ProductPage from './pages/ProductPage/ProductPage';
+import CategoryPage from './pages/CategoryPage';
+import TestPage from './pages/TestPage';
+import OrderPage from './pages/OrderProduct/OrderPage';
+import LoginOrRegisteryPage from './pages/LoginAndRegistery/LoginOrRegisteryPage';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+      <Header />
+        <Routes>
+
+        <Route path='/' exact element={<Home />} />
+        <Route path='/category' exact element={<CategoryPage />} />
+        <Route path='/product' exact element={<ProductPage   />} />
+        <Route path='/test' exact element={<TestPage />} />
+        <Route path='/order' exact element={<OrderPage />} />
+        <Route path='/login' exact element={<LoginOrRegisteryPage />} />
+
+        </Routes>
+        <Footer />
+      </Router>
+    </>
   );
+
 }
 
 export default App;
