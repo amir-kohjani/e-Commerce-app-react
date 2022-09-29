@@ -1,6 +1,9 @@
 import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import LoginOrRegister from "../../components/LoginAndRegister/LoginOrRegister";
+import LoginWrapper from "../../components/LoginAndRegister/LoginWrapper";
+import ValidationNumber from "../../components/LoginAndRegister/ValidationNumber";
 
 const Container = styled.div`
   min-height: calc(100vh - 777px);
@@ -9,14 +12,16 @@ const Container = styled.div`
   justify-content: center;
   display: flex;
   align-items: center;
+
   padding-top: 50px;
   padding-bottom: 50px;
 `;
 const LoginOrRegisteryPage = () => {
+
   return (
     <Container>
-      <LoginOrRegister />
-    </Container>
+      <LoginWrapper/>
+   </Container>
   );
 };
 

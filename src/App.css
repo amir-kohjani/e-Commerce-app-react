@@ -309,4 +309,9 @@ p{
   font-family: digikala;
   font-size: 100%;
 }
+.timer-label::before {
+  content: "\F04F";
+  font-family: digikala;
+  font-size: 100%;
+}
 

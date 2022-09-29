@@ -8,6 +8,8 @@ import { mobile } from "../../responsive";
 import CustomDialog from "../CustomDialog/CustomDialog";
 import DialogCart from "../order/Cart/DialogCart";
 import { popularProducts } from "../../data";
+import LoginWrapper from "../LoginAndRegister/LoginWrapper";
+import { pink } from "@mui/material/colors";
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -106,8 +108,8 @@ const IconCircle = styled.span`
     top: 0px;
     right: 0px;
     left: auto;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     text-align: center;
     background-color: #e94560;
@@ -124,6 +126,10 @@ const UserIcon = styled.div`
   margin-right: 10px;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  &:hover{
+      color: ${pink[500]};
+    }
 
   a {
     text-decoration: none;
@@ -137,7 +143,10 @@ const Cart = styled.div`
   max-width: max-content;
   display: flex;
   align-items: center;
-
+  cursor: pointer;
+    &:hover{
+      color: ${pink[500]};
+    }
   a {
     text-decoration: none;
     color: #c90000;
@@ -147,14 +156,19 @@ const Cart = styled.div`
 const Search = () => {
   const [scrolled, setscrolled] = useState(false);
   const [cartDialogFlag, setCartDialogFlag] = useState(false);
+  const [loginDialogFlag, setLoginDialogFlag] = useState(false);
 
   window.addEventListener("scroll", function () {
     window.scrollY > 100 ? setscrolled(true) : setscrolled(false);
   });
 
-  const dialogHandler = () => {
+  const dialogCartHandler = () => {
     setCartDialogFlag((perv) => !perv);
   };
+
+  const dialogLoginHandler = () => {
+    setLoginDialogFlag((perv)=>!perv);
+  }
 
   return (
     <Searche scrolled={scrolled}>
@@ -170,16 +184,19 @@ const Search = () => {
         </SearchBox>
         <Icons>
           <IconCircle>
-            <UserIcon className="user-label">
+            <UserIcon className="user-label" onClick={()=>dialogLoginHandler()}>
               <a></a>
             </UserIcon>
           </IconCircle>
           <IconCircle>
-            <Cart className="cart-label" onClick={() => dialogHandler()}>
+            <Cart className="cart-label" onClick={() => dialogCartHandler()}>
               <span>10</span>
             </Cart>
-            <CustomDialog open={cartDialogFlag} onClose={() => dialogHandler()}>
+            <CustomDialog open={cartDialogFlag} onClose={() => dialogCartHandler()}>
               <DialogCart items={popularProducts} />
+            </CustomDialog>
+            <CustomDialog open={loginDialogFlag} onClose={() => dialogLoginHandler()}>
+              <LoginWrapper/>
             </CustomDialog>
           </IconCircle>
         </Icons>

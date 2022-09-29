@@ -3,7 +3,7 @@ import PN from "persian-number";
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import {  regPhoneNumber} from "../../util/regexs"
+import  {regPhoneNumber} from "../../util/regexs"
 const Container = styled.div`
   width: 750px;
   height: 500px;
@@ -75,12 +75,15 @@ const SubmitButton = styled.button`
   background-color: ${pink[500]};
 `;
 
-const LoginOrRegister = () => {
+const LoginOrRegister = ({submit}) => {
   const [numberPhone, setNumberPhone] = useState("");
   const [error, setError] = useState(false);
   const submitHandler = () => {
     if(!numberPhone || !regPhoneNumber.test(numberPhone))setError(true);
-    else console.log("Number :" , numberPhone);
+    else {
+        setError(false);
+        submit(numberPhone)
+    };
   }
   return (
     <Container>
