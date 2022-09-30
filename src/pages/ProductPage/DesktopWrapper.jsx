@@ -3,12 +3,13 @@ import styled from "styled-components";
 
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { Divider } from "@mui/material";
-import { pink,orange,blue,magenta,cyan } from "@mui/material/colors";
+import { pink, orange, blue, magenta, cyan } from "@mui/material/colors";
 
 import { popularProducts } from "../../data";
 
 import ImageSlideProduct from "../../components/ImageSlideProduct/ImageSlideProduct";
 import CustomRadioBtnContainer from "../../components/CustomRadioButton/CustomRadioBtnContainer";
+import Select from "../../components/customSelect/Select";
 // import ListComments from "../components/ListComments";
 
 const Wrapper = styled.div`
@@ -92,7 +93,6 @@ const Price = styled.p`
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
-
 `;
 const Discount = styled.p`
   text-align: right;
@@ -113,10 +113,9 @@ const CurrentPrice = styled.p`
   color: ${pink[500]};
   font-weight: bold;
   margin-top: 3rem;
-  
 `;
 const DeliveryInfo = styled.div`
-text-align: right;
+  text-align: right;
   width: 50%;
   border: solid 0.5px #a1a1a1;
   border-radius: 10px;
@@ -128,8 +127,8 @@ text-align: right;
   h3 {
     margin: 5px;
   }
-  :after{
-    color:${blue[500]};
+  :after {
+    color: ${blue[500]};
     font-size: 60pt;
   }
 `;
@@ -140,15 +139,15 @@ const WrapperBtn = styled.div`
   align-items: center;
   padding: 10px;
   margin: 20px;
-`
+`;
 
 const ButtonAddToCart = styled.button`
   width: 40%;
   padding: 15px;
   border: none;
-  border-radius:10px;
- color:white;
-  background-color:${pink[400]};
+  border-radius: 10px;
+  color: white;
+  background-color: ${pink[400]};
   cursor: pointer;
   font-weight: 600;
   &:hover {
@@ -156,7 +155,6 @@ const ButtonAddToCart = styled.button`
   }
 `;
 const FilterContainer = styled.div`
-  
   margin: 30px 0px;
   padding: 0px 50px;
 
@@ -171,7 +169,7 @@ const Filter = styled.div`
 
 const FilterTitle = styled.span`
   font-size: 20px;
-  font-weight:normal;
+  font-weight: normal;
 `;
 
 const FilterColor = styled.div`
@@ -195,7 +193,10 @@ const FilterSize = styled.select`
 `;
 const FilterSizeOption = styled.option``;
 
-const DesktopWrapper = ({ amuntHandler, data, amunt }) => {
+const DesktopWrapper = ({ addToCart, data }) => {
+  const addToCartHandler = () => {
+    addToCart(data);
+  };
   return (
     <Wrapper>
       <WrapperInfo>
@@ -228,25 +229,31 @@ const DesktopWrapper = ({ amuntHandler, data, amunt }) => {
             </PriceContainer>
           </PropertyContainer>
           <FilterContainer>
-           
-            <Filter> <FilterTitle>رنگ بندی</FilterTitle>
+          {data.colors&&  <Filter>
+         
+              <FilterTitle>رنگ بندی</FilterTitle>
               <CustomRadioBtnContainer
                 colors={data.colors}
                 selectedColor={(color) => console.log(color)}
               />
-            </Filter>
+            </Filter>}
 
-            <Filter>
-              <FilterTitle>سایز</FilterTitle>
-              <FilterSize>
-                {data.sizes.map((size) => (
-                  <FilterSizeOption>{size}</FilterSizeOption>
-                ))}
-              </FilterSize>
-            </Filter>
+            {data.sizes && (
+              <Filter>
+                <FilterTitle>سایز</FilterTitle>
+
+                <Select
+                  items={data.sizes}
+                  defaultValue={"انتخاب کنید"}
+                  onSelected={(e) => console.log(e)}
+                />
+              </Filter>
+            )}
           </FilterContainer>
           <WrapperBtn>
-            <ButtonAddToCart>افزودن به سبد خرید!</ButtonAddToCart>
+            <ButtonAddToCart onClick={addToCartHandler}>
+              افزودن به سبد خرید!
+            </ButtonAddToCart>
           </WrapperBtn>
           <Divider />
           <DeliveryInfo className="shoppingCar-label">
@@ -254,7 +261,6 @@ const DesktopWrapper = ({ amuntHandler, data, amunt }) => {
               <h3>ارسال رایگان</h3>
               <p>برای خرید های بالای ۵۰۰ هزار تومان</p>
             </div>
-      
           </DeliveryInfo>
         </InfoContainer>
       </WrapperInfo>

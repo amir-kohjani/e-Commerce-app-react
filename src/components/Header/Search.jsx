@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import {useSelector} from "react-redux"
 import SearchIcon from "@mui/icons-material/Search";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import PersonIcon from "@mui/icons-material/Person";
@@ -157,6 +158,7 @@ const Search = () => {
   const [scrolled, setscrolled] = useState(false);
   const [cartDialogFlag, setCartDialogFlag] = useState(false);
   const [loginDialogFlag, setLoginDialogFlag] = useState(false);
+  const cartItems = useSelector((state) => state.cart.items);
 
   window.addEventListener("scroll", function () {
     window.scrollY > 100 ? setscrolled(true) : setscrolled(false);
@@ -170,6 +172,7 @@ const Search = () => {
     setLoginDialogFlag((perv)=>!perv);
   }
 
+ 
   return (
     <Searche scrolled={scrolled}>
       <Container>
@@ -190,10 +193,10 @@ const Search = () => {
           </IconCircle>
           <IconCircle>
             <Cart className="cart-label" onClick={() => dialogCartHandler()}>
-              <span>10</span>
+              {cartItems.length>0&&<span>{cartItems.length}</span>}
             </Cart>
             <CustomDialog open={cartDialogFlag} onClose={() => dialogCartHandler()}>
-              <DialogCart items={popularProducts} />
+              <DialogCart items={cartItems} />
             </CustomDialog>
             <CustomDialog open={loginDialogFlag} onClose={() => dialogLoginHandler()}>
               <LoginWrapper/>

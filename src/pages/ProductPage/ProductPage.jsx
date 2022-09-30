@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { AddCircle, RemoveCircle, Favorite } from "@mui/icons-material";
-
+import {addItem,deleteItem} from "../../redux/cart"
 import { NewProduct, popularProducts } from "../../data";
 import { MobileMode } from "../../util/MobileMode";
 import ProductSlider from "../../components/ProductSlider";
@@ -24,28 +24,22 @@ const ProductPage = () => {
   const [data, setData] = useState(popularProducts[2]);
   const [amunt, setAmunt] = useState(1);
   const [mobileMode, setMobileMode] = useState(MobileMode);
-
+const dispatch = useDispatch();
   useEffect(() => {
     setMobileMode(MobileMode);
   }, MobileMode);
 
-  const amuntHandler = (operation) => {
-    if (operation == "-")
-      setAmunt((perv) => {
-        if (perv > 1) return perv - 1;
-        else return 1;
-      });
-    else if (operation == "+") setAmunt((perv) => perv + 1);
+  const addToCartHandler = (item) => {
+   dispatch(addItem(item));
   };
 
-  console.log(data);
-
+  
   return (
     <Container>
       {mobileMode ? (
-        <MobileWrapper amunt={amunt} amuntHandler={amuntHandler} data={data} />
+        <MobileWrapper  data={data} />
       ) : (
-        <DesktopWrapper amunt={amunt} amuntHandler={amuntHandler} data={data} />
+        <DesktopWrapper addToCart={addToCartHandler} data={data} />
       )}
 
      
