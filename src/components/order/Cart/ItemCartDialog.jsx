@@ -124,8 +124,8 @@ const ItemCartDialog = ({item}) => {
         <Title>{item.brand}</Title>
         <Description>{item.title}</Description>
         <SizeColorWrapper>
-          <Size>{item.sizes[1]}</Size>
-          <Color>{item.colors[1].name}</Color>
+          <Size>{item.sizeSelected}</Size>
+          <Color>{item.colorSelected.name}</Color>
         </SizeColorWrapper>
       </InfoWrapper>
       <PriceWrapper>

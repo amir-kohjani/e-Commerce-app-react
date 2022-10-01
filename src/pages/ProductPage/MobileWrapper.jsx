@@ -24,9 +24,25 @@ import {
   ButtonAddToCart,
   DeliveryInfo,
   ImgContainer,
+  ErrorMassage,
 } from "./styles/MobileStyles";
+import { useState } from "react";
 
-const MobileWrapper = ({ amuntHandler, data, amunt }) => {
+
+const MobileWrapper = ({ addToCart, product }) => {
+  const [data, setData] = useState(product);
+
+  const selectColorHandler = (color) => {
+    setData({ ...data, colorSelected: color });
+  };
+  const selectSizeHanlder = (size) => {
+    setData({ ...data, sizeSelected: size });
+  };
+  const addToCartHandler = () => {
+    addToCart(data);
+  
+  };
+  
   return (
     <Wrapper>
       <ImgContainer>
@@ -62,25 +78,34 @@ const MobileWrapper = ({ amuntHandler, data, amunt }) => {
             <FilterTitle>رنگ بندی :</FilterTitle>
             <CustomRadioBtnContainer
               colors={data.colors}
-              selectedColor={(color) => console.log(color)}
+              selectedColor={selectColorHandler}
             />
           </Filter>
 
           <Filter>
             <FilterTitle>سایز بندی :</FilterTitle>
-           
 
             {data.sizes && (
               <Select
                 items={data.sizes}
                 defaultValue={"انتخاب کنید"}
-                onSelected={(e) => console.log(e)}
+                onSelected={selectSizeHanlder}
               />
             )}
           </Filter>
         </FilterContainer>
         <WrapperBtn>
-          <ButtonAddToCart>افزودن به سبد خرید!</ButtonAddToCart>
+          <ButtonAddToCart
+            onClick={addToCartHandler}
+            disabled={data.colorSelected && data.sizeSelected ? false : true}
+          >
+            افزودن به سبد خرید!
+          </ButtonAddToCart>
+          <ErrorMassage
+            show={data.colorSelected && data.sizeSelected ? false : true}
+          >
+            لطفا ابتدا رنگ وسایز مورد نظر را انتخاب نمایید!
+          </ErrorMassage>
         </WrapperBtn>
         <Divider />
         <DeliveryInfo className="shoppingCar-label">
@@ -90,6 +115,7 @@ const MobileWrapper = ({ amuntHandler, data, amunt }) => {
           </div>
         </DeliveryInfo>
       </WrapperInfo>
+    
     </Wrapper>
   );
 };

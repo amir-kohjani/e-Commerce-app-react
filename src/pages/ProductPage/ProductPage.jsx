@@ -37,9 +37,9 @@ const dispatch = useDispatch();
   return (
     <Container>
       {mobileMode ? (
-        <MobileWrapper  data={data} />
+        <MobileWrapper  addToCart={addToCartHandler} product={data} />
       ) : (
-        <DesktopWrapper addToCart={addToCartHandler} data={data} />
+        <DesktopWrapper addToCart={addToCartHandler} product={data} />
       )}
 
      

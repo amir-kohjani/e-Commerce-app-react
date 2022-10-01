@@ -6,6 +6,8 @@ import styled from "styled-components";
 const Container = styled.div`
 max-width: max-content;
 min-width: fit-content;
+position: absolute;
+background:none;
 `;
 
 const CustomDialog = ({ onClose, open, title, children }) => {

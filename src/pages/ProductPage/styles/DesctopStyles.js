@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { pink, orange, blue, magenta, cyan } from "@mui/material/colors";
+import { pink, orange, blue, magenta, cyan, red } from "@mui/material/colors";
 
 export const  Wrapper = styled.div`
 padding: 50px 30px;
@@ -126,8 +126,9 @@ export const  WrapperBtn = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
+flex-direction: column;
 padding: 10px;
-margin: 20px;
+margin: 10px;
 `;
 
 export const  ButtonAddToCart = styled.button`
@@ -136,11 +137,11 @@ padding: 15px;
 border: none;
 border-radius: 10px;
 color: white;
-background-color: ${pink[400]};
-cursor: pointer;
+background-color: ${props=>props.disabled ?pink[100]:pink[500]};
+cursor:${props=>props.disabled ? 'no-drop':'pointer'};
 font-weight: 600;
 &:hover {
-  background-color: #dba8a8;
+  background-color: ${pink[300]};
 }
 `;
 export const  FilterContainer = styled.div`
@@ -161,4 +162,8 @@ font-size: 20px;
 font-weight: normal;
 `;
 
-
+export const ErrorMassage = styled.p`
+margin: 10px;
+color:${red[500]};
+display:  ${props=>props.show ? 'inline' : 'none'};
+`
