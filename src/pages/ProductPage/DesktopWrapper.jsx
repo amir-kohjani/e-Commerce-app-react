@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import { Alert, Divider, Snackbar, SnackbarContent } from "@mui/material";
+import {
+  Alert,
+  CircularProgress,
+  Divider,
+  Snackbar,
+  SnackbarContent,
+} from "@mui/material";
 import {
   Wrapper,
   WrapperInfo,
@@ -36,21 +42,29 @@ import CustomSnakbar from "../../components/snakbar/CustomSnakbar";
 
 const DesktopWrapper = ({ addToCart, product }) => {
   const [data, setData] = useState(product);
-  const [openSnakbar,setOpenSnakbar] = useState(false);
+  const [openSnakbar, setOpenSnakbar] = useState(false);
+  const [loading,setLoading] = useState(false);
 
-  const snakbarHandler = (open)=>{
-       setOpenSnakbar(open);
-     
-  }
+  const snakbarHandler = (open) => {
+    setOpenSnakbar(open);
+  };
   const selectColorHandler = (color) => {
     setData({ ...data, colorSelected: color });
   };
   const selectSizeHanlder = (size) => {
     setData({ ...data, sizeSelected: size });
   };
-  const addToCartHandler = () => {
-    addToCart(data);
-    snakbarHandler(true);
+  const addToCartHandler = () => {//this func add product to cart and this is just for test
+    if(!loading){
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      addToCart(data);
+      snakbarHandler(true);
+
+    }, 2000);
+    }
+    
   };
   return (
     <Wrapper>
@@ -110,7 +124,11 @@ const DesktopWrapper = ({ addToCart, product }) => {
               onClick={addToCartHandler}
               disabled={data.colorSelected && data.sizeSelected ? false : true}
             >
-              افزودن به سبد خرید!
+              {loading ? (
+                <CircularProgress color="primary" size={40} />
+              ) : (
+                "    افزودن به سبد خرید!"
+              )}{" "}
             </ButtonAddToCart>
             <ErrorMassage
               show={data.colorSelected && data.sizeSelected ? false : true}
@@ -130,8 +148,11 @@ const DesktopWrapper = ({ addToCart, product }) => {
       <ImgContainer>
         <ImageSlideProduct item={data} />
       </ImgContainer>
-      <CustomSnakbar open={openSnakbar} onClose={()=> setOpenSnakbar(false)}
-       message='محصول با موفقیت به سبد شما اضافه شد!' />
+      <CustomSnakbar
+        open={openSnakbar}
+        onClose={() => setOpenSnakbar(false)}
+        message="محصول با موفقیت به سبد شما اضافه شد!"
+      />
     </Wrapper>
   );
 };

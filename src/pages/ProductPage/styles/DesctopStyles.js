@@ -133,10 +133,15 @@ margin: 10px;
 
 export const  ButtonAddToCart = styled.button`
 width: 40%;
+display: flex;
+align-items: center;
+justify-content: center;
+max-height: 50px;
 padding: 15px;
 border: none;
 border-radius: 10px;
 color: white;
+
 background-color: ${props=>props.disabled ?pink[100]:pink[500]};
 cursor:${props=>props.disabled ? 'no-drop':'pointer'};
 font-weight: 600;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, Divider, Snackbar } from "@mui/material";
+import { Alert, CircularProgress, Divider, Snackbar } from "@mui/material";
 import ImageSlideProduct from "../../components/ImageSlideProduct/ImageSlideProduct";
 import CustomRadioBtnContainer from "../../components/CustomRadioButton/CustomRadioBtnContainer";
 import Select from "../../components/customSelect/Select";
@@ -33,6 +33,8 @@ import CustomSnakbar from "../../components/snakbar/CustomSnakbar";
 const MobileWrapper = ({ addToCart, product }) => {
   const [data, setData] = useState(product);
   const [openSnakbar,setOpenSnakbar] = useState(false);
+  const [loading,setLoading] = useState(false);
+
 
   const snakbarHandler = (open)=>{
        setOpenSnakbar(open);
@@ -45,8 +47,15 @@ const MobileWrapper = ({ addToCart, product }) => {
     setData({ ...data, sizeSelected: size });
   };
   const addToCartHandler = () => {
-    addToCart(data);
-    snakbarHandler(true);
+    if(!loading){
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      addToCart(data);
+      snakbarHandler(true);
+
+    }, 2000);
+    }
   
   };
   
@@ -106,7 +115,11 @@ const MobileWrapper = ({ addToCart, product }) => {
             onClick={addToCartHandler}
             disabled={data.colorSelected && data.sizeSelected ? false : true}
           >
-            افزودن به سبد خرید!
+              {loading ? (
+                <CircularProgress color="primary" size={40} />
+              ) : (
+                "    افزودن به سبد خرید!"
+              )}
           </ButtonAddToCart>
           <ErrorMassage
             show={data.colorSelected && data.sizeSelected ? false : true}

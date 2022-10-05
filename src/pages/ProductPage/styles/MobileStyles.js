@@ -126,6 +126,7 @@ export const  WrapperBtn = styled.div`
 export const  ButtonAddToCart = styled.button`
   width: 80%;
   padding: 15px;
+  max-height: 50px;;
   border: none;
   border-radius:10px;
  color:white;
