@@ -128,7 +128,7 @@ const DesktopWrapper = ({ addToCart, product }) => {
                 <CircularProgress color="primary" size={40} />
               ) : (
                 "    افزودن به سبد خرید!"
-              )}{" "}
+              )}
             </ButtonAddToCart>
             <ErrorMassage
               show={data.colorSelected && data.sizeSelected ? false : true}
