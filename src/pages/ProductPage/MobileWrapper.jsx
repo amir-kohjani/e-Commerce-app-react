@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider } from "@mui/material";
+import { Alert, Divider, Snackbar } from "@mui/material";
 import ImageSlideProduct from "../../components/ImageSlideProduct/ImageSlideProduct";
 import CustomRadioBtnContainer from "../../components/CustomRadioButton/CustomRadioBtnContainer";
 import Select from "../../components/customSelect/Select";
@@ -114,6 +114,7 @@ const MobileWrapper = ({ addToCart, product }) => {
             <p>برای خرید های بالای ۵۰۰ هزار تومان</p>
           </div>
         </DeliveryInfo>
+        
       </WrapperInfo>
     
     </Wrapper>

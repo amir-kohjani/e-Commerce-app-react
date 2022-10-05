@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import { Divider, Snackbar, SnackbarContent } from "@mui/material";
+import { Alert, Divider, Snackbar, SnackbarContent } from "@mui/material";
 import {
   Wrapper,
   WrapperInfo,
@@ -42,7 +42,6 @@ const DesktopWrapper = ({ addToCart, product }) => {
     setData({ ...data, sizeSelected: size });
   };
   const addToCartHandler = () => {
-  
     addToCart(data);
   };
   return (
@@ -63,15 +62,15 @@ const DesktopWrapper = ({ addToCart, product }) => {
             <PriceContainer>
               <PriceAndDiscountWrapper>
                 <Price className="price-label">
-                  <span> {PN.convertEnToPe( data.price)}</span>
+                  <span> {PN.convertEnToPe(data.price)}</span>
                 </Price>
                 <Discount>
                   <span>تخیف برای شما :</span>
-                  <span>{PN.convertEnToPe( data.discount)}%</span>
+                  <span>{PN.convertEnToPe(data.discount)}%</span>
                 </Discount>
               </PriceAndDiscountWrapper>
               <CurrentPrice className="price-label">
-                <span>{PN.convertEnToPe( data.priceWithDiscount)}</span>
+                <span>{PN.convertEnToPe(data.priceWithDiscount)}</span>
               </CurrentPrice>
             </PriceContainer>
           </PropertyContainer>
@@ -123,6 +122,7 @@ const DesktopWrapper = ({ addToCart, product }) => {
       <ImgContainer>
         <ImageSlideProduct item={data} />
       </ImgContainer>
+      
     </Wrapper>
   );
 };

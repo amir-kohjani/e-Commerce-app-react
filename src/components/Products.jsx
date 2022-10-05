@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import Product from "./Product";
-import { popularProducts } from "../data";
+import Product from "./ProductCard/Product";
 import { mobile } from "../responsive";
 
 const Container = styled.div`

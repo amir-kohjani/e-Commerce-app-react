@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
-import Product from "./Product";
+import Product from "./ProductCard/Product";
 import { mobile } from "../responsive";
 import { Divider } from "@mui/material";
 

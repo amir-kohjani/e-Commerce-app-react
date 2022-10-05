@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import PN from "persian-number";
-const Info = styled.div`
+export const Info = styled.div`
   opacity: 0;
   width: 100%;
   height: 100%;
@@ -20,7 +19,7 @@ const Info = styled.div`
   }
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   /* margin: 0.5px 0.5px; */
   /* width: calc(100% - 0px); */
   direction: rtl;
@@ -41,7 +40,7 @@ const Container = styled.div`
     z-index: 200;
   }
 `;
-const ImageWrapper = styled.div`
+export const ImageWrapper = styled.div`
   width: 100%;
   max-height: 360px;
   display: flex;
@@ -49,7 +48,7 @@ const ImageWrapper = styled.div`
   justify-content: center;
 `;
 
-const Image = styled.img`
+export const Image = styled.img`
   box-sizing: border-box;
   display: block;
   width: 100%;
@@ -59,13 +58,13 @@ const Image = styled.img`
   z-index: 2;
 `;
 
-const Details = styled.div`
+export const Details = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px;
 `;
 
-const NameProduct = styled.h3`
+export const NameProduct = styled.h3`
   white-space: nowrap;
   display: inline-block;
   overflow: hidden;
@@ -74,7 +73,7 @@ const NameProduct = styled.h3`
   font-size: 12pt;
   font-weight: 300;
 `;
-const Description = styled.span`
+export const Description = styled.span`
   text-align: right;
   font-size: 10pt;
   white-space: nowrap;
@@ -82,7 +81,7 @@ const Description = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
-const Price = styled.h3`
+export const Price = styled.h3`
 direction: rtl;
   font-size: 20pt;
   font-weight: 500;
@@ -92,13 +91,13 @@ direction: rtl;
 
  
 `;
-const Pricewrapper = styled.div`
+export const Pricewrapper = styled.div`
   display: flex;
   justify-content: space-between;
 direction: ltr;
 `;
 
-const Discount = styled.span`
+export const Discount = styled.span`
   position: absolute;
   width: 50px;
   height: 50px;
@@ -122,25 +121,3 @@ const Discount = styled.span`
     font-weight: bold;
   }
 `;
-const Product = ({ item }) => {
-  return (
-    <a>
-      <Container>
-        <ImageWrapper>
-          {/* <Circle /> */}
-          <Discount>{PN.convertEnToPe( item.discount)}</Discount>
-          <Image src={item.img} />
-        </ImageWrapper>
-        <Details>
-          <NameProduct>{item.title}</NameProduct>
-          <Description>{PN.convertEnToPe( item.desc)}</Description>
-          <Pricewrapper>
-            <Price className="price-label">{PN.convertEnToPe( item.price)}</Price>
-          </Pricewrapper>
-        </Details>
-      </Container>
-    </a>
-  );
-};
-
-export default Product;
