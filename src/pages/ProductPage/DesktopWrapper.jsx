@@ -30,11 +30,18 @@ import CustomRadioBtnContainer from "../../components/CustomRadioButton/CustomRa
 import Select from "../../components/customSelect/Select";
 import { pink } from "@mui/material/colors";
 import PN from "persian-number";
+import CustomSnakbar from "../../components/snakbar/CustomSnakbar";
 
 // import ListComments from "../components/ListComments";
 
 const DesktopWrapper = ({ addToCart, product }) => {
   const [data, setData] = useState(product);
+  const [openSnakbar,setOpenSnakbar] = useState(false);
+
+  const snakbarHandler = (open)=>{
+       setOpenSnakbar(open);
+     
+  }
   const selectColorHandler = (color) => {
     setData({ ...data, colorSelected: color });
   };
@@ -43,6 +50,7 @@ const DesktopWrapper = ({ addToCart, product }) => {
   };
   const addToCartHandler = () => {
     addToCart(data);
+    snakbarHandler(true);
   };
   return (
     <Wrapper>
@@ -122,7 +130,8 @@ const DesktopWrapper = ({ addToCart, product }) => {
       <ImgContainer>
         <ImageSlideProduct item={data} />
       </ImgContainer>
-      
+      <CustomSnakbar open={openSnakbar} onClose={()=> setOpenSnakbar(false)}
+       message='محصول با موفقیت به سبد شما اضافه شد!' />
     </Wrapper>
   );
 };

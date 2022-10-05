@@ -28,10 +28,16 @@ import {
 } from "./styles/MobileStyles";
 import { useState } from "react";
 import PN from "persian-number";
+import CustomSnakbar from "../../components/snakbar/CustomSnakbar";
 
 const MobileWrapper = ({ addToCart, product }) => {
   const [data, setData] = useState(product);
+  const [openSnakbar,setOpenSnakbar] = useState(false);
 
+  const snakbarHandler = (open)=>{
+       setOpenSnakbar(open);
+     
+  }
   const selectColorHandler = (color) => {
     setData({ ...data, colorSelected: color });
   };
@@ -40,6 +46,7 @@ const MobileWrapper = ({ addToCart, product }) => {
   };
   const addToCartHandler = () => {
     addToCart(data);
+    snakbarHandler(true);
   
   };
   
@@ -116,7 +123,8 @@ const MobileWrapper = ({ addToCart, product }) => {
         </DeliveryInfo>
         
       </WrapperInfo>
-    
+      <CustomSnakbar open={openSnakbar} onClose={()=> setOpenSnakbar(false)}
+       message='محصول با موفقیت به سبد شما اضافه شد!' />
     </Wrapper>
   );
 };
