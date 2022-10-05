@@ -139,7 +139,7 @@ cursor:${props=>props.disabled ? 'no-drop':'pointer'};
 export const ErrorMassage = styled.p`
 margin: 10px;
 color:${red[500]};
-display:  ${props=>props.show ? 'inline' : 'none'};
+visibility:  ${props=>props.show ? 'visible' : 'hidden'};
 `
 export const  FilterContainer = styled.div`
   width: 100%;
