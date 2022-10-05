@@ -27,7 +27,7 @@ import {
   ErrorMassage,
 } from "./styles/MobileStyles";
 import { useState } from "react";
-
+import PN from "persian-number";
 
 const MobileWrapper = ({ addToCart, product }) => {
   const [data, setData] = useState(product);
@@ -62,14 +62,14 @@ const MobileWrapper = ({ addToCart, product }) => {
           </InfoContainer>
           <PriceContainer>
             <Price className="price-label">
-              <span> {data.price}</span>
+              <span> {PN.convertEnToPe( data.price)}</span>
             </Price>
             <Discount>
               <span>تخفیف بر ای شما : </span>
-              <span>{data.discount}%</span>
+              <span>{PN.convertEnToPe( data.discount)}%</span>
             </Discount>
             <CurrentPrice className="price-label">
-              <span>{data.priceWithDiscount}</span>
+              <span>{PN.convertEnToPe( data.priceWithDiscount)}</span>
             </CurrentPrice>
           </PriceContainer>
         </PropertyContainer>

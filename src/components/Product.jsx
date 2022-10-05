@@ -1,12 +1,5 @@
 import styled from "styled-components";
-import {
-  ShoppingCartOutlined,
-  HeartOutlined,
-  HeartTwoTone,
-  SearchOutlined,
-} from "@ant-design/icons";
-import { Rate } from "antd";
-import AddIcon from "@mui/icons-material/Add";
+import PN from "persian-number";
 const Info = styled.div`
   opacity: 0;
   width: 100%;
@@ -135,14 +128,14 @@ const Product = ({ item }) => {
       <Container>
         <ImageWrapper>
           {/* <Circle /> */}
-          <Discount>{item.discount}</Discount>
+          <Discount>{PN.convertEnToPe( item.discount)}</Discount>
           <Image src={item.img} />
         </ImageWrapper>
         <Details>
           <NameProduct>{item.title}</NameProduct>
-          <Description>{item.desc}</Description>
+          <Description>{PN.convertEnToPe( item.desc)}</Description>
           <Pricewrapper>
-            <Price className="price-label">{item.price}</Price>
+            <Price className="price-label">{PN.convertEnToPe( item.price)}</Price>
           </Pricewrapper>
         </Details>
       </Container>

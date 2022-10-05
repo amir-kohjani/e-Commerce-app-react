@@ -29,6 +29,7 @@ import ImageSlideProduct from "../../components/ImageSlideProduct/ImageSlideProd
 import CustomRadioBtnContainer from "../../components/CustomRadioButton/CustomRadioBtnContainer";
 import Select from "../../components/customSelect/Select";
 import { pink } from "@mui/material/colors";
+import PN from "persian-number";
 
 // import ListComments from "../components/ListComments";
 
@@ -62,15 +63,15 @@ const DesktopWrapper = ({ addToCart, product }) => {
             <PriceContainer>
               <PriceAndDiscountWrapper>
                 <Price className="price-label">
-                  <span> {data.price}</span>
+                  <span> {PN.convertEnToPe( data.price)}</span>
                 </Price>
                 <Discount>
                   <span>تخیف برای شما :</span>
-                  <span>{data.discount}%</span>
+                  <span>{PN.convertEnToPe( data.discount)}%</span>
                 </Discount>
               </PriceAndDiscountWrapper>
               <CurrentPrice className="price-label">
-                <span>{data.priceWithDiscount}</span>
+                <span>{PN.convertEnToPe( data.priceWithDiscount)}</span>
               </CurrentPrice>
             </PriceContainer>
           </PropertyContainer>
