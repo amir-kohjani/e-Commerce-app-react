@@ -130,6 +130,9 @@ export const  ButtonAddToCart = styled.button`
   border: none;
   border-radius:10px;
  color:white;
+ display: flex;
+ align-items: center;
+ justify-content: center;
  background-color: ${props=>props.disabled ?pink[100]:pink[500]};
 cursor:${props=>props.disabled ? 'no-drop':'pointer'};
   font-weight: 600;

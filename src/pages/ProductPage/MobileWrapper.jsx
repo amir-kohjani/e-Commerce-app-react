@@ -116,7 +116,7 @@ const MobileWrapper = ({ addToCart, product }) => {
             disabled={data.colorSelected && data.sizeSelected ? false : true}
           >
               {loading ? (
-                <CircularProgress color="primary" size={40} />
+                <CircularProgress color="primary" size={30} />
               ) : (
                 "    افزودن به سبد خرید!"
               )}
