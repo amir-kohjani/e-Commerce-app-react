@@ -1,14 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import { useEffect } from "react";
 import CustomRadioBtn from "./CustomRadioBtn";
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
+import {Container} from './styles/customradioBtnContainerStyles'
 const CustomRadioBtnContainer = ({ colors, selectedColor }) => {
+  useEffect(() => {
+    selectedColor();
+
+  },[colors])
   return (
     <Container>
       {colors &&

@@ -1,24 +1,18 @@
 import React from "react";
-import styled from "styled-components";
+import { useEffect } from "react";
+import { SelectWrapper, Option } from "./styles/selectStyles";
 
-const SelectWrapper = styled.select`
-  margin-right: 10px;
-  padding: 5px;
-  height: min-content;
-  border: none;
-`;
+const Select = ({ items, defaultValue, onSelected }) => {
+  const selectItemHandler = ({ target }) => {
+    onSelected(target.value);
+  };
 
-const Option = styled.option``;
-
-const Select = ({ items,defaultValue ,onSelected }) => {
-    const selectItemHandler = ({target})=>{
-        onSelected(target.value);
-    }
   return (
     <SelectWrapper onChange={selectItemHandler}>
-      
-      {items.map((item,index) => (
-        <Option key={index} value={item} defaultValue={defaultValue}>{item}</Option>
+      {items.map((item, index) => (
+        <Option key={index} value={item} defaultValue={defaultValue}>
+          {item}
+        </Option>
       ))}
     </SelectWrapper>
   );

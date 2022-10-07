@@ -37,6 +37,10 @@ const ImageSlideProduct = ({ item }) => {
   const handler = (img) =>{
     setCoverImg(img);
   }
+
+  useEffect(() => {
+    setCoverImg(item.img);
+  },[item])
   return (
     <Container>
       <ImageWrapper>

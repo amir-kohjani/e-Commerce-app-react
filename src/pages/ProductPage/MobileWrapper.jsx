@@ -29,6 +29,7 @@ import {
 import { useState } from "react";
 import PN from "persian-number";
 import CustomSnakbar from "../../components/snakbar/CustomSnakbar";
+import { useEffect } from "react";
 
 const MobileWrapper = ({ addToCart, product }) => {
   const [data, setData] = useState(product);
@@ -58,6 +59,10 @@ const MobileWrapper = ({ addToCart, product }) => {
     }
   
   };
+
+  useEffect(()=>{
+    setData(product);
+  },[product])
   
   return (
     <Wrapper>

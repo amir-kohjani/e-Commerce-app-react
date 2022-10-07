@@ -37,10 +37,12 @@ import Select from "../../components/customSelect/Select";
 import { pink } from "@mui/material/colors";
 import PN from "persian-number";
 import CustomSnakbar from "../../components/snakbar/CustomSnakbar";
+import { useEffect } from "react";
 
 // import ListComments from "../components/ListComments";
 
 const DesktopWrapper = ({ addToCart, product }) => {
+
   const [data, setData] = useState(product);
   const [openSnakbar, setOpenSnakbar] = useState(false);
   const [loading,setLoading] = useState(false);
@@ -66,6 +68,10 @@ const DesktopWrapper = ({ addToCart, product }) => {
     }
     
   };
+
+  useEffect(() => {
+setData(product);
+  },[product])
   return (
     <Wrapper>
       <WrapperInfo>

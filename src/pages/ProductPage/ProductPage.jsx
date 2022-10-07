@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {useParams} from "react-router-dom"
 import { AddCircle, RemoveCircle, Favorite } from "@mui/icons-material";
 import {addItem,deleteItem} from "../../redux/cart"
-import { NewProduct, popularProducts } from "../../data";
+import {  popularProducts } from "../../data";
 import { MobileMode } from "../../util/MobileMode";
 import ProductSlider from "../../components/ProductSlider";
 import CommentBox from "../../components/customCommentBox/CommentBox";
@@ -23,7 +23,7 @@ const SuggestWrapper = styled.div``;
 
 const ProductPage = () => {
   const {productId} = useParams();
-  const [data, setData] = useState(popularProducts[1]);
+  const [data, setData] = useState(popularProducts.find(product => product.id==productId));
   const [amunt, setAmunt] = useState(1);
   const [mobileMode, setMobileMode] = useState(MobileMode);
 const dispatch = useDispatch();
@@ -38,6 +38,9 @@ useEffect(() => {
   
 
 useEffect(() => {
+
+
+ setData( popularProducts.find(product => product.id==productId))
   window.scrollTo({top:0,behavior:'smooth'});
   },[productId]);
   return (
