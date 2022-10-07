@@ -36,10 +36,7 @@ useEffect(() => {
   setMobileMode(MobileMode);
 }, [MobileMode]);
   
-useEffect(() => {
-  window.scrollTo(0, 0)
-},useParams)
-  
+
 useEffect(() => {
   window.scrollTo({top:0,behavior:'smooth'});
   },[productId]);
