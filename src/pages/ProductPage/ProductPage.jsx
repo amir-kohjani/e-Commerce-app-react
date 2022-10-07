@@ -21,13 +21,13 @@ const CommentContainer = styled.div`
 const SuggestWrapper = styled.div``;
 
 const ProductPage = () => {
-  const [data, setData] = useState(popularProducts[2]);
+  const [data, setData] = useState(popularProducts[1]);
   const [amunt, setAmunt] = useState(1);
   const [mobileMode, setMobileMode] = useState(MobileMode);
 const dispatch = useDispatch();
   useEffect(() => {
     setMobileMode(MobileMode);
-  }, MobileMode);
+  }, [MobileMode]);
 
   const addToCartHandler = (item) => {
    dispatch(addItem(item));

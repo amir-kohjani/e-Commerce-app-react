@@ -47,7 +47,7 @@ const Wrapper = styled.div`
 
 
 const Products = ({ items, ICON, title }) => {
-  console.log(items);
+console.log(items)
   return (
     <Container>
       {ICON && title && (

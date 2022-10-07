@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CustomPagination from "../components/CustomPagination";
+import CustomPagination from "../components/customPagination/CustomPagination";
 import Products from "../components/Products";
 import FilterContainer from "../FilterProduct/FilterContainer";
 import { mobile } from "../responsive";
@@ -8,6 +8,8 @@ import { popularProducts } from "../data";
 import { useState } from "react";
 import CustomDialog from "../components/CustomDialog/CustomDialog";
 import FilterContainerMobile from "../FilterProduct/FilterContainerMobile";
+import {useParams} from'react-router-dom'
+import { useEffect } from "react";
 
 const Container = styled.div`
   background-color: white;
@@ -55,9 +57,10 @@ const PaginationWrapper = styled.div`
   ${mobile({})}
 `;
 const CategoryPage = () => {
+  const [items,setItems]=useState(popularProducts);
   const [open, setOpen] = useState(false);
   const [filterProp, setFilterProp] = useState({});
-
+  const {categoryName} = useParams();
   const openDialog = () => {
     setOpen(true);
   };
@@ -69,6 +72,13 @@ const CategoryPage = () => {
     setFilterProp(prop);
     closeDialog();
   };
+
+  useEffect(() => {
+   setItems(popularProducts);
+  },[categoryName])
+  if (!items) {
+    return <div className="text-center mt-5">Loading...</div>
+}
 
   return (
     <>
@@ -82,7 +92,7 @@ const CategoryPage = () => {
             <FilterContainerMobile onSubmit={onChangeFilterProp} />
           </CustomDialog>
           <ProductWrapper>
-            <Products items={popularProducts} />
+            <Products items={items} />
             <PaginationWrapper>
               <CustomPagination />
             </PaginationWrapper>

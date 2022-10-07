@@ -16,11 +16,9 @@ const Select = ({ items,defaultValue ,onSelected }) => {
     }
   return (
     <SelectWrapper onChange={selectItemHandler}>
-      <Option disabled selected>
-       {defaultValue}
-      </Option>
-      {items.map((item) => (
-        <Option>{item}</Option>
+      
+      {items.map((item,index) => (
+        <Option key={index} value={item} defaultValue={defaultValue}>{item}</Option>
       ))}
     </SelectWrapper>
   );

@@ -61,9 +61,9 @@ const ImageSlideProduct = ({ item }) => {
         />
       </ImageWrapper>
       <ListImages>
-        {item.imgs.map((img) => {
+        {item.imgs.map((img,index) => {
           return (
-            <ItemListImage onClick={(e) =>handler(img)}>
+            <ItemListImage onClick={(e) =>handler(img)} key={index}>
               <ImageItemList src={img} />
             </ItemListImage>
           );

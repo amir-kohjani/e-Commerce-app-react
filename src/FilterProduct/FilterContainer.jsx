@@ -85,7 +85,7 @@ const FilterContainer = ({onSubmit}) => {
                 <FilterText>فیلتر</FilterText>
                 <Filter >
 
-                    <Select onChange={onChangeColorFilter}>
+                    <Select onChange={onChangeColorFilter} value={filterProp.color}>
                         <Option disabled selected>
                             رنگ
                         </Option>
@@ -96,8 +96,8 @@ const FilterContainer = ({onSubmit}) => {
                         <Option>زرد</Option>
                         <Option>سبز</Option>
                     </Select>
-                    <Select onChange={onChangeSizesFilter}>
-                        <Option disabled selected>
+                    <Select onChange={onChangeSizesFilter} value={filterProp.size}>
+                        <Option disabled selected >
                             سایز
                         </Option>
                         <Option>XS</Option>

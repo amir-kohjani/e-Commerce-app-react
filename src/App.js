@@ -20,12 +20,13 @@ function App() {
         <Routes>
 
         <Route path='/' exact element={<Home />} />
-        <Route path='/category' exact element={<CategoryPage />} />
-        <Route path='/product' exact element={<ProductPage   />} />
-        <Route path='/test' exact element={<TestPage />} />
+        <Route path='/category/:categoryName' exact element={<CategoryPage />} />
+        <Route path='/product/:id' exact element={<ProductPage   />} />
         <Route path='/order' exact element={<OrderPage />} />
         <Route path='/login' exact element={<LoginOrRegisteryPage />} />
 
+        <Route path='*' exact element={<TestPage />} />
+        {/* //this is for error 404 */}
         </Routes>
         <Footer />
       </Router>

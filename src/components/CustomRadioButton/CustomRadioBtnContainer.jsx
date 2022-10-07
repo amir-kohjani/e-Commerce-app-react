@@ -12,8 +12,8 @@ const CustomRadioBtnContainer = ({ colors, selectedColor }) => {
   return (
     <Container>
       {colors &&
-        colors.map((color) => {
-          return <CustomRadioBtn color={color} selectedColor={selectedColor} />;
+        colors.map((color,index) => {
+          return <CustomRadioBtn color={color} selectedColor={selectedColor} key={index} />;
         })}
     </Container>
   );
