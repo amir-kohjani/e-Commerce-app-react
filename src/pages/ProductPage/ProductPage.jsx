@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import {useParams} from "react-router-dom"
 import { AddCircle, RemoveCircle, Favorite } from "@mui/icons-material";
 import {addItem,deleteItem} from "../../redux/cart"
 import { NewProduct, popularProducts } from "../../data";
@@ -21,19 +22,27 @@ const CommentContainer = styled.div`
 const SuggestWrapper = styled.div``;
 
 const ProductPage = () => {
+  const {productId} = useParams();
   const [data, setData] = useState(popularProducts[1]);
   const [amunt, setAmunt] = useState(1);
   const [mobileMode, setMobileMode] = useState(MobileMode);
 const dispatch = useDispatch();
-  useEffect(() => {
-    setMobileMode(MobileMode);
-  }, [MobileMode]);
 
-  const addToCartHandler = (item) => {
-   dispatch(addItem(item));
-  };
+const addToCartHandler = (item) => {
+  dispatch(addItem(item));
+};
 
+useEffect(() => {
+  setMobileMode(MobileMode);
+}, [MobileMode]);
   
+useEffect(() => {
+  window.scrollTo(0, 0)
+},useParams)
+  
+useEffect(() => {
+  window.scrollTo({top:0,behavior:'smooth'});
+  },[productId]);
   return (
     <Container>
       {mobileMode ? (
