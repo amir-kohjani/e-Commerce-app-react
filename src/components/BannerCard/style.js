@@ -1,13 +1,17 @@
 import styled from 'styled-components'
+import { mobile } from '../../responsive'
 
 export const Container =styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-  
     padding: 20px 10px;
     border-radius: 50%;
+    ${mobile({ 
+        flexDirection: 'column',
+        padding:"10px 10px"
+    })}
     
 `
 
