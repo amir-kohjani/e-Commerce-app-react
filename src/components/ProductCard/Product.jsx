@@ -1,4 +1,5 @@
 import PN from "persian-number";
+import { Link } from "react-router-dom";
 import {
   Container,
   Image,
@@ -13,7 +14,7 @@ import {
 } from "./styles/styles";
 const Product = ({ item }) => {
   return (
-    <a>
+    <Link to={'/product/' + item.id}>
       <Container>
         <ImageWrapper>
           {/* <Circle /> */}
@@ -30,7 +31,7 @@ const Product = ({ item }) => {
           </Pricewrapper>
         </Details>
       </Container>
-    </a>
+    </Link>
   );
 };
 
