@@ -74,6 +74,7 @@ const CategoryPage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo({top:0,behavior:'smooth'});
    setItems(popularProducts);
   },[categoryName])
   if (!items) {
