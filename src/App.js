@@ -8,7 +8,7 @@ import Header from './components/Header/Header';
 
 import Home from './pages/Home';
 import ProductPage from './pages/ProductPage/ProductPage';
-import CategoryPage from './pages/CategoryPage';
+import CategoryPage from './pages/CategoryPage/CategoryPage';
 import TestPage from './pages/TestPage';
 import OrderPage from './pages/OrderProduct/OrderPage';
 import LoginOrRegisteryPage from './pages/LoginAndRegistery/LoginOrRegisteryPage';

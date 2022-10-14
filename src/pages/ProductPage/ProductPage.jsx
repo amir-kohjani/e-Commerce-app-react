@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import {useParams} from "react-router-dom"
+import { useParams } from "react-router-dom";
 import { AddCircle, RemoveCircle, Favorite } from "@mui/icons-material";
-import {addItem,deleteItem} from "../../redux/cart"
-import {  popularProducts } from "../../data";
+import { addItem, deleteItem } from "../../redux/cart";
+import { popularProducts } from "../../data";
 import { MobileMode } from "../../util/MobileMode";
 import ProductSlider from "../../components/ProductSlider";
 import CommentBox from "../../components/customCommentBox/CommentBox";
 import DesktopWrapper from "./DesktopWrapper";
 import MobileWrapper from "./MobileWrapper";
+import CustomSpinner from "../../components/customSpinner/CustomSpinner";
 
 const Container = styled.div``;
 
@@ -22,36 +23,40 @@ const CommentContainer = styled.div`
 const SuggestWrapper = styled.div``;
 
 const ProductPage = () => {
-  const {productId} = useParams();
-  const [data, setData] = useState(popularProducts.find(product => product.id==productId));
-  const [amunt, setAmunt] = useState(1);
+  const { productId } = useParams();
+  const [data, setData] = useState(
+    popularProducts.find((product) => product.id == productId)
+  );
+  const [loading, setLoading] = useState(false);
   const [mobileMode, setMobileMode] = useState(MobileMode);
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-const addToCartHandler = (item) => {
-  dispatch(addItem(item));
-};
+  const addToCartHandler = (item) => {
+    dispatch(addItem(item));
+  };
 
-useEffect(() => {
-  setMobileMode(MobileMode);
-}, [MobileMode]);
-  
+  useEffect(() => {
+    setMobileMode(MobileMode);
+  }, [MobileMode]);
 
-useEffect(() => {
-
-
- setData( popularProducts.find(product => product.id==productId))
-  window.scrollTo({top:0,behavior:'smooth'});
-  },[productId]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setData(popularProducts.find((product) => product.id == productId));
+    }, 2000);
+  }, [productId]);
   return (
     <Container>
-      {mobileMode ? (
-        <MobileWrapper  addToCart={addToCartHandler} product={data} />
+      {loading ? (
+        <CustomSpinner />
+      ) : mobileMode ? (
+        <MobileWrapper addToCart={addToCartHandler} product={data} />
       ) : (
         <DesktopWrapper addToCart={addToCartHandler} product={data} />
       )}
 
-     
       <SuggestWrapper>
         <ProductSlider
           title={"برای شما"}
@@ -65,8 +70,9 @@ useEffect(() => {
 
 export default ProductPage;
 
-
 //<CommentWrapper>
-{/* {data.comments && <ListComments comments={data.comments} />} */}
+{
+  /* {data.comments && <ListComments comments={data.comments} />} */
+}
 //<CommentBox comments={data.comments} />
 //</CommentWrapper>

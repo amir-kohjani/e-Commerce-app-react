@@ -7,6 +7,7 @@ import {
   Snackbar,
   SnackbarContent,
 } from "@mui/material";
+import CustomSpinner from "../../components/customSpinner/CustomSpinner";
 import {
   Wrapper,
   WrapperInfo,
@@ -42,10 +43,10 @@ import { useEffect } from "react";
 // import ListComments from "../components/ListComments";
 
 const DesktopWrapper = ({ addToCart, product }) => {
-
   const [data, setData] = useState(product);
   const [openSnakbar, setOpenSnakbar] = useState(false);
-  const [loading,setLoading] = useState(false);
+  const [loadingProduct, setLoadingProduct] = useState(false);
+ 
 
   const snakbarHandler = (open) => {
     setOpenSnakbar(open);
@@ -56,22 +57,23 @@ const DesktopWrapper = ({ addToCart, product }) => {
   const selectSizeHanlder = (size) => {
     setData({ ...data, sizeSelected: size });
   };
-  const addToCartHandler = () => {//this func add product to cart and this is just for test
-    if(!loading){
-      setLoading(true);
+  const addToCartHandler = () => {
+    //this func add product to cart and this is just for test
+    if (!loadingProduct) {
+      setLoadingProduct(true);
       setTimeout(() => {
-        setLoading(false);
-      addToCart(data);
-      snakbarHandler(true);
-
-    }, 2000);
+        setLoadingProduct(false);
+        addToCart(data);
+        snakbarHandler(true);
+      }, 2000);
     }
-    
   };
 
   useEffect(() => {
-setData(product);
-  },[product])
+
+    setData(product);
+  }, [product]);
+
   return (
     <Wrapper>
       <WrapperInfo>
@@ -130,7 +132,7 @@ setData(product);
               onClick={addToCartHandler}
               disabled={data.colorSelected && data.sizeSelected ? false : true}
             >
-              {loading ? (
+              {loadingProduct ? (
                 <CircularProgress color="primary" size={40} />
               ) : (
                 "    افزودن به سبد خرید!"
@@ -159,6 +161,8 @@ setData(product);
         onClose={() => setOpenSnakbar(false)}
         message="محصول با موفقیت به سبد شما اضافه شد!"
       />
+
+      {/* <CustomSpinner/> */}
     </Wrapper>
   );
 };
