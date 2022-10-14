@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const Container = styled.div`
     
     padding: 10px;
-    margin: 10px;
+    
 `
 const Box = styled.div`
 width: 950px;
