@@ -45,6 +45,9 @@ font-size: 10pt;
 margin-left: 10px;
 border-left: 1px solid grey;
 padding: 0px 10px;
+&:last-child{
+    border: none;
+}
 `;
 
 
