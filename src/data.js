@@ -72,7 +72,7 @@ export const popularProducts = [
   {
     id: 1,
     title: "نام محصول به همراه کد۱۲۳",
-    img: "../images/flash/product1/cover.jpg",
+    img: "../images/flash/product1/6.jpg",
     imgs: ["../images/flash/product1/1.jpg", "../images/flash/product1/2.jpg",
       "../images/flash/product1/3.jpg", "../images/flash/product1/4.jpg", "../images/flash/product1/5.jpg", "../images/flash/product1/6.jpg"],
     desc: `توضیحات اضافه محصول`,
@@ -119,7 +119,7 @@ export const popularProducts = [
     id: 4,
     title: "نام محصول به همراه کد۱۲۳",
     desc: `توضیحات اضافه محصول`,
-    img: "../images/flash/product4/cover.jpg",
+    img: "../images/flash/product4/3.jpg",
     imgs: ["../images/flash/product4/1.jpg", "../images/flash/product4/2.jpg", "../images/flash/product4/3.jpg"],
     price: '200000',
     discount: '20',

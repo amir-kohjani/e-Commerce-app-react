@@ -30,6 +30,7 @@ export const Searche = styled.div`
 
 export const Logo = styled.div`
   /* width: 20%; */
+  cursor: pointer;
 `;
 
 export const ImageLogo = styled.img`

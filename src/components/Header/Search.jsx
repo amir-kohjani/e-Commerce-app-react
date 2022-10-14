@@ -18,6 +18,7 @@ import {
   Cart,
   
 } from './styles/search'
+import { Link } from "react-router-dom";
 
 
 
@@ -41,9 +42,11 @@ const Search = () => {
   return (
     <Searche scrolled={scrolled}>
       <Container>
+        <Link to='/'>
         <Logo>
           <ImageLogo src={logo} />
         </Logo>
+        </Link>
         <SearchBox>
           <i>
             <SearchIcon fontSize="large" />
