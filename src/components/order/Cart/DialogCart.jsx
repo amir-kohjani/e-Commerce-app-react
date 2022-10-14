@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { pink } from "@mui/material/colors";
 
 import ItemCartDialog from "./ItemCartDialog";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   max-width: 1000px;
@@ -53,11 +54,13 @@ const BtnContinue = styled.button`
   border: none;
   border-radius: 10px;
 `;
-const DialogCart = ({ items }) => {
+const DialogCart = ({ items,onClose}) => {
   const [totalPrice, setTotalPrice] = useState(
-    items.reduce((acc, item) => acc + parseInt(item.price),0)
+    items.reduce((acc, item) => acc + parseInt(item.price), 0)
   );
-  const [payablePrice, setPayablePrice] = useState(items.reduce((acc, item) => acc + parseInt(item.priceWithDiscount),0));
+  const [payablePrice, setPayablePrice] = useState(
+    items.reduce((acc, item) => acc + parseInt(item.priceWithDiscount), 0)
+  );
 
   useEffect(() => {
     items.map((item) => {});
@@ -84,7 +87,10 @@ const DialogCart = ({ items }) => {
             </span>
           </PayablePrice>
         </FinalPriceWrapper>
-        <BtnContinue>ثبت سفارش</BtnContinue>
+
+        <BtnContinue onClick={()=>onClose(true)}>
+          <Link to="/order" style={{color:'white'}}>ثبت سفارش</Link>
+        </BtnContinue>
       </Wrapper>
     </Container>
   );

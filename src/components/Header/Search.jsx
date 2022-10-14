@@ -70,7 +70,7 @@ const Search = () => {
               open={cartDialogFlag}
               onClose={() => dialogCartHandler()}
             >
-              <DialogCart items={cartItems} />
+              <DialogCart items={cartItems} onClose={()=> dialogCartHandler()}/>
             </CustomDialog>
             <CustomDialog
               open={loginDialogFlag}
