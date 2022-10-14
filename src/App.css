@@ -1,4 +1,5 @@
 @import '~antd/dist/antd.css';
+
 .App {
   text-align: center;
 }
@@ -8,7 +9,8 @@
   pointer-events: none;
 }
 
-textarea:focus, input:focus{
+textarea:focus,
+input:focus {
   outline: none;
 }
 
@@ -65,16 +67,22 @@ textarea:focus, input:focus{
   }
 }
 
-h1,h2,h3,h4,h5,h6,span {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
   text-align: right;
 }
 
-span{
+span {
   text-align: center;
 }
 
-p{
-  text-align:right;
+p {
+  text-align: right;
 }
 
 .App-header {
@@ -96,6 +104,7 @@ p{
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -133,6 +142,7 @@ p{
   line-height: 1;
   box-sizing: inherit;
 }
+
 .cart-label:before {
   content: "\F030";
   font-size: 18pt;
@@ -154,6 +164,7 @@ p{
   line-height: 1;
   box-sizing: inherit;
 }
+
 .user-label:before {
 
   content: "\F0B5";
@@ -176,6 +187,7 @@ p{
   line-height: 1;
   box-sizing: inherit;
 }
+
 .shoppingCar-label:after {
 
   content: "\F0AB";
@@ -197,6 +209,7 @@ p{
   line-height: 1;
   box-sizing: inherit;
 }
+
 .filter-label:after {
 
   content: "\F05E";
@@ -218,6 +231,7 @@ p{
   line-height: 1;
   box-sizing: inherit;
 }
+
 .add-label:after {
 
   content: "\F052";
@@ -239,69 +253,26 @@ p{
   line-height: 1;
   box-sizing: inherit;
 }
+
 .remove-label:after {
 
   content: "\F05A";
-  font-size: 18pt;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: normal;
-  line-height: 1.5;
-
   font-family: digikala;
   font-size: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  text-decoration: none;
-  text-transform: none;
-  line-height: 1;
-  box-sizing: inherit;
+
 }
+
 .edite-label:after {
-
   content: "\F05C";
-  font-size: 18pt;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: normal;
-  line-height: 1.5;
-
   font-family: digikala;
   font-size: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  text-decoration: none;
-  text-transform: none;
-  line-height: 1;
-  box-sizing: inherit;
+ 
 }
 
 .phone-label:after {
-
   content: "\F02E";
-  font-size: 18pt;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: normal;
-  line-height: 1.5;
-
   font-family: digikala;
   font-size: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  text-decoration: none;
-  text-transform: none;
-  line-height: 1;
-  box-sizing: inherit;
 }
 
 .select-label:after {
@@ -309,9 +280,14 @@ p{
   font-family: digikala;
   font-size: 100%;
 }
+
 .timer-label::before {
   content: "\F04F";
   font-family: digikala;
   font-size: 100%;
 }
-
+.home-label::before {
+  content: "\F040";
+  font-family: digikala;
+  font-size: 100%;
+}

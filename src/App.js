@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'antd/dist/antd.css';
 import { BrowserRouter as Router, Route ,Routes} from "react-router-dom"
 
-import Footer from './components/Footer';
+import Footer from './components/footer/Footer';
 import Header from './components/Header/Header';
 
 import Home from './pages/Home';
