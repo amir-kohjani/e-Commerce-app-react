@@ -25,7 +25,7 @@ import {
   FinalPrice,
   
 } from "./styles/itemCartDialogStyles";
-const ItemCartDialog = ({ item }) => {
+const ItemCartDialog = ({ item,noQuantity=false }) => {
   return (
     <>
       <Divider />
@@ -50,11 +50,11 @@ const ItemCartDialog = ({ item }) => {
             </PriceWithDiscount>
           </DiscountWrapper>
         </PriceWrapper>
-        <QuntityWrapper>
+       {!noQuantity && <QuntityWrapper>
           <Add className="add-label" />
           <Count>1</Count>
           <Remove className="remove-label" />
-        </QuntityWrapper>
+        </QuntityWrapper>}
         <FimalPriceWrapper>
           <FinalPrice className="price-label">
             {PN.convertEnToPe(item.priceWithDiscount)}

@@ -32,18 +32,23 @@ const ButtonSubmit = styled.button`
   width: 20%;
   height: 50px;
 `;
-const ShippingIformation = ({ address }) => {
+const ShippingIformation = ({ address ,submitInfo }) => {
   const [state, setState] = useState({
     addressIndex: null,
     senddingIndex: "",
   });
 
   const addressIndexHandler = (index) => {
+   
     setState({ ...state, addressIndex: address[index] });
   };
 
   const sendingIndexHandler = (index) =>
     setState({ ...state, senddingIndex: index });
+
+    const submitHandler = () => {
+      submitInfo(state);
+    }
 
   return (
     <Container>
@@ -55,7 +60,7 @@ const ShippingIformation = ({ address }) => {
       </SendingWrapper>
       {state.addressIndex && state.senddingIndex && (
         <ButtonWrapper>
-          <ButtonSubmit>مرحله بعد ...</ButtonSubmit>
+          <ButtonSubmit  onClick={()=>submitHandler()}>مرحله بعد ...</ButtonSubmit>
         </ButtonWrapper>
       )}
     </Container>

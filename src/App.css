@@ -291,3 +291,8 @@ p {
   font-family: digikala;
   font-size: 100%;
 }
+.card-label::before {
+  content: "\F00E";
+  font-family: digikala;
+  font-size: 100%;
+}
