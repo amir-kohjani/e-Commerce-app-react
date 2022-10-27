@@ -2,6 +2,7 @@ import { pink } from "@mui/material/colors";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
+import { MobileMode } from "../../../util/MobileMode";
 import AddressMethod from "./AddressMethod";
 import SendingMethod from "./SendingMethod";
 
@@ -9,6 +10,8 @@ const Container = styled.div`
   display: flex;
   padding: 10px;
   flex-direction: column;
+  margin-bottom:${!MobileMode()? '0px':"60px"} ;
+  padding-bottom:${!MobileMode()? '50px':"60px"} ;
 `;
 
 const SendingWrapper = styled.div`
@@ -29,7 +32,7 @@ const ButtonSubmit = styled.button`
   color: white;
   border: none;
   border-radius: 10px;
-  width: 20%;
+  width:  ${!MobileMode() ? '20%' : '100%'};
   height: 50px;
 `;
 const ShippingIformation = ({ address ,submitInfo }) => {
@@ -49,6 +52,15 @@ const ShippingIformation = ({ address ,submitInfo }) => {
     const submitHandler = () => {
       submitInfo(state);
     }
+
+    useEffect(() => {
+if(state.addressIndex&&state.senddingIndex){
+  window.scrollTo({top:1000, behavior: "smooth" });
+console.log('scrolled ')
+}
+    })
+
+
 
   return (
     <Container>

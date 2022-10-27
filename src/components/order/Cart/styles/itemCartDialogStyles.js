@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import { orange, pink } from "@mui/material/colors";
+import { MobileMode } from "../../../../util/MobileMode";
 
 export const  Container = styled.div`
 display: flex;
 padding: 10px;
 justify-content: space-between;
 align-items: center;
+flex-direction: ${!MobileMode()? ' ':'column'};
+
 `;
 export const  ImageWrapper = styled.div`
 padding: 10px;

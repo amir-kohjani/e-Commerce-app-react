@@ -25,7 +25,7 @@ import {
   FinalPrice,
   
 } from "./styles/itemCartDialogStyles";
-const ItemCartDialog = ({ item,noQuantity=false }) => {
+const ItemCartDialog = ({ item,noQuantity=false,noPrice=false,noDiscount=false }) => {
   return (
     <>
       <Divider />
@@ -41,7 +41,7 @@ const ItemCartDialog = ({ item,noQuantity=false }) => {
             <Color>{item.colorSelected.name}</Color>
           </SizeColorWrapper>
         </InfoWrapper>
-        <PriceWrapper>
+      {!noDiscount&&  <PriceWrapper>
           <Price className="price-label">{item.price}</Price>
           <DiscountWrapper>
             <Discount>{PN.convertEnToPe(item.discount)}</Discount>
@@ -49,17 +49,17 @@ const ItemCartDialog = ({ item,noQuantity=false }) => {
               {PN.convertEnToPe(item.priceWithDiscount)}
             </PriceWithDiscount>
           </DiscountWrapper>
-        </PriceWrapper>
+        </PriceWrapper>}
        {!noQuantity && <QuntityWrapper>
           <Add className="add-label" />
           <Count>1</Count>
           <Remove className="remove-label" />
         </QuntityWrapper>}
-        <FimalPriceWrapper>
+        {!noPrice && <FimalPriceWrapper>
           <FinalPrice className="price-label">
             {PN.convertEnToPe(item.priceWithDiscount)}
           </FinalPrice>
-        </FimalPriceWrapper>
+        </FimalPriceWrapper>}
       </Container>
     </>
   );

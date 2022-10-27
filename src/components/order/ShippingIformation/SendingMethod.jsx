@@ -4,6 +4,7 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { pink } from "@mui/material/colors";
 import ToggleSenddingItem from "./ToggleSenddingItem";
+import { MobileMode } from "../../../util/MobileMode";
 
 const Container = styled.div`
   display: flex;
@@ -40,7 +41,8 @@ const toggleButtonGroupStyle = {
   padding: "10px",
   direction: "rtl",
   background: "none",
-
+  display: !MobileMode() ? '':'flex',
+  flexDirection:!MobileMode() ? '' : 'column',
   justifyContent: "center",
   ".Mui-selected": {
     border: `2px solid ${pink[500]} !important`,
@@ -48,8 +50,8 @@ const toggleButtonGroupStyle = {
   },
 };
 const toggleButtonStyle = {
-  width: "40%",
-  marginRight: "20px !important",
+  width:!MobileMode()? "40%" : '100%',
+  marginRight:!MobileMode() ?"20px !important":"0px !important",
   marginTop: "20px !important",
   border: "none",
   borderRadius: "10px !important",

@@ -14,9 +14,9 @@ import {
 } from "./styles/paymentInfoStyles";
 import { useSelector } from "react-redux";
 
-const PaymentInformation = ({ items,address }) => {
+const PaymentInformation = ({cartItems, address }) => {
   const [bankSelected, setBankSelected] = useState("");
-  const cartItems = useSelector((state) => state.cart.items);
+
 
   const selectBankHandler = (bank) => {
     setBankSelected(bank);
@@ -49,7 +49,7 @@ const PaymentInformation = ({ items,address }) => {
         <Title>لیست سبد شما :</Title>
         {cartItems &&
           cartItems.map((item, index) => (
-            <ItemCartDialog item={item} key={index} noQuantity />
+            <ItemCartDialog item={item} key={index} noQuantity noPrice noDiscount />
           ))}
       </ProductWrapper>
     </Container>

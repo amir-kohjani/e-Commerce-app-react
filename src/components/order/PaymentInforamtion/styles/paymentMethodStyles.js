@@ -1,11 +1,12 @@
 import { pink } from "@mui/material/colors";
 import styled from "styled-components";
+import { MobileMode } from "../../../../util/MobileMode";
 
 
 export const Container = styled.div`
     border-radius: 16px;
     border: solid 1px #d8d8d8;
-    padding: 32px 64px;
+    padding: ${!MobileMode()? "32px 64px":"10px 5px"};
     margin: 15px;
 `
 
@@ -18,7 +19,7 @@ export const Title = styled.p`
 export const Wrapper = styled.div`
     display: block;
     position: relative;
-    padding-right: 26px;
+    padding-right:${!MobileMode()? "26px" : "0px"};
     margin-bottom: 12px;
     cursor: pointer;
     font-size: 22px;
@@ -107,7 +108,7 @@ export const BankDisc = styled.span`
 
 
 export const toggleButtonGroupStyle = {
-    padding: "10px",
+    padding:!MobileMode()? "10px":'0px',
     direction: "rtl",
     background: "none",
     display:'flex',
@@ -120,7 +121,7 @@ export const toggleButtonGroupStyle = {
   };
 
  export const toggleButtonStyle = {
-    width: "524px",
+    width:'100%',
  
     border: "none",
     borderRadius: "10px !important",

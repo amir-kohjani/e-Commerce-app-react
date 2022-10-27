@@ -11,6 +11,7 @@ import CommentBox from "../../components/customCommentBox/CommentBox";
 import DesktopWrapper from "./DesktopWrapper";
 import MobileWrapper from "./MobileWrapper";
 import CustomSpinner from "../../components/customSpinner/CustomSpinner";
+import Header from "../../components/Header/Header";
 
 const Container = styled.div``;
 
@@ -48,10 +49,12 @@ const ProductPage = () => {
     }, 2000);
   }, [productId]);
   return (
+    <>
+    <Header noLogo={MobileMode() ? true: false}/>
     <Container>
       {loading ? (
         <CustomSpinner />
-      ) : mobileMode ? (
+        ) : mobileMode ? (
         <MobileWrapper addToCart={addToCartHandler} product={data} />
       ) : (
         <DesktopWrapper addToCart={addToCartHandler} product={data} />
@@ -65,6 +68,7 @@ const ProductPage = () => {
         />
       </SuggestWrapper>
     </Container>
+          </>
   );
 };
 

@@ -74,14 +74,14 @@ const MobileNavbar = () => {
           <Title>Search</Title>
         </Link>
       </Item>
-      <Item>
-        <a>
+      <Item active={pathname=='/order' ? true : false}>
+        <Link to='/order' > 
           <Icon>
             <ShoppingCartIcon />
           </Icon>
 
           <Title>Cart</Title>
-        </a>
+        </Link>
       </Item>
       <Item>
         <a>

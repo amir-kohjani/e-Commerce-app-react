@@ -1,5 +1,6 @@
 import { pink } from "@mui/material/colors";
 import styled from "styled-components";
+import { MobileMode } from "../../../../util/MobileMode";
 
 export const Container = styled.div`
 display: flex;
@@ -10,6 +11,7 @@ display: flex;
 export const PaymentWrapper = styled.div`
 display: flex;
 justify-content:space-around;
+flex-direction: ${!MobileMode() ? '':'column' };
 
 `
 
@@ -17,6 +19,7 @@ export const SubmitWrapper = styled.div`
 display: flex;
 justify-content:space-between;
 padding: 25px;
+flex-direction: ${!MobileMode() ? '':'column'};
 
 `
 export const ColorLink = styled.a`
@@ -31,11 +34,12 @@ font-size: 12pt;
 color: white;
 border: none;
 border-radius: 10px;
-width: 20%;
+width:${!MobileMode() ?"20%":"100%"};
 height: 50px;
 `;
 export const ProductWrapper = styled.div`
 padding: 20px;
+padding-bottom: ${!MobileMode()? null:'70px'};
 display: flex;
 flex-direction: column;
 `

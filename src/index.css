@@ -1,6 +1,6 @@
 body {
   direction:rtl;
-
+height: 100%;
   margin: 0;
   font-family: 'IRANYekan','digikala' !important;
    
@@ -10,4 +10,10 @@ body {
 code {
   font-family:'IRANYekan','digikala' !important;
   
+
+
+}
+
+#root {
+  height: 100%;
 }

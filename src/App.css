@@ -296,3 +296,8 @@ p {
   font-family: digikala;
   font-size: 100%;
 }
+.emptyCart-label::before {
+  content: "\F01B";
+  font-family: digikala;
+  font-size: 100%;
+}

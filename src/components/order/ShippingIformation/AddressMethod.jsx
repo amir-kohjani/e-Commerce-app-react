@@ -7,6 +7,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ToggleAddressItem from "./ToggleAddressItem";
 import CustomDialog from "../../CustomDialog/CustomDialog";
 import AddAdressDialog from "./AddAdressDialog";
+import { MobileMode } from "../../../util/MobileMode";
 
 const Container = styled.div`
   display: flex;
@@ -54,11 +55,13 @@ const Info = styled.p`
   color: gray;
 `;
 
-const toggleButtonGroupStyle = {
+const toggleButtonGroupStyle =
+ {
   padding: "10px",
   direction: "rtl",
   background: "none",
-  flexWrap: "wrap",
+  overflow: !MobileMode() ? '':'scroll',
+  flexWrap: !MobileMode() ? "wrap":'noWrap',
   ".Mui-selected": {
     border: `2px solid ${pink[500]} !important`,
     background: "none !important",
@@ -66,6 +69,7 @@ const toggleButtonGroupStyle = {
 };
 const toggleButtonStyle = {
   width: "335px",
+  minWidth:"250px",
   marginRight: "20px !important",
   marginTop: "20px !important",
   border: "none",
