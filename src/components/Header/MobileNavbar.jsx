@@ -53,7 +53,7 @@ const Title = styled.span`
 `;
 const MobileNavbar = () => {
   const {pathname} =useLocation();
-  console.log(pathname)
+
   return (
     <Container>
       <Item active={pathname=='/' ? true : false}>

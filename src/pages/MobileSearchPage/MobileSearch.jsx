@@ -22,7 +22,7 @@ const MobileSearch = () => {
         </Title>
         <Wrapper>
           {items.map(item=>(
-            <CategoriesItem title={item.title} img={item.img} to={item.to}/>
+            <CategoriesItem title={item.title} img={item.img} to={item.to} key={item.id}/>
           ))}
         </Wrapper>
     </Container>
