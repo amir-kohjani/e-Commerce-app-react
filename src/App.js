@@ -12,15 +12,17 @@ import CategoryPage from './pages/CategoryPage/CategoryPage';
 import TestPage from './pages/TestPage';
 import OrderPage from './pages/OrderProduct/OrderPage';
 import LoginOrRegisteryPage from './pages/LoginAndRegistery/LoginOrRegisteryPage';
+import MobileSearch from './pages/MobileSearchPage/MobileSearch';
 function App() {
   return (
     <>
       <Router>
-      <Header />
+    
         <Routes>
 
         <Route path='/' exact element={<Home />} />
         <Route path='/category/:categoryName' exact element={<CategoryPage />} />
+        <Route path='/mobileSearch/' exact element={<MobileSearch />} />
         <Route path='/product/:productId' exact element={<ProductPage   />} />
         <Route path='/order' exact element={<OrderPage />} />
         <Route path='/login' exact element={<LoginOrRegisteryPage />} />
@@ -28,7 +30,7 @@ function App() {
         <Route path='*' exact element={<TestPage />} />
         {/* //this is for error 404 */}
         </Routes>
-        <Footer />
+      
       </Router>
     </>
   );

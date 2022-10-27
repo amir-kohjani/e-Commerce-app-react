@@ -9,7 +9,7 @@ import {MobileMode} from "../../util/MobileMode"
 
 
 
-const Header = () => {
+const Header = ({noLogo}) => {
 const [mobileMode , setMobileMode] = useState(MobileMode);
 
 useEffect(() => {
@@ -19,7 +19,7 @@ useEffect(() => {
   if (mobileMode) {
     return(
       <>
-      <MobileHeader/>
+      {!noLogo? <MobileHeader />:null}
       <MobileNavbar/>
       </>
     )

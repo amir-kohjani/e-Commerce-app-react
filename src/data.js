@@ -68,6 +68,37 @@ export const categories = [
   },
 ];
 
+export const mobileCategories =[
+  {
+    id: '0',
+    img: '../images/mobileCategories/cat5.png',
+    title: 'پیشنهاد ویژه',
+    categoryName:"offer",
+    to:'/category/offer'
+  },
+  {
+    id: '1',
+    img: '../images/mobileCategories/cat1.png',
+    title: 'زنانه',
+    categoryName:"women",
+    to:'/category/women'
+  },
+  {
+    id: '2',
+    img: '../images/mobileCategories/cat3.png',
+    title: 'مردانه',
+    categoryName:"men",
+    to:'/category/men'
+  },
+  {
+    id: '3',
+    img: '../images/mobileCategories/cat9.png',
+    title: 'کودک',
+    categoryName:"baby",
+    to:'/category/baby'
+  },
+]
+
 export const popularProducts = [
   {
     id: 1,
