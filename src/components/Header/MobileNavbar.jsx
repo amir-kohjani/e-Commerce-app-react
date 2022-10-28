@@ -75,6 +75,8 @@ const MobileNavbar = () => {
         </Link>
       </Item>
       <Item active={pathname=='/order' ? true : false}>
+        
+
         <Link to='/order' > 
           <Icon>
             <ShoppingCartIcon />
