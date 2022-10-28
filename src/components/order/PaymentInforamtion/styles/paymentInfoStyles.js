@@ -6,6 +6,8 @@ export const Container = styled.div`
 display: flex;
   padding: 10px;
   flex-direction: column;
+  padding-bottom: 200px;
+  margin-bottom: 200px;
 `
 
 export const PaymentWrapper = styled.div`

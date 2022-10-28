@@ -33,7 +33,7 @@ setTypeOfPayment(type)
     <ShippingIformation address={user.address}  submitInfo={submitShippingIformationHanlder}/>}
 
     {step==1&&
-    <PaymentInformation items={items} typeOfPayment={typeOfPaymentHandler} address={address} />
+    <PaymentInformation cartItems={items} typeOfPayment={typeOfPaymentHandler} address={address} />
     }
     {step==2&&<PaymentGateway amount={160000}  typeOfPayment={typeOfPayment}/>}
 

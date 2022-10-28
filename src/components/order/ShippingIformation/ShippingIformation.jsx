@@ -10,8 +10,8 @@ const Container = styled.div`
   display: flex;
   padding: 10px;
   flex-direction: column;
-  margin-bottom:${!MobileMode()? '0px':"60px"} ;
-  padding-bottom:${!MobileMode()? '50px':"60px"} ;
+  margin-bottom: ${!MobileMode() ? "50px" : "60px"};
+  padding-bottom: ${!MobileMode() ? "50px" : "60px"};
 `;
 
 const SendingWrapper = styled.div`
@@ -32,35 +32,36 @@ const ButtonSubmit = styled.button`
   color: white;
   border: none;
   border-radius: 10px;
-  width:  ${!MobileMode() ? '20%' : '100%'};
+  width: ${!MobileMode() ? "20%" : "100%"};
   height: 50px;
+  &:disabled {
+    background-color: ${pink[100]};
+    color: #929292;
+  }
 `;
-const ShippingIformation = ({ address ,submitInfo }) => {
+const ShippingIformation = ({ address, submitInfo }) => {
   const [state, setState] = useState({
     addressIndex: null,
     senddingIndex: "",
   });
 
   const addressIndexHandler = (index) => {
-   
     setState({ ...state, addressIndex: address[index] });
   };
 
   const sendingIndexHandler = (index) =>
     setState({ ...state, senddingIndex: index });
 
-    const submitHandler = () => {
-      submitInfo(state);
+  const submitHandler = () => {
+    submitInfo(state);
+  };
+
+  useEffect(() => {
+    if (state.addressIndex && state.senddingIndex) {
+      window.scrollTo({ top: 1000, behavior: "smooth" });
+      console.log("scrolled ");
     }
-
-    useEffect(() => {
-if(state.addressIndex&&state.senddingIndex){
-  window.scrollTo({top:1000, behavior: "smooth" });
-console.log('scrolled ')
-}
-    })
-
-
+  });
 
   return (
     <Container>
@@ -70,11 +71,15 @@ console.log('scrolled ')
       <SendingWrapper>
         <SendingMethod submitIndex={sendingIndexHandler} />
       </SendingWrapper>
-      {state.addressIndex && state.senddingIndex && (
-        <ButtonWrapper>
-          <ButtonSubmit  onClick={()=>submitHandler()}>مرحله بعد ...</ButtonSubmit>
-        </ButtonWrapper>
-      )}
+
+      <ButtonWrapper>
+        <ButtonSubmit
+          disabled={state.addressIndex && state.senddingIndex ? false : true}
+          onClick={() => submitHandler()}
+        >
+          مرحله بعد ...
+        </ButtonSubmit>
+      </ButtonWrapper>
     </Container>
   );
 };
