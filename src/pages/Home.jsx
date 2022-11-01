@@ -37,7 +37,7 @@ console.log(useLocation())
         title="پرفروش ترین ها"
         ICON={FavoriteIcon}
       />
-      <BannerCard data={BannerCardData} />
+      {/* <BannerCard data={BannerCardData} /> */}
       <ProductSlider
         items={popularProducts}
         title="بیشترین تخفیف ها"

@@ -1,6 +1,6 @@
 import { pink,grey } from "@mui/material/colors";
 import styled from "styled-components"
-import { mobile } from "../../../responsive"
+import { MobileMode } from "../../../util/MobileMode"
 
 
 export const Container = styled.div`
@@ -13,6 +13,9 @@ direction: rtl;
     padding: 10px;
     background-color:${pink[50]};
     color:${grey[700]};
+    margin: 20px 10px ;
+    padding-bottom: 50px;
+
     
 `
 
@@ -36,15 +39,18 @@ export const Description = styled.p`
 export const ContentUs = styled.div`
 margin: 20px 0px;
 display: flex;
-justify-content: space-between;
-max-width: 100px;
+justify-content: center;
+flex-wrap:${!MobileMode ? 'nowrap':'warp'};
+flex-direction:${!MobileMode ? 'row' : 'column'}; 
+align-items:${!MobileMode ? 'center' : 'start'};
+
 `
 
 
 export const ContactItem = styled.div`
 font-size: 10pt;
 margin-left: 10px;
-border-left: 1px solid grey;
+border-left: ${!MobileMode ? '1px solid grey':'none'};
 padding: 0px 10px;
 &:last-child{
     border: none;

@@ -38,13 +38,13 @@ const Footer = () => {
         توضیحاتی درباره شرکت ،از تاسیس تا اکنون. سیاست های راه بردی،و سایر
         توضیحات لازم
       </Description>
-      {/* <ContentUs>
+      <ContentUs>
         <ContactItem>مشهد,خیابان اول , سمت راست</ContactItem>
         <ContactItem>
           {PN.convertEnToPe(" 09366690202 | 05132730100")}
         </ContactItem>
         <ContactItem>amir.kohjani20@gamil.com</ContactItem>
-      </ContentUs> */}
+      </ContentUs>
     </Container>
   );
 };
