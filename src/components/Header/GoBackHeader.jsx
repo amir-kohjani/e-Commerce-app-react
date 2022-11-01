@@ -14,6 +14,7 @@ const BackBtn = styled.button`
 border: none;
 font-size: 18pt;
 background-color:transparent;
+margin: 10px;
 `
 const GoBackHeader = () => {
     const navigate = useNavigate();
