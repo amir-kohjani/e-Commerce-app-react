@@ -301,3 +301,8 @@ p {
   font-family: digikala;
   font-size: 100%;
 }
+.back-label::before {
+  content: "\F006";
+  font-family: digikala;
+  font-size: 100%;
+}

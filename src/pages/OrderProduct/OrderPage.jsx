@@ -26,7 +26,7 @@ const OrderPage = () => {
 
   return (
     <>
-     <Header noLogo/>
+  
     <Container>
       {mobileMode ? (
         <MobileWrapper user={user} items={cartItems} />

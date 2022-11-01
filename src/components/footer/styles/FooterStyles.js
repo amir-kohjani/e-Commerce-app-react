@@ -34,9 +34,10 @@ export const Description = styled.p`
     margin: 10px 0px;
 `
 export const ContentUs = styled.div`
-margin: 10px 0px;
+margin: 20px 0px;
 display: flex;
 justify-content: space-between;
+max-width: 100px;
 `
 
 

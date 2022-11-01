@@ -1,35 +1,46 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import Head from "./Head";
 import Search from "./Search";
-import MobileNavbar from "./MobileNavbar"
+import MobileNavbar from "./MobileNavbar";
 import MobileHeader from "./MobileHeader";
-import {MobileMode} from "../../util/MobileMode"
+import { MobileMode } from "../../util/MobileMode";
+import { useLocation } from "react-router-dom";
+import { ContactsOutlined } from "@ant-design/icons";
+import GoBackHeader from "./GoBackHeader";
 
+const Header = () => {
+  const [mobileMode, setMobileMode] = useState(MobileMode);
+  const [noLogo, setNologo] = useState(false);
+  const { pathname } = useLocation();
+  useEffect(() => {
+    setMobileMode(MobileMode);
+  }, [MobileMode]);
 
-
-
-const Header = ({noLogo}) => {
-const [mobileMode , setMobileMode] = useState(MobileMode);
-
-useEffect(() => {
-  setMobileMode(MobileMode);
-
-},[MobileMode])
+  useEffect(() => {
+    if (
+      pathname == "/order" ||
+      pathname == "/mobileSearch" ||
+      pathname.includes("/category/") ||
+      pathname.includes("/product/")
+    )
+      setNologo(true);
+      else setNologo(false);
+  }, [pathname]);
   if (mobileMode) {
-    return(
+    return (
       <>
-      {!noLogo? <MobileHeader />:null}
-      <MobileNavbar/>
+        {!noLogo ? <MobileHeader /> : <GoBackHeader/>}
+        <MobileNavbar />
       </>
-    )
-  }else {
-    return(
+    );
+  } else {
+    return (
       <>
-      <Search/>
-      <Navbar/>
+        <Search />
+        <Navbar />
       </>
-    )
+    );
   }
 };
 

@@ -1,8 +1,9 @@
-import {Link} from 'react-router-dom';
+import {Link, useLocation,} from 'react-router-dom';
 import {Container,Image,Title} from './styles/categoryItemStyle';
 const CategoryItem = ({ item }) => {
+  
   return (
-    <Link to={'category/'+item.categoryName}>
+    <Link to={{pathname: 'category/'+item.categoryName,state:{var:'test'}}}>
     <Container>
       <Image src={item.img} />
       <Title>{item.title}</Title>

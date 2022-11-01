@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import CustomPagination from "../../components/customPagination/CustomPagination";
 import Products from "../../components/Products";
@@ -20,7 +20,7 @@ import {
   PaginationWrapper,
 } from "./styles/CategoryPageStyles";
 
-const CategoryPage = () => {
+const CategoryPage = (props) => {
   const [items, setItems] = useState(popularProducts);
   const [open, setOpen] = useState(false);
   const [filterProp, setFilterProp] = useState({});

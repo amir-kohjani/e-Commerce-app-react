@@ -1,55 +1,57 @@
-import { FacebookOutlined, HomeOutlined, InstagramOutlined, MailOutlined, PhoneOutlined, TwitterOutlined, WhatsAppOutlined } from "@ant-design/icons"
-import PN  from 'persian-number'
+import {
+  FacebookOutlined,
+  HomeOutlined,
+  InstagramOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  TwitterOutlined,
+  WhatsAppOutlined,
+} from "@ant-design/icons";
+import PN from "persian-number";
 
 import {
-    Container,
-Logo,
-ImageLogo,
-Left,
-Description,
-SocialContainer,
-SocialIcon,
-Center,
-Title,
-List,
-ListItem,
-Right,
-ContactItem,
-Home,
-ContentUs
-} from './styles/FooterStyles'
+  Container,
+  Logo,
+  ImageLogo,
+  Left,
+  Description,
+  SocialContainer,
+  SocialIcon,
+  Center,
+  Title,
+  List,
+  ListItem,
+  Right,
+  ContactItem,
+  Home,
+  ContentUs,
+} from "./styles/FooterStyles";
 import logo from "../assets/images/logo.svg";
 
-
 const Footer = () => {
-    return (
-        <Container>
-            <Logo>
-        <ImageLogo src={logo}/>
-    </Logo>
-    <Description>
-            توضیحاتی درباره شرکت ،از تاسیس تا اکنون.
-            سیاست های راه بردی،و سایر توضیحات لازم
-        </Description>
-        <ContentUs>
-    <ContactItem>
-          مشهد,خیابان اول , سمت راست 
-    </ContactItem>
-    <ContactItem>
-    {PN.convertEnToPe(' 09366690202 | 05132730100')}   
-    </ContactItem>
-    <ContactItem>
-         amir.kohjani20@gamil.com
-    </ContactItem>
-                
-            
-        </ContentUs>
-        </Container>
-    )
-}
+  return (
+    <Container>
+      <Logo>
+        <ImageLogo src={logo} />
+      </Logo>
+      <Description>
+        توضیحاتی درباره شرکت ،از تاسیس تا اکنون. سیاست های راه بردی،و سایر
+        توضیحات لازم
+      </Description>
+      {/* <ContentUs>
+        <ContactItem>مشهد,خیابان اول , سمت راست</ContactItem>
+        <ContactItem>
+          {PN.convertEnToPe(" 09366690202 | 05132730100")}
+        </ContactItem>
+        <ContactItem>amir.kohjani20@gamil.com</ContactItem>
+      </ContentUs> */}
+    </Container>
+  );
+};
 
-export default Footer
-    {/* <Right>
+export default Footer;
+{
+  /* <Right>
     
         
         <SocialContainer>
@@ -96,4 +98,5 @@ export default Footer
             <ListItem>Wishlist</ListItem>
             <ListItem>Terms</ListItem>
         </List>
-    </Center> */} 
+    </Center> */
+}

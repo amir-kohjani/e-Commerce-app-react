@@ -28,7 +28,7 @@ const Home = () => {
 console.log(useLocation())
   return (
     <>
-    <Header/>
+ 
       <SliderTop items={sliderItems} />
       <Banners smallBanner={banners.small} bigBanner={banners.big} />
       <Categories ICON={CategoryIcon} data={categories} />
@@ -49,7 +49,7 @@ console.log(useLocation())
         ICON={NewReleasesIcon}
       />
       <Newsletter />
-      <Footer/>
+   <Footer/>
     </>
   );
 };

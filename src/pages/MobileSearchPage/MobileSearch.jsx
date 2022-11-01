@@ -9,7 +9,7 @@ const MobileSearch = () => {
   const [items,setItems]= useState(categories)
   return (
     <>
-    <Header noLogo/>
+   
     <Container>
         <SearchBox>
         <i>

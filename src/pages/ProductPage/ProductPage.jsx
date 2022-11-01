@@ -50,7 +50,7 @@ const ProductPage = () => {
   }, [productId]);
   return (
     <>
-    <Header noLogo={MobileMode() ? true: false}/>
+  
     <Container>
       {loading ? (
         <CustomSpinner />
