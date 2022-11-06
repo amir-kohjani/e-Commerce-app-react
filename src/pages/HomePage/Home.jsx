@@ -2,10 +2,10 @@ import CategoryIcon from "@mui/icons-material/Category";
 import PercentIcon from "@mui/icons-material/Percent";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import NewReleasesIcon from "@mui/icons-material/NewReleases";
-import SliderTop from "../components/Slider";
+import SliderTop from "../../components/Slider";
 import {useLocation} from 'react-router-dom'
-import Products from "../components/Products";
-import Newsletter from "../components/Newsletter";
+import Products from "../../components/Products";
+import Newsletter from "../../components/Newsletter";
 import {
   popularProducts,
   TopCategoris,
@@ -15,15 +15,15 @@ import {
   categories,
   banners,
   sliderItems,
-} from "../data";
-import ProductSlider from "../components/ProductSlider";
-import SliderCart from "../components/SliderCart";
-import BigOffercart from "../components/BigOffercart";
-import BannerCard from "../components/BannerCard/BannerCard";
-import Banners from "../components/banner/Banners.jsx.jsx";
-import Categories from "../components/category/Categories";
-import Header from "../components/Header/Header";
-import Footer from "../components/footer/Footer";
+} from "../../data";
+import ProductSlider from "../../components/ProductSlider";
+import SliderCart from "../../components/SliderCart";
+import BigOffercart from "../../components/BigOffercart";
+import BannerCard from "../../components/BannerCard/BannerCard";
+import Banners from "../../components/banner/Banners.jsx.jsx";
+import Categories from "../../components/category/Categories";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/footer/Footer";
 const Home = () => {
 console.log(useLocation())
   return (
