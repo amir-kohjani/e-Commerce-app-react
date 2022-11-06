@@ -3,30 +3,34 @@ import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Carousel } from "antd";
-import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
-
 import { mobile } from "../responsive";
 const Container = styled.div`
   width: 100%;
 height: 100%;
 max-height: 350px;
+padding: 20px;
+
 
 `;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+`;
 
 const ImgContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
+  border-radius: 10px;
+
 `;
 
 const Image = styled.img`
   width: 100%;
-  height: 100%;
+  height: 90%;
   object-fit: cover;
+      border-radius: 10px;
+
 `;
 
 const SliderTop = ({ items }) => {
