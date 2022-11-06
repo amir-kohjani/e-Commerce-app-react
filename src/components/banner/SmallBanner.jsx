@@ -11,10 +11,12 @@ const Box = styled.div`
 width: 420px;
 height:350px;
 
+
 `
 const Image = styled.img`
     width: 100%;
     height: 100%;
+    border-radius: 10px;
     object-fit: cover;
 `
 
