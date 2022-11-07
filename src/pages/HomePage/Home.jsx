@@ -1,9 +1,10 @@
+import { useEffect, useState } from "react";
 import CategoryIcon from "@mui/icons-material/Category";
 import PercentIcon from "@mui/icons-material/Percent";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import NewReleasesIcon from "@mui/icons-material/NewReleases";
 import SliderTop from "../../components/Slider";
-import {useLocation} from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 import Products from "../../components/Products";
 import Newsletter from "../../components/Newsletter";
 import {
@@ -24,11 +25,29 @@ import Banners from "../../components/banner/Banners.jsx.jsx";
 import Categories from "../../components/category/Categories";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/footer/Footer";
+import { HomeService } from "./Servises/getData";
 const Home = () => {
-console.log(useLocation())
+  const [offerProducts, setOfferProducts] = useState({});
+  const [BestSellersProducts, setBestSellersProducts] = useState({});
+  const [NewsProducts, setNewsProducts] = useState({});
+
+const fetchWithPromiseAll = async ()=>{
+  const getOfferProducts =  HomeService.getProductsByCategory("offer");
+  const getBestSellersProducts =  HomeService.getProductsByCategory("bestSellers");
+  const getNewsProducts =  HomeService.getProductsByCategory("news");
+  const [Offer , BestSellers , News ] = await Promise.all([getOfferProducts, getBestSellersProducts, getNewsProducts])
+
+  setOfferProducts(Offer.data.products);
+  setBestSellersProducts(BestSellers.data.products);
+  setNewsProducts(News.data.products);
+}
+
+  useEffect(() => {
+   fetchWithPromiseAll();
+  }, []);
   return (
     <>
- 
+   
       <SliderTop items={sliderItems} />
       <Banners smallBanner={banners.small} bigBanner={banners.big} />
       <Categories ICON={CategoryIcon} data={categories} />
@@ -49,7 +68,7 @@ console.log(useLocation())
         ICON={NewReleasesIcon}
       />
       <Newsletter />
-   <Footer/>
+      <Footer />
     </>
   );
 };
