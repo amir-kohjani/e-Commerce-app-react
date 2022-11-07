@@ -19,7 +19,7 @@ import {
   FixedButtonWrapper,
   PaginationWrapper,
 } from "./styles/CategoryPageStyles";
-
+import { categoryService } from "./Servises/getData";
 const CategoryPage = (props) => {
   const [items, setItems] = useState(popularProducts);
   const [open, setOpen] = useState(false);
@@ -38,12 +38,21 @@ const CategoryPage = (props) => {
     closeDialog();
   };
 
+  const fetchWithPromiseAll = async (categoryName) => {
+    const getProducts = categoryService.getProductsByCategory(categoryName);
+    const [products] = await Promise.all([getProducts]);
+    // this func for add products from server
+    // setItems(products.data.products);
+    console.log(products);
+  };
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setLoading(true);
     setTimeout(() => {
       setItems(popularProducts);
       setLoading(false);
+      fetchWithPromiseAll(categoryName);
     }, 2000);
   }, [categoryName]);
 
