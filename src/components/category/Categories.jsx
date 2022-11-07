@@ -40,8 +40,8 @@ const Categories = ({ data, ICON }) => {
   return (
     <Container>
       <Wrapper>
-        {data.map((item) => (
-          <CategoryItem item={item} />
+        {data.map((item,index) => (
+          <CategoryItem item={item} key={index} />
         ))}
       </Wrapper>
     </Container>
