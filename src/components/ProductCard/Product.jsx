@@ -18,7 +18,7 @@ const Product = ({ item }) => {
       <Container>
         <ImageWrapper>
           {/* <Circle /> */}
-          <Discount>{PN.convertEnToPe(item.discount)}</Discount>
+        {item.discount ?  <Discount>{PN.convertEnToPe(item.discount)}</Discount> : null}
           <Image src={item.img} />
         </ImageWrapper>
         <Details>
