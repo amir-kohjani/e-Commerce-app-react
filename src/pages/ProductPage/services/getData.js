@@ -6,7 +6,7 @@ const headers = {
 };
 
 export const productService = {
-    getProductsByCategory: (id) => {
+    getProductsById: (id) => {
         let params = {
             "Id": id
         }
