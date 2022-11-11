@@ -5,7 +5,7 @@ const headers = {
     "Content-Type": "application/json"
 };
 
-export const categoryService = {
+export const productService = {
     getProductsByCategory: (id) => {
         let params = {
             "Id": id
