@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import Product from "./ProductCard/Product";
 import { mobile } from "../responsive";
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
   padding: 10px 10px;
@@ -40,34 +41,40 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   ${mobile({
-    justifyContent: 'center',
-    width: '100%'
+    justifyContent: "center",
+    width: "100%",
   })}
 `;
 
+const Products = ({ items, ICON, title, products }) => {
+  const [Products, setProducts] = useState(products);
 
-const Products = ({ items, ICON, title }) => {
-  return (
-    <Container>
-      {ICON && title && (
-        <Header>
-          <HeaderLeft>
-            <Icon>{<ICON style={{ fontSize: "45px" }} />}</Icon>
-            <Title>{title}</Title>
-          </HeaderLeft>
-          <HeaderRight>
-            <span>View All</span>
-            <ArrowRightIcon />
-          </HeaderRight>
-        </Header>
-      )}
-      <Wrapper>
-        {items.map((product, index) => (
-          <Product item={product} key={index} />
-        ))}
-      </Wrapper>
-    
-    </Container>
-  );
+  // useEffect(() => {
+  //   console.log(Products);
+  // }, [products]);
+
+  if (Products.length == 0) return <>No products</>;
+  else
+    return (
+      <Container>
+        {ICON && title && (
+          <Header>
+            <HeaderLeft>
+              <Icon>{<ICON style={{ fontSize: "45px" }} />}</Icon>
+              <Title>{title}</Title>
+            </HeaderLeft>
+            <HeaderRight>
+              <span>View All</span>
+              <ArrowRightIcon />
+            </HeaderRight>
+          </Header>
+        )}
+        <Wrapper>
+          {Products.map((product, index) => (
+            <Product  key={index} product={product} />
+          ))}
+        </Wrapper>
+      </Container>
+    );
 };
 export default Products;

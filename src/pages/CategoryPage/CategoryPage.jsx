@@ -22,6 +22,7 @@ import {
 import { categoryService } from "./Servises/getData";
 const CategoryPage = (props) => {
   const [items, setItems] = useState(popularProducts);
+  const [products, setProducts] = useState(null);
   const [open, setOpen] = useState(false);
   const [filterProp, setFilterProp] = useState({});
   const [loading, setLoading] = useState(false);
@@ -40,10 +41,11 @@ const CategoryPage = (props) => {
 
   const fetchWithPromiseAll = async (categoryName) => {
     const getProducts = categoryService.getProductsByCategory(categoryName);
-    const [products] = await Promise.all([getProducts]);
+    const [Products] = await Promise.all([getProducts]);
     // this func for add products from server
-    // setItems(products.data.products);
-    console.log(products);
+    setProducts(Products.data.products);
+    
+    // console.log(products);
   };
 
   useEffect(() => {
@@ -71,7 +73,7 @@ const CategoryPage = (props) => {
             <CustomSpinner />
           ) : (
             <div>
-              <Products items={items} />
+             { products ? <Products items={items} products={products} /> : null }
               <PaginationWrapper>
                 <CustomPagination />
               </PaginationWrapper>

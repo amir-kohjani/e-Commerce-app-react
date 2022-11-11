@@ -1,4 +1,5 @@
 import PN from "persian-number";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -12,21 +13,30 @@ import {
   Pricewrapper,
 
 } from "./styles/styles";
-const Product = ({ item }) => {
+const Product = ({ item,product }) => {
+  const [Product, setProduct] = useState(product);
+
+// useEffect(()=>{
+// console.log(Product.colors[0].images[0])
+// },[Product]);
+
+
+
+
   return (
-    <Link to={'/product/' + item.id}>
+    <Link to={'/product/' + Product.id}>
       <Container>
         <ImageWrapper>
           {/* <Circle /> */}
-        {item.discount ?  <Discount>{PN.convertEnToPe(item.discount)}</Discount> : null}
-          <Image src={item.img} />
+        {Product.discount ?  <Discount>{PN.convertEnToPe(Product.discount)}</Discount> : null}
+          <Image src={Product.colors[0].images[0]} />
         </ImageWrapper>
         <Details>
-          <NameProduct>{item.title}</NameProduct>
-          <Description>{PN.convertEnToPe(item.desc)}</Description>
+          <NameProduct>{Product.title}</NameProduct>
+          <Description>{PN.convertEnToPe(Product.desc)}</Description>
           <Pricewrapper>
             <Price className="price-label">
-              {PN.convertEnToPe(item.price)}
+              {PN.convertEnToPe(Product.price)}
             </Price>
           </Pricewrapper>
         </Details>
