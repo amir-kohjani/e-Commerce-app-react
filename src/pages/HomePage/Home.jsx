@@ -31,42 +31,53 @@ const Home = () => {
   const [BestSellersProducts, setBestSellersProducts] = useState({});
   const [NewsProducts, setNewsProducts] = useState({});
 
-const fetchWithPromiseAll = async ()=>{
-  const getOfferProducts =  HomeService.getProductsByCategory("offer");
-  const getBestSellersProducts =  HomeService.getProductsByCategory("bestSellers");
-  const getNewsProducts =  HomeService.getProductsByCategory("news");
-  const [Offer , BestSellers , News ] = await Promise.all([getOfferProducts, getBestSellersProducts, getNewsProducts])
+  const fetchWithPromiseAll = async () => {
+    const getOfferProducts = HomeService.getProductsByCategory("offer");
+    const getBestSellersProducts = HomeService.getProductsByCategory(
+      "beastSellers"
+    );
+    const getNewsProducts = HomeService.getProductsByCategory("news");
+    const [Offer, BestSellers, News] = await Promise.all([
+      getOfferProducts,
+      getBestSellersProducts,
+      getNewsProducts,
+    ]);
+    console.log(News)
 
-  setOfferProducts(Offer.data.products);
-  setBestSellersProducts(BestSellers.data.products);
-  setNewsProducts(News.data.products);
-}
+    setOfferProducts(Offer.data.products);
+    setBestSellersProducts(BestSellers.data.products);
+    setNewsProducts(News.data.products);
+  };
 
   useEffect(() => {
-   fetchWithPromiseAll();
-  }, []);
+    fetchWithPromiseAll();
+  },[]);
+
+  useEffect(() =>
+  console.log(BestSellersProducts.length )
+  )
   return (
     <>
-   
       <SliderTop items={sliderItems} />
       <Banners smallBanner={banners.small} bigBanner={banners.big} />
       <Categories ICON={CategoryIcon} data={categories} />
-      <ProductSlider
-        items={popularProducts}
+
+     { BestSellersProducts.length == undefined ? null :<ProductSlider
+        items={BestSellersProducts}
         title="پرفروش ترین ها"
         ICON={FavoriteIcon}
-      />
+      /> }
       {/* <BannerCard data={BannerCardData} /> */}
-      <ProductSlider
-        items={popularProducts}
+      {NewsProducts.length ==undefined ? null :<ProductSlider
+        items={offerProducts}
         title="بیشترین تخفیف ها"
         ICON={PercentIcon}
-      />
-      <ProductSlider
-        items={popularProducts}
+      />}
+     {offerProducts.length ==undefined ? null : <ProductSlider
+        items={NewsProducts}
         title="تازه ترین ها"
         ICON={NewReleasesIcon}
-      />
+      />}
       <Newsletter />
       <Footer />
     </>

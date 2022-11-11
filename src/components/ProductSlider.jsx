@@ -94,6 +94,11 @@ const ProductSlider = ({ items, title, ICON }) => {
     className:"slider-div"
   };
 
+console.log(items)
+if(items=={}){
+  return <>no products</>
+}
+else
   return (
     <Container>
       <Header>
@@ -108,7 +113,7 @@ const ProductSlider = ({ items, title, ICON }) => {
       <Wrapper>
         <Slider {...settings}>
           {items.map((item, key) => {
-            return <Product item={item} key={key} />;
+            return <Product product={item} key={key} />;
           })}
         </Slider>
       </Wrapper>
