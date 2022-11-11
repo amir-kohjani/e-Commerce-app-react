@@ -41,9 +41,17 @@ const CategoryPage = (props) => {
 
   const fetchWithPromiseAll = async (categoryName) => {
     const getProducts = categoryService.getProductsByCategory(categoryName);
-    const [Products] = await Promise.all([getProducts]);
     // this func for add products from server
-    setProducts(Products.data.products);
+    Promise.all([getProducts])
+    .then((Products)=> {
+  
+      setProducts(Products[0].data.products)
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+   
     
     // console.log(products);
   };
@@ -51,11 +59,7 @@ const CategoryPage = (props) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setLoading(true);
-    setTimeout(() => {
-      setItems(popularProducts);
-      setLoading(false);
       fetchWithPromiseAll(categoryName);
-    }, 2000);
   }, [categoryName]);
 
   return (
