@@ -12,7 +12,7 @@ import DesktopWrapper from "./DesktopWrapper";
 import MobileWrapper from "./MobileWrapper";
 import CustomSpinner from "../../components/customSpinner/CustomSpinner";
 import Header from "../../components/Header/Header";
-
+import { productService } from "./services/getData";
 const Container = styled.div``;
 
 const CommentWrapper = styled.div``;
@@ -25,12 +25,19 @@ const SuggestWrapper = styled.div``;
 
 const ProductPage = () => {
   const { productId } = useParams();
-  const [data, setData] = useState(
-    popularProducts.find((product) => product.id == productId)
-  );
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState();
+  const [suggestProduct, setSuggestProduct]= useState();
+  const [loading, setLoading] = useState(true);
   const [mobileMode, setMobileMode] = useState(MobileMode);
   const dispatch = useDispatch();
+
+  const fetchWithPromiseAll = async () => {
+    const getProduct = await productService.getProductsById(productId);
+  const getSuggest = await productService.getProductsSuggest(getProduct.data.product.category);
+  setData(getProduct.data.product);
+  setSuggestProduct(getSuggest.data.products);
+    setLoading(false);
+  };
 
   const addToCartHandler = (item) => {
     dispatch(addItem(item));
@@ -43,33 +50,30 @@ const ProductPage = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setData(popularProducts.find((product) => product.id == productId));
-    }, 2000);
+    fetchWithPromiseAll();
   }, [productId]);
-  return (
-    <>
-  
-    <Container>
-      {loading ? (
-        <CustomSpinner />
-        ) : mobileMode ? (
-        <MobileWrapper addToCart={addToCartHandler} product={data} />
-      ) : (
-        <DesktopWrapper addToCart={addToCartHandler} product={data} />
-      )}
+  if (loading == true) {
+    return <CustomSpinner />;
+  } else if (data !== undefined&& suggestProduct!== undefined)
+    return (
+      <>
+        <Container>
+          {mobileMode ? (
+            <MobileWrapper addToCart={addToCartHandler} product={data} />
+          ) : (
+            <DesktopWrapper addToCart={addToCartHandler} product={data} />
+          )}
 
-      <SuggestWrapper>
-        <ProductSlider
-          title={"برای شما"}
-          ICON={Favorite}
-          items={popularProducts}
-        />
-      </SuggestWrapper>
-    </Container>
-          </>
-  );
+           <SuggestWrapper>
+            <ProductSlider
+              title={"برای شما"}
+              ICON={Favorite}
+              items={suggestProduct}
+            />
+          </SuggestWrapper> 
+        </Container>
+      </>
+    );
 };
 
 export default ProductPage;

@@ -5,6 +5,7 @@ import { mobile } from "../../responsive";
 import { MobileMode } from "../../util/MobileMode";
 const Container = styled.div`
   padding: 10px;
+  display: flex;
 `;
 const ImageWrapper = styled.div`
   min-width: 250px;
@@ -15,19 +16,22 @@ const ImageWrapper = styled.div`
 const ListImages = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column;
 `;
 
 const ItemListImage = styled.span`
   margin: 10px;
   cursor: pointer;
+ 
 `;
 
 const ImageItemList = styled.img`
   max-width: 70px;
+  
 `;
 
 const ImageSlideProduct = ({ item }) => {
-  const [coverImg,setCoverImg] = useState(item.img)
+  const [coverImg,setCoverImg] = useState();
   const [mobileMode,setMobileMode] = useState(false);
 
   useEffect(() => {
@@ -39,8 +43,11 @@ const ImageSlideProduct = ({ item }) => {
   }
 
   useEffect(() => {
-    setCoverImg(item.img);
+  
+    setCoverImg(item[0]);
+   
   },[item])
+  
   return (
     <Container>
       <ImageWrapper>
@@ -65,7 +72,7 @@ const ImageSlideProduct = ({ item }) => {
         />
       </ImageWrapper>
       <ListImages>
-        {item.imgs.map((img,index) => {
+        {item &&item.map((img,index) => {
           return (
             <ItemListImage onClick={(e) =>handler(img)} key={index}>
               <ImageItemList src={img} />

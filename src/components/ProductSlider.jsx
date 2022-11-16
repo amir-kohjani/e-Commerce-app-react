@@ -82,6 +82,8 @@ const ProductSlider = ({ items, title, ICON }) => {
     else setSlidToShowCount(1);
   }, []);
 
+
+
   const settings = {
     autoplay: false,
     dots: true,
@@ -91,10 +93,11 @@ const ProductSlider = ({ items, title, ICON }) => {
     slidesToScroll: 1,
     fade: false,
     rtl: true,
-    className:"slider-div"
+    rows:1
+   
   };
 
-console.log(items)
+
 if(items=={}){
   return <>no products</>
 }

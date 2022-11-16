@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { pink, orange, blue, magenta, cyan, red } from "@mui/material/colors";
 
 export const  Wrapper = styled.div`
-padding: 50px 30px;
+padding: 100px 30px;
 display: flex;
 `;
 
@@ -58,7 +58,7 @@ export const  Brand = styled.h1`
 text-align: right;
 font-size: 18pt;
 font-weight: bold;
-margin: 0px 0px 4px;
+margin: 10px 0px 10px;
 `;
 
 export const  PriceContainer = styled.div`
@@ -154,17 +154,19 @@ margin: 30px 0px;
 padding: 0px 50px;
 
 justify-content: space-between;
-
+align-items: center;
 display: flex;
 `;
 
 export const  Filter = styled.div`
 display: flex;
+align-items: center;
 `;
 
 export const  FilterTitle = styled.span`
 font-size: 20px;
 font-weight: normal;
+margin-left: 10px;
 `;
 
 export const ErrorMassage = styled.p`

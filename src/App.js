@@ -28,7 +28,7 @@ function App() {
         <Route path='/order' exact element={<OrderPage />} />
         <Route path='/login' exact element={<LoginOrRegisteryPage />} />
 
-        <Route path='*' exact element={<TestPage />} />
+        <Route path='/test' exact element={<TestPage />} />
         {/* //this is for error 404 */}
         </Routes>
       

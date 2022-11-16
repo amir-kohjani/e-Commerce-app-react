@@ -39,20 +39,24 @@ import { pink } from "@mui/material/colors";
 import PN from "persian-number";
 import CustomSnakbar from "../../components/snakbar/CustomSnakbar";
 import { useEffect } from "react";
+import CustomImageButton from "../../components/customImageButton/CustomImageButton";
 
 // import ListComments from "../components/ListComments";
 
 const DesktopWrapper = ({ addToCart, product }) => {
-  const [data, setData] = useState(product);
+  const [data, setData] = useState({});
   const [openSnakbar, setOpenSnakbar] = useState(false);
   const [loadingProduct, setLoadingProduct] = useState(false);
- 
+  const [curentColorIndex, setCurentColorIndex] = useState();
+  const [curentColor, setCurentColor] = useState([]);
 
   const snakbarHandler = (open) => {
     setOpenSnakbar(open);
   };
   const selectColorHandler = (color) => {
-    setData({ ...data, colorSelected: color });
+    setData({ ...data, colorSelected:color.name });
+    console.log(color)
+    if (color !== undefined) setCurentColor(color);
   };
   const selectSizeHanlder = (size) => {
     setData({ ...data, sizeSelected: size });
@@ -70,10 +74,10 @@ const DesktopWrapper = ({ addToCart, product }) => {
   };
 
   useEffect(() => {
-
     setData(product);
+    // setCurentColorIndex(0);
+    setCurentColor(product.colors[0]);
   }, [product]);
-
   return (
     <Wrapper>
       <WrapperInfo>
@@ -90,37 +94,46 @@ const DesktopWrapper = ({ addToCart, product }) => {
               <Description>{data.desc}</Description>
             </InfoContainer>
             <PriceContainer>
-              <PriceAndDiscountWrapper>
-                <Price className="price-label">
-                  <span> {PN.convertEnToPe(data.price)}</span>
-                </Price>
-                <Discount>
-                  <span>تخیف برای شما :</span>
-                  <span>{PN.convertEnToPe(data.discount)}%</span>
-                </Discount>
-              </PriceAndDiscountWrapper>
-              <CurrentPrice className="price-label">
-                <span>{PN.convertEnToPe(data.priceWithDiscount)}</span>
-              </CurrentPrice>
+              {data.discount ? (
+                <>
+                  {" "}
+                  <PriceAndDiscountWrapper>
+                    <Price className="price-label">
+                      <span> {PN.convertEnToPe(data.price)}</span>
+                    </Price>
+                    <Discount>
+                      <span>تخیف برای شما :</span>
+                      <span>{PN.convertEnToPe(data.discount)}%</span>
+                    </Discount>
+                  </PriceAndDiscountWrapper>
+                  <CurrentPrice className="price-label">
+                    <span>{PN.convertEnToPe(data.priceWithDiscount)}</span>
+                  </CurrentPrice>
+                </>
+              ) : (
+                <CurrentPrice>
+                  <span>قیمت : </span>
+                  <span className="price-label">
+                    {PN.convertEnToPe(data.price)}
+                  </span>
+                </CurrentPrice>
+              )}
             </PriceContainer>
           </PropertyContainer>
           <FilterContainer>
             {data.colors && (
               <Filter>
                 <FilterTitle>رنگ بندی</FilterTitle>
-                <CustomRadioBtnContainer
-                  colors={data.colors}
-                  selectedColor={selectColorHandler}
-                />
+                <CustomImageButton colors={data.colors} colorSelected={(color)=>selectColorHandler(color)}/>
               </Filter>
             )}
 
-            {data.sizes && (
+            {curentColor.sizes && (
               <Filter>
                 <FilterTitle>سایز</FilterTitle>
 
                 <Select
-                  items={data.sizes}
+                  items={curentColor.sizes}
                   defaultValue={"انتخاب کنید"}
                   onSelected={selectSizeHanlder}
                 />
@@ -153,9 +166,12 @@ const DesktopWrapper = ({ addToCart, product }) => {
           </DeliveryInfo>
         </InfoContainer>
       </WrapperInfo>
-      <ImgContainer>
-        <ImageSlideProduct item={data} />
-      </ImgContainer>
+      {/* {console.log(curentColor?.images)} */}
+      {curentColor?.images && (
+        <ImgContainer>
+          <ImageSlideProduct item={curentColor?.images} />
+        </ImgContainer>
+      )}
       <CustomSnakbar
         open={openSnakbar}
         onClose={() => setOpenSnakbar(false)}
