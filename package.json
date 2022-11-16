@@ -27,6 +27,7 @@
     "react-input-emoji": "^4.1.0",
     "react-input-verification-code": "^1.0.2",
     "react-loader-spinner": "^5.3.4",
+    "react-query": "^3.39.2",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
