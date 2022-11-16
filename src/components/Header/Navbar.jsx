@@ -12,6 +12,7 @@ const Navbar = () => {
             className="links"
             mobile={mobileMode}
             onClick={() => setMobileMode(false)}
+          
           >
             <li>
              <Link to={'/category/news'}  >جدید ترین ها</Link> 
@@ -19,8 +20,8 @@ const Navbar = () => {
             <li>
               <Link to={'/category/women'}>زنانه</Link>
             </li>
-            <li>
-              <Link to={'/category/men'}>مردانه</Link>
+            <li  >
+              <Link to={'/category/offer'}>بیشترین تخفیف ها</Link>
             </li>
           </Links>
         </Menu>
