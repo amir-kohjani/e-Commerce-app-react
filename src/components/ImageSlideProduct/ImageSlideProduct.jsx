@@ -1,11 +1,11 @@
 import React, { useState,useEffect } from "react";
 import styled from "styled-components";
 import ImageMagnify from "image-magnify";
-import { mobile } from "../../responsive";
 import { MobileMode } from "../../util/MobileMode";
 const Container = styled.div`
   padding: 10px;
-  display: flex;
+  display:${!MobileMode ? "flex" : null};
+  width: 100%;
 `;
 const ImageWrapper = styled.div`
   min-width: 250px;
@@ -16,7 +16,8 @@ const ImageWrapper = styled.div`
 const ListImages = styled.div`
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  overflow-y: scroll;
+  width: 100%;
 `;
 
 const ItemListImage = styled.span`

@@ -3,10 +3,10 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import CustomPagination from "../../components/customPagination/CustomPagination";
 import Products from "../../components/Products";
-import FilterContainer from "../../FilterProduct/FilterContainer";
+import FilterContainer from "../../components/FilterProduct/FilterContainer";
 import FixedButton from "../../components/FixedButton";
 import CustomDialog from "../../components/CustomDialog/CustomDialog";
-import FilterContainerMobile from "../../FilterProduct/FilterContainerMobile";
+import FilterContainerMobile from "../../components/FilterProduct/FilterContainerMobile";
 import CustomSpinner from "../../components/customSpinner/CustomSpinner";
 import { popularProducts } from "../../data";
 import {

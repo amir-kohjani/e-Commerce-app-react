@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiAddress = "http://localhost:4000/product"
+const apiAddress ="http://192.168.222.161:4000/product"
 
 const headers = {
     "Content-Type": "application/json"

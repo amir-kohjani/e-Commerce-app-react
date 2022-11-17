@@ -27,48 +27,51 @@ import {
   ErrorMassage,
 } from "./styles/MobileStyles";
 import { useState } from "react";
+import CustomImageButton from "../../components/customImageButton/CustomImageButton";
 import PN from "persian-number";
 import CustomSnakbar from "../../components/snakbar/CustomSnakbar";
 import { useEffect } from "react";
 
 const MobileWrapper = ({ addToCart, product }) => {
   const [data, setData] = useState(product);
-  const [openSnakbar,setOpenSnakbar] = useState(false);
-  const [loading,setLoading] = useState(false);
+  const [openSnakbar, setOpenSnakbar] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [curentColor, setCurentColor] = useState([]);
 
-
-  const snakbarHandler = (open)=>{
-       setOpenSnakbar(open);
-     
-  }
+  const snakbarHandler = (open) => {
+    setOpenSnakbar(open);
+  };
   const selectColorHandler = (color) => {
-    setData({ ...data, colorSelected: color });
+    setData({ ...data, colorSelected: color.name });
+    console.log(color);
+    if (color !== undefined) setCurentColor(color);
   };
   const selectSizeHanlder = (size) => {
     setData({ ...data, sizeSelected: size });
   };
   const addToCartHandler = () => {
-    if(!loading){
+    if (!loading) {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
-      addToCart(data);
-      snakbarHandler(true);
-
-    }, 2000);
+        addToCart(data);
+        snakbarHandler(true);
+      }, 2000);
     }
-  
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     setData(product);
-  },[product])
-  
+    setCurentColor(product.colors[0]);
+  }, [product]);
+
   return (
     <Wrapper>
-      <ImgContainer>
-        <ImageSlideProduct item={data} />
-      </ImgContainer>
+      {curentColor?.images && (
+        <ImgContainer>
+          <ImageSlideProduct item={curentColor?.images} />
+        </ImgContainer>
+      )}
       <WrapperInfo>
         <Title>{data.title}</Title>
         <Divider />
@@ -76,39 +79,39 @@ const MobileWrapper = ({ addToCart, product }) => {
           <InfoContainer>
             <Categoyr>
               <span>دسته بندی:</span>
-              <a>{data.category}</a>
+              <a>{data.category[0]}</a>
             </Categoyr>
             <Brand>{data.brand}</Brand>
             <Description>{data.desc}</Description>
           </InfoContainer>
           <PriceContainer>
             <Price className="price-label">
-              <span> {PN.convertEnToPe( data.price)}</span>
+              <span> {PN.convertEnToPe(data.price)}</span>
             </Price>
             <Discount>
               <span>تخفیف بر ای شما : </span>
-              <span>{PN.convertEnToPe( data.discount)}%</span>
+              <span>{PN.convertEnToPe(data.discount)}%</span>
             </Discount>
             <CurrentPrice className="price-label">
-              <span>{PN.convertEnToPe( data.priceWithDiscount)}</span>
+              <span>{PN.convertEnToPe(data.priceWithDiscount)}</span>
             </CurrentPrice>
           </PriceContainer>
         </PropertyContainer>
         <FilterContainer>
           <Filter>
             <FilterTitle>رنگ بندی :</FilterTitle>
-            <CustomRadioBtnContainer
+            <CustomImageButton
               colors={data.colors}
-              selectedColor={selectColorHandler}
+              colorSelected={(color) => selectColorHandler(color)}
             />
           </Filter>
 
           <Filter>
             <FilterTitle>سایز بندی :</FilterTitle>
 
-            {data.sizes && (
+            {curentColor.sizes && (
               <Select
-                items={data.sizes}
+                items={curentColor.sizes}
                 defaultValue={"انتخاب کنید"}
                 onSelected={selectSizeHanlder}
               />
@@ -120,11 +123,11 @@ const MobileWrapper = ({ addToCart, product }) => {
             onClick={addToCartHandler}
             disabled={data.colorSelected && data.sizeSelected ? false : true}
           >
-              {loading ? (
-                <CircularProgress color="primary" size={30} />
-              ) : (
-                "    افزودن به سبد خرید!"
-              )}
+            {loading ? (
+              <CircularProgress color="primary" size={30} />
+            ) : (
+              "    افزودن به سبد خرید!"
+            )}
           </ButtonAddToCart>
           <ErrorMassage
             show={data.colorSelected && data.sizeSelected ? false : true}
@@ -139,10 +142,12 @@ const MobileWrapper = ({ addToCart, product }) => {
             <p>برای خرید های بالای ۵۰۰ هزار تومان</p>
           </div>
         </DeliveryInfo>
-        
       </WrapperInfo>
-      <CustomSnakbar open={openSnakbar} onClose={()=> setOpenSnakbar(false)}
-       message='محصول با موفقیت به سبد شما اضافه شد!' />
+      <CustomSnakbar
+        open={openSnakbar}
+        onClose={() => setOpenSnakbar(false)}
+        message="محصول با موفقیت به سبد شما اضافه شد!"
+      />
     </Wrapper>
   );
 };
