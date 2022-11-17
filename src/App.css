@@ -144,7 +144,7 @@ p {
 }
 
 .cart-label:before {
-  content: "\F030";
+  content: "\F029";
   font-size: 18pt;
   font-size: 1rem;
   font-weight: 400;
@@ -303,6 +303,21 @@ p {
 }
 .back-label::before {
   content: "\F006";
+  font-family: digikala;
+  font-size: 100%;
+}
+.search-label::before {
+  content: "\F047";
+  font-family: digikala;
+  font-size: 100%;
+}
+.heart-label::before {
+  content: "\F036";
+  font-family: digikala;
+  font-size: 100%;
+}
+.profile-label::before {
+  content: "\F044";
   font-family: digikala;
   font-size: 100%;
 }

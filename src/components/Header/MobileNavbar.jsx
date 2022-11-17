@@ -12,6 +12,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const Container = styled.div`
   /* direction: rtl; */
+
   text-align: center;
   display: flex;
   -webkit-box-pack: justify;
@@ -25,82 +26,78 @@ const Container = styled.div`
 `;
 
 const Item = styled.div`
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
   width: 25%;
   padding: 8px 0px 3px;
   position: relative;
   a {
     text-decoration: none;
     display: block;
-    color: ${props=>props.active ? pink[500] : 'black'};
+    color: ${(props) => (props.active ? pink[500] : "black")};
   }
-  :hover{
-    color:${pink[500]};
+  :hover {
+    color: ${pink[500]};
   }
 `;
 
 const Icon = styled.span`
   display: block;
+  &::before {
+    font-size: 18pt;
+    font-weight: bold;
+  }
 `;
 
 const Title = styled.span`
   display: block;
-  font-size: 9px;
+  font-size: 10px;
+  font-weight: bold;
   text-align: center;
   padding: 5px 0px;
   transition: all 0.2s ease 0s;
   white-space: nowrap;
 `;
 const MobileNavbar = () => {
-  const {pathname} =useLocation();
+  const { pathname } = useLocation();
 
   return (
     <Container>
-      <Item active={pathname=='/' ? true : false}>
+      <Item active={pathname == "/" ? true : false}>
         <Link to="/">
-          <Icon >
-            <HomeIcon />
-          </Icon>
+          <Icon className="home-label"></Icon>
 
-          <Title>Home</Title>
+          <Title>خانه</Title>
         </Link>
       </Item>
-      <Item active={pathname=='/mobileSearch' ? true : false}>
+      <Item active={pathname == "/mobileSearch" ? true : false}>
         <Link to="/mobileSearch">
-          <Icon>
-            <SearchIcon />
-          </Icon>
+          <Icon className="search-label"></Icon>
 
-          <Title>Search</Title>
+          <Title>جستجو</Title>
         </Link>
       </Item>
-      <Item active={pathname=='/order' ? true : false}>
-        
+      <Item active={pathname == "/order" ? true : false}>
+        <Link to="/order">
+          <Icon className="cart-label"></Icon>
 
-        <Link to='/order' > 
-          <Icon>
-            <ShoppingCartIcon />
-          </Icon>
-
-          <Title>Cart</Title>
+          <Title>سبد خرید</Title>
         </Link>
       </Item>
       <Item>
         <a>
-          <Icon>
-            <FavoriteBorderIcon />
-          </Icon>
+          <Icon className="heart-label"></Icon>
 
-          <Title>Favorite</Title>
+          <Title>مورد علاقه</Title>
         </a>
       </Item>
       <Item>
         <a>
-          <Icon>
-            <AccountCircleIcon />
-          </Icon>
+          <Icon className="profile-label"></Icon>
 
-          <Title>Profile</Title>
+          <Title>پروفایل</Title>
         </a>
       </Item>
     </Container>
