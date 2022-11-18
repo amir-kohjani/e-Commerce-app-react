@@ -8,7 +8,13 @@ padding: 10px;
 justify-content: space-between;
 align-items: center;
 flex-direction: ${!MobileMode()? ' ':'column'};
-
+a{
+  display: flex;
+  flex-direction:${MobileMode()? "column":"row"};
+    align-items: center;
+    justify-content: space-around;
+    color: black;
+}
 `;
 export const  ImageWrapper = styled.div`
 padding: 10px;
@@ -27,6 +33,7 @@ export const  Image = styled.img`
 export const  InfoWrapper = styled.div`
 display: flex;
 flex-direction: column;
+width:${MobileMode()?"90%":"50%"};
 `;
 export const  Title = styled.h1`
 text-align: right;
@@ -37,6 +44,10 @@ export const  Description = styled.p`
 text-align: right;
 font-size: 12pt;
 font-weight: normal;
+white-space: nowrap;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const  SizeColorWrapper = styled.div`

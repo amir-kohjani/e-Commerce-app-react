@@ -24,16 +24,20 @@ import {
   FimalPriceWrapper,
   FinalPrice,
 } from "./styles/itemCartDialogStyles";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 const ItemCartDialog = ({
   item,
   noQuantity = false,
   noPrice = false,
   noDiscount = false,
 }) => {
+  console.log(item)
   return (
     <>
       <Divider />
       <Container>
+        <Link to={`/product/${item.id}`}>
         <ImageWrapper>
           <Image src={item.colors[item.colorSelected.index].images[0]} />
         </ImageWrapper>
@@ -45,17 +49,17 @@ const ItemCartDialog = ({
             <Color>{item.colorSelected.name}</Color>
           </SizeColorWrapper>
         </InfoWrapper>
-        {!noDiscount && (
-          <PriceWrapper>
-            <Price className="price-label">{item.price}</Price>
-            <DiscountWrapper>
-              <Discount>{PN.convertEnToPe(item.discount)}</Discount>
-              <PriceWithDiscount className="price-label">
-                {PN.convertEnToPe(item.priceWithDiscount)}
-              </PriceWithDiscount>
-            </DiscountWrapper>
-          </PriceWrapper>
-        )}
+        </Link>
+        {!noDiscount &&
+          (item.discount ? (
+            <PriceWrapper>
+              <Price className="price-label">{item.price}</Price>
+              <DiscountWrapper>
+                <Discount>{PN.convertEnToPe(item.discount)}</Discount>
+              
+              </DiscountWrapper>
+            </PriceWrapper>
+          ) : null)}
         {!noQuantity && (
           <QuntityWrapper>
             <Add className="add-label" />
@@ -66,7 +70,7 @@ const ItemCartDialog = ({
         {!noPrice && (
           <FimalPriceWrapper>
             <FinalPrice className="price-label">
-              {PN.convertEnToPe(item.priceWithDiscount)}
+              {item.discount ? PN.convertEnToPe(item.priceWithDiscount) :PN.convertEnToPe(item.price)}
             </FinalPrice>
           </FimalPriceWrapper>
         )}
