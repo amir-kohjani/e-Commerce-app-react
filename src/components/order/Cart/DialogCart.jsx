@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import PN from "persian-number";
 import styled from "styled-components";
 import { pink } from "@mui/material/colors";
-
+import { useDispatch } from "react-redux";
 import ItemCartDialog from "./ItemCartDialog";
 import { Link } from "react-router-dom";
 import { MobileMode } from "../../../util/MobileMode";
+import { deleteItem } from "../../../redux/cart";
 
 const Container = styled.div`
   max-width: 1000px;
@@ -81,6 +82,10 @@ const DialogCart = ({ items, onClose, cartSubmit }) => {
     items.reduce((acc, item) => acc + parseInt(item.priceWithDiscount), 0)
   );
 
+  const dispatch = useDispatch();
+  const removeItemHandler = (item) => {
+    dispatch(deleteItem(item));
+  };
   // useEffect(() => {
   //   items.map((item) => {});
   // }, [items]);
@@ -100,7 +105,13 @@ const DialogCart = ({ items, onClose, cartSubmit }) => {
       <Title>سبد خرید شما </Title>
       {items &&
         items.map((item, index) => {
-          return <ItemCartDialog item={item} key={index} />;
+          return (
+            <ItemCartDialog
+              item={item}
+              key={index}
+              removeItem={(item) => removeItemHandler(item)}
+            />
+          );
         })}
 
       <Wrapper>
