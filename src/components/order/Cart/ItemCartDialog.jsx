@@ -23,15 +23,19 @@ import {
   Remove,
   FimalPriceWrapper,
   FinalPrice,
-  
 } from "./styles/itemCartDialogStyles";
-const ItemCartDialog = ({ item,noQuantity=false,noPrice=false,noDiscount=false }) => {
+const ItemCartDialog = ({
+  item,
+  noQuantity = false,
+  noPrice = false,
+  noDiscount = false,
+}) => {
   return (
     <>
       <Divider />
       <Container>
         <ImageWrapper>
-          <Image src={item.img} />
+          <Image src={item.colors[item.colorSelected.index].images[0]} />
         </ImageWrapper>
         <InfoWrapper>
           <Title>{item.brand}</Title>
@@ -41,25 +45,31 @@ const ItemCartDialog = ({ item,noQuantity=false,noPrice=false,noDiscount=false }
             <Color>{item.colorSelected.name}</Color>
           </SizeColorWrapper>
         </InfoWrapper>
-      {!noDiscount&&  <PriceWrapper>
-          <Price className="price-label">{item.price}</Price>
-          <DiscountWrapper>
-            <Discount>{PN.convertEnToPe(item.discount)}</Discount>
-            <PriceWithDiscount className="price-label">
+        {!noDiscount && (
+          <PriceWrapper>
+            <Price className="price-label">{item.price}</Price>
+            <DiscountWrapper>
+              <Discount>{PN.convertEnToPe(item.discount)}</Discount>
+              <PriceWithDiscount className="price-label">
+                {PN.convertEnToPe(item.priceWithDiscount)}
+              </PriceWithDiscount>
+            </DiscountWrapper>
+          </PriceWrapper>
+        )}
+        {!noQuantity && (
+          <QuntityWrapper>
+            <Add className="add-label" />
+            <Count>1</Count>
+            <Remove className="remove-label" />
+          </QuntityWrapper>
+        )}
+        {!noPrice && (
+          <FimalPriceWrapper>
+            <FinalPrice className="price-label">
               {PN.convertEnToPe(item.priceWithDiscount)}
-            </PriceWithDiscount>
-          </DiscountWrapper>
-        </PriceWrapper>}
-       {!noQuantity && <QuntityWrapper>
-          <Add className="add-label" />
-          <Count>1</Count>
-          <Remove className="remove-label" />
-        </QuntityWrapper>}
-        {!noPrice && <FimalPriceWrapper>
-          <FinalPrice className="price-label">
-            {PN.convertEnToPe(item.priceWithDiscount)}
-          </FinalPrice>
-        </FimalPriceWrapper>}
+            </FinalPrice>
+          </FimalPriceWrapper>
+        )}
       </Container>
     </>
   );
