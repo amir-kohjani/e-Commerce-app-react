@@ -42,8 +42,8 @@ const MobileWrapper = ({ addToCart, product }) => {
     setOpenSnakbar(open);
   };
   const selectColorHandler = (color) => {
-    const indexColor = data.colors.indexOf(color);
-    setData({ ...data, colorSelected:{name:color.name,index:indexColor} });
+    
+    setData({ ...data, colorSelected:{name:color.name,image:color.images[0]} });
     
     if (color !== undefined) setCurentColor(color);
   };

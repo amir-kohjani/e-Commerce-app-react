@@ -55,8 +55,8 @@ const DesktopWrapper = ({ addToCart, product }) => {
   };
   const selectColorHandler = (color) => {
     const indexColor = data.colors.indexOf(color);
-    setData({ ...data, colorSelected:{name:color.name,index:indexColor} });
-    // console.log(indexColor);
+    setData({ ...data, colorSelected:{name:color.name,image:color.images[0]} });
+    // console.log(color);
     if (color !== undefined) setCurentColor(color);
   };
   const selectSizeHanlder = (size) => {

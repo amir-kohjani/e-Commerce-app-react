@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Divider } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 import React from "react";
 import PN from "persian-number";
 import {
@@ -24,42 +24,50 @@ import {
   Remove,
   FimalPriceWrapper,
   FinalPrice,
+  ButtonWrapper,
+  ConfirmationBtn,
 } from "./styles/itemCartDialogStyles";
+import CustomDialog from "../../CustomDialog/CustomDialog";
+import { green, red } from "@mui/material/colors";
 
 const ItemCartDialog = ({
   item,
   noQuantity = false,
   noPrice = false,
   noDiscount = false,
-  removeItem
+  removeItem,
 }) => {
   const [quantity, setQuantity] = useState();
-
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   useEffect(() => {
     if (item.quantity) {
-      setQuantity(item.quantity)
-    }else {
-      setQuantity(1)
+      setQuantity(item.quantity);
+    } else {
+      setQuantity(1);
     }
   }, []);
 
-  const addQuantityHandler = () =>{
-    setQuantity(prev=>prev+1);
-  }
-  const removeQuantityHandler = () =>{
-    if(quantity > 1){
-      setQuantity(prev=>prev-1);
-    }else if(quantity ==1){
-      removeItem(item);
+  const addQuantityHandler = () => {
+    setQuantity((prev) => prev + 1);
+  };
+  const removeQuantityHandler = () => {
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1);
+    } else if (quantity == 1) {
+      setDeleteConfirmation(true);
     }
-  }
-  return (
+  };
+  const deleteItem = () => {
+    removeItem(item);
+    setDeleteConfirmation(false);
+  };
+  return !deleteConfirmation ? (
     <>
       <Divider />
       <Container>
         <Link to={`/product/${item.id}`}>
           <ImageWrapper>
-            <Image src={item.colors[item.colorSelected.index].images[0]} />
+            <Image src={item.colorSelected.image} />
           </ImageWrapper>
           <InfoWrapper>
             <Title>{item.brand}</Title>
@@ -70,6 +78,16 @@ const ItemCartDialog = ({
             </SizeColorWrapper>
           </InfoWrapper>
         </Link>
+        {!noQuantity && (
+          <QuntityWrapper>
+            <Add className="add-label" onClick={() => addQuantityHandler()} />
+            <Count>{PN.convertEnToPe(quantity)}</Count>
+            <Remove
+              className="remove-label"
+              onClick={() => removeQuantityHandler()}
+            />
+          </QuntityWrapper>
+        )}
         {!noDiscount &&
           (item.discount ? (
             <PriceWrapper>
@@ -79,13 +97,6 @@ const ItemCartDialog = ({
               </DiscountWrapper>
             </PriceWrapper>
           ) : null)}
-        {!noQuantity && (
-          <QuntityWrapper>
-            <Add className="add-label" onClick={()=>addQuantityHandler()} />
-            <Count>{PN.convertEnToPe(quantity)}</Count>
-            <Remove className="remove-label" onClick={()=>removeQuantityHandler()} />
-          </QuntityWrapper>
-        )}
         {!noPrice && (
           <FimalPriceWrapper>
             <FinalPrice className="price-label">
@@ -97,6 +108,22 @@ const ItemCartDialog = ({
         )}
       </Container>
     </>
+  ) : (
+    <Container>
+      <Title>محصول از سبد شما حذف شود؟!</Title>
+      <ButtonWrapper>
+        <ConfirmationBtn backgroundColor={green[500]} onClick={()=>deleteItem()}>بله</ConfirmationBtn>
+        <ConfirmationBtn backgroundColor={red[500]} onClick={()=>setDeleteConfirmation(false)}>خیر</ConfirmationBtn>
+      </ButtonWrapper>
+    </Container>
+  );
+};
+
+const Test = () => {
+  return (
+    <CustomDialog open={true}>
+      <h1>test</h1>
+    </CustomDialog>
   );
 };
 

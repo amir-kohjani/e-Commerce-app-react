@@ -4,6 +4,7 @@ import { MobileMode } from "../../../../util/MobileMode";
 
 export const  Container = styled.div`
 display: flex;
+min-height:250px;
 padding: 10px;
 justify-content: space-between;
 align-items: center;
@@ -120,4 +121,23 @@ font-size: 16pt;
 color: ${pink[500]};
 `;
 export const  FinalPrice = styled.span``;
+ 
+export const ButtonWrapper = styled.div`
+display: flex;
+align-items: center;
+justify-content: space-around;
+flex-direction:  ${!MobileMode() ? ' ':'column'};
+width: 40%;
+`
 
+export const ConfirmationBtn = styled.button`
+
+background-color:${props=>props.backgroundColor};
+width: 50%;
+padding: 10px;
+margin: 10px 10px;
+color:white;
+font-size:12pt;
+border: none;
+border-radius:10px;
+`
