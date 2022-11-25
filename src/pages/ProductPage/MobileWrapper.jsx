@@ -87,14 +87,14 @@ const MobileWrapper = ({ addToCart, product }) => {
           </InfoContainer>
           <PriceContainer>
             <Price className="price-label">
-              <span> {PN.convertEnToPe(data.price)}</span>
+            <span>  {PN.convertEnToPe(PN.sliceNumber(data.price))}</span>
             </Price>
             <Discount>
               <span>تخفیف بر ای شما : </span>
               <span>{PN.convertEnToPe(data.discount)}%</span>
             </Discount>
             <CurrentPrice className="price-label">
-              <span>{PN.convertEnToPe(data.priceWithDiscount)}</span>
+            <span>  {PN.convertEnToPe(PN.sliceNumber(data.priceWithDiscount))}</span>
             </CurrentPrice>
           </PriceContainer>
         </PropertyContainer>

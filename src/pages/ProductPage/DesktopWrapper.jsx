@@ -100,22 +100,23 @@ const DesktopWrapper = ({ addToCart, product }) => {
                   {" "}
                   <PriceAndDiscountWrapper>
                     <Price className="price-label">
-                      <span> {PN.convertEnToPe(data.price)}</span>
+                      <span>  {PN.convertEnToPe(PN.sliceNumber(data.price))}</span>
                     </Price>
                     <Discount>
                       <span>تخیف برای شما :</span>
                       <span>{PN.convertEnToPe(data.discount)}%</span>
                     </Discount>
                   </PriceAndDiscountWrapper>
-                  <CurrentPrice className="price-label">
-                    <span>{PN.convertEnToPe(data.priceWithDiscount)}</span>
+                  <CurrentPrice>
+                  <span>قیمت : </span>
+                    <span  className="price-label">     {PN.convertEnToPe(PN.sliceNumber( data.priceWithDiscount))}</span>
                   </CurrentPrice>
                 </>
               ) : (
                 <CurrentPrice>
                   <span>قیمت : </span>
                   <span className="price-label">
-                    {PN.convertEnToPe(data.price)}
+                    {PN.sliceNumber(PN.convertEnToPe( data.price))}
                   </span>
                 </CurrentPrice>
               )}
