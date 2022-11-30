@@ -130,7 +130,7 @@ const ErrorTimeOut = styled.p`
   margin: 0;
 `;
 const { Countdown } = Statistic;
-const ValidationNumber = ({ numberPhone, editNumberPhone, submit }) => {
+const ValidationNumber = ({ numberPhone, editNumberPhone, submit,incorrectCode }) => {
   const [number, setNumber] = useState("");
   const [error, setError] = useState(false);
   const [timeValid, setTimeValid] = useState(Date.now() + 1000 * 120);
@@ -147,7 +147,7 @@ const ValidationNumber = ({ numberPhone, editNumberPhone, submit }) => {
     if (number.length < 4 || !validateNumber) setError(true);
     else {
       setError(false);
-      submit(number);
+      submit(PN.convertPeToEn(number));
     }
   };
 
@@ -196,6 +196,12 @@ const ValidationNumber = ({ numberPhone, editNumberPhone, submit }) => {
           <ErrorTimeOutWrapper>
             <ErrorTimeOut>مهلت زمان کد به پایان رسیده است.</ErrorTimeOut>
             <ReSendCodeBtn onClick={reSendHandler}>ارسال دوباره</ReSendCodeBtn>
+          </ErrorTimeOutWrapper>
+        )}
+        {incorrectCode && (
+          <ErrorTimeOutWrapper>
+            <ErrorTimeOut>کد وارد شده صحیح نمی باشد!</ErrorTimeOut>
+            
           </ErrorTimeOutWrapper>
         )}
       </Wrapper>
