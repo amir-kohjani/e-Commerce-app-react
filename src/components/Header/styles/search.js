@@ -16,15 +16,15 @@ export const Searche = styled.div`
   ${(props) =>
     props.scrolled
       ? {
-          height: "12vh",
-          position: "fixed",
-          top: "0",
-          zIndex: "1000",
-          width: "100%",
-          backgroundColor: "#fff",
-          boxShadow: " -1px 11px 24px -11px rgba(0, 0, 0, 0.2)",
-          transition: "0s",
-        }
+        height: "12vh",
+        position: "fixed",
+        top: "0",
+        zIndex: "1000",
+        width: "100%",
+        backgroundColor: "#fff",
+        boxShadow: " -1px 11px 24px -11px rgba(0, 0, 0, 0.2)",
+        transition: "0s",
+      }
       : ""}
 `;
 
@@ -69,8 +69,8 @@ export const SearchBox = styled.div`
       font-size: 15px;
     }
     ${mobile({
-      width: "60%",
-    })}
+  width: "60%",
+})}
   }
   span {
     display: flex;
@@ -84,18 +84,30 @@ export const SearchBox = styled.div`
 `;
 export const Icons = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
   width: 20%;
 `;
+export const Icon = styled.div`
+display: flex;
+    align-items: baseline;
+`
+
+export const CartIconWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100px;
+    justify-content: space-between;
+`
 export const IconCircle = styled.span`
-  width: 50px;
-  height: 50px;
   line-height: 50px;
   background: none;
   margin-left: 20px;
   text-align: center;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+
   span {
     position: absolute;
     top: 0px;
@@ -115,10 +127,9 @@ export const IconCircle = styled.span`
 `;
 export const UserIcon = styled.div`
   position: relative;
-  font-size: 22pt;
-  margin-right: 10px;
+  
   display: flex;
-  align-items: center;
+  width: max-content;
   cursor: pointer;
   &:hover {
     color: ${pink[500]};
@@ -128,11 +139,29 @@ export const UserIcon = styled.div`
     text-decoration: none;
     color: #c90000;
   }
+  &::before {
+    margin-right:30px;
+    font-size: 22pt;
+  }
 `;
-
+export const LoginText = styled.div`
+width: max-content;
+line-height: 50px;
+font-size:12pt;
+padding:0px 3px;
+text-align: center;
+border-radius:10px;
+border: 0.5px solid black;
+cursor: pointer;
+&:hover {
+    color: ${pink[500]};
+    border: 0.5px solid ${pink[500]};
+  }
+`
 export const Cart = styled.div`
   position: relative;
   font-size: 25pt;
+  
   max-width: max-content;
   display: flex;
   align-items: center;
@@ -143,5 +172,21 @@ export const Cart = styled.div`
   a {
     text-decoration: none;
     color: #c90000;
+  }
+  span {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: auto;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #e94560;
+    font-size: 10pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
   }
 `;

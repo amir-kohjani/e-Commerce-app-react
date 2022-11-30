@@ -16,17 +16,22 @@ import {
   IconCircle,
   UserIcon,
   Cart,
-  
-} from './styles/search'
+  LoginText,
+  Icon,
+  CartIconWrapper,
+} from "./styles/search";
 import { Link } from "react-router-dom";
-
-
+import CustomDropDownMenu from "../CustomDropDownMenu/CustomDropDownMenu";
+import { Menu, MenuItem } from "@mui/material";
 
 const Search = () => {
   const [scrolled, setscrolled] = useState(false);
   const [cartDialogFlag, setCartDialogFlag] = useState(false);
   const [loginDialogFlag, setLoginDialogFlag] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
   const cartItems = useSelector((state) => state.cart.items);
+  const user = useSelector((state) => state.user.user);
   window.addEventListener("scroll", function () {
     window.scrollY > 100 ? setscrolled(true) : setscrolled(false);
   });
@@ -39,13 +44,29 @@ const Search = () => {
     setLoginDialogFlag((perv) => !perv);
   };
 
+  const handleClickDropDown = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseDropDown = () => {
+    setAnchorEl(null);
+  };
+
+  const logOutUserHandler  = ()=>{
+    localStorage.removeItem('_ID');
+    localStorage.removeItem('_t');
+    handleCloseDropDown();
+    window.location.reload();
+  }
+  // useEffect(() => {
+  //   console.log(user)
+  // })
   return (
     <Searche scrolled={scrolled}>
       <Container>
-        <Link to='/'>
-        <Logo>
-          <ImageLogo src={logo} />
-        </Logo>
+        <Link to="/">
+          <Logo>
+            <ImageLogo src={logo} />
+          </Logo>
         </Link>
         <SearchBox>
           <i>
@@ -54,35 +75,77 @@ const Search = () => {
           <input placeholder="جستجو میان تمامی کالاها..." />
         </SearchBox>
         <Icons>
-          <IconCircle>
-            <UserIcon
-              className="user-label"
-              onClick={() => dialogLoginHandler()}
-            >
-              <a></a>
-            </UserIcon>
-          </IconCircle>
-          <IconCircle>
+          <Icon>
             <Cart className="cart-label" onClick={() => dialogCartHandler()}>
               {cartItems.length > 0 && <span>{cartItems.length}</span>}
             </Cart>
-            <CustomDialog
-              open={cartDialogFlag}
-              onClose={() => dialogCartHandler()}
-            >
-              <DialogCart items={cartItems} onClose={()=> dialogCartHandler()}/>
-            </CustomDialog>
-            <CustomDialog
-              open={loginDialogFlag}
-              onClose={() => dialogLoginHandler()}
-            >
-              <LoginWrapper />
-            </CustomDialog>
-          </IconCircle>
+          </Icon>
+          <span>|</span>
+          <Icon>
+            {!user.name ? (
+              <LoginText onClick={() => dialogLoginHandler()}>
+                ورود یا ثبت نام
+              </LoginText>
+            ) : (
+              <>
+                <CartIconWrapper>
+                  <Cart
+                    className="user-label"
+                    id="basic-button"
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClickDropDown}
+                  ></Cart>
+                  <span>{user.name}</span>
+                  <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleCloseDropDown}
+                    MenuListProps={{
+                      "aria-labelledby": "basic-button",
+                    }}
+                  >
+                    <MenuItem onClick={logOutUserHandler}>خروج</MenuItem>
+                  </Menu>
+                </CartIconWrapper>
+              </>
+            )}
+          </Icon>
         </Icons>
+        <CustomDialog open={cartDialogFlag} onClose={() => dialogCartHandler()}>
+          <DialogCart items={cartItems} onClose={() => dialogCartHandler()} />
+        </CustomDialog>
+        <CustomDialog
+          open={loginDialogFlag}
+          onClose={() => dialogLoginHandler()}
+        >
+          <LoginWrapper onClose={() => dialogLoginHandler()} />
+        </CustomDialog>
       </Container>
     </Searche>
   );
 };
 
 export default Search;
+
+{
+  /* <Icons>
+          <IconCircle>
+            {/* <UserIcon
+              className="user-label"
+              onClick={() => dialogLoginHandler()}
+            >
+            { user.name  }
+            </UserIcon> */
+}
+// <LoginText>ورود یا ثبت نام</LoginText>
+//   </IconCircle>
+//   <IconCircle>
+//     <Cart className="cart-label" onClick={() => dialogCartHandler()}>
+//       {cartItems.length > 0 && <span>{cartItems.length}</span>}
+//     </Cart>
+
+//   </IconCircle>
+// </Icons> */}

@@ -86,12 +86,12 @@ const MobileNavbar = () => {
           <Title>سبد خرید</Title>
         </Link>
       </Item>
-      <Item>
-        <a>
+      <Item  active={pathname == "/wishList" ? true : false}>
+        <Link to="/wishList">
           <Icon className="heart-label"></Icon>
 
           <Title>مورد علاقه</Title>
-        </a>
+        </Link>
       </Item>
       <Item>
         <a>

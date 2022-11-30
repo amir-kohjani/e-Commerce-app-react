@@ -22,7 +22,8 @@ const Header = () => {
       pathname == "/order" ||
       pathname == "/mobileSearch" ||
       pathname.includes("/category/") ||
-      pathname.includes("/product/")
+      pathname.includes("/product/")||
+      pathname==("/wishList")
     )
       setNologo(true);
       else setNologo(false);
