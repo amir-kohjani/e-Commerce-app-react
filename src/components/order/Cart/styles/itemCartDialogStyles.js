@@ -45,7 +45,7 @@ export const  Description = styled.p`
 text-align: right;
 font-size: 12pt;
 font-weight: normal;
-white-space: nowrap;
+white-space: ${MobileMode() ? null : "nowrap"};
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
