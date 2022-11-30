@@ -45,14 +45,8 @@ import CustomImageButton from "../../components/customImageButton/CustomImageBut
 
 const DesktopWrapper = ({ addToCart, product }) => {
   const [data, setData] = useState({});
-  const [openSnakbar, setOpenSnakbar] = useState(false);
   const [loadingProduct, setLoadingProduct] = useState(false);
-  const [curentColorIndex, setCurentColorIndex] = useState();
   const [curentColor, setCurentColor] = useState([]);
-
-  const snakbarHandler = (open) => {
-    setOpenSnakbar(open);
-  };
   const selectColorHandler = (color) => {
     const indexColor = data.colors.indexOf(color);
     setData({ ...data, colorSelected:{name:color.name,image:color.images[0]} });
@@ -69,7 +63,6 @@ const DesktopWrapper = ({ addToCart, product }) => {
       setTimeout(() => {
         setLoadingProduct(false);
         addToCart(data);
-        snakbarHandler(true);
       }, 2000);
     }
   };
@@ -116,7 +109,7 @@ const DesktopWrapper = ({ addToCart, product }) => {
                 <CurrentPrice>
                   <span>قیمت : </span>
                   <span className="price-label">
-                    {PN.sliceNumber(PN.convertEnToPe( data.price))}
+                    {PN.convertEnToPe(PN.sliceNumber( data.price))}
                   </span>
                 </CurrentPrice>
               )}
@@ -174,11 +167,7 @@ const DesktopWrapper = ({ addToCart, product }) => {
           <ImageSlideProduct item={curentColor?.images} />
         </ImgContainer>
       )}
-      <CustomSnakbar
-        open={openSnakbar}
-        onClose={() => setOpenSnakbar(false)}
-        message="محصول با موفقیت به سبد شما اضافه شد!"
-      />
+      
 
       {/* <CustomSpinner/> */}
     </Wrapper>

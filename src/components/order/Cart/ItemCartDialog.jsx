@@ -40,6 +40,7 @@ const ItemCartDialog = ({
   const [quantity, setQuantity] = useState();
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   useEffect(() => {
+    console.log(item)
     if (item.quantity) {
       setQuantity(item.quantity);
     } else {

@@ -34,13 +34,11 @@ import { useEffect } from "react";
 
 const MobileWrapper = ({ addToCart, product }) => {
   const [data, setData] = useState(product);
-  const [openSnakbar, setOpenSnakbar] = useState(false);
+
   const [loading, setLoading] = useState(false);
   const [curentColor, setCurentColor] = useState([]);
 
-  const snakbarHandler = (open) => {
-    setOpenSnakbar(open);
-  };
+
   const selectColorHandler = (color) => {
     
     setData({ ...data, colorSelected:{name:color.name,image:color.images[0]} });
@@ -56,7 +54,6 @@ const MobileWrapper = ({ addToCart, product }) => {
       setTimeout(() => {
         setLoading(false);
         addToCart(data);
-        snakbarHandler(true);
       }, 2000);
     }
   };
@@ -144,11 +141,7 @@ const MobileWrapper = ({ addToCart, product }) => {
           </div>
         </DeliveryInfo>
       </WrapperInfo>
-      <CustomSnakbar
-        open={openSnakbar}
-        onClose={() => setOpenSnakbar(false)}
-        message="محصول با موفقیت به سبد شما اضافه شد!"
-      />
+     
     </Wrapper>
   );
 };

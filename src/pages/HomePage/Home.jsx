@@ -42,7 +42,7 @@ const Home = () => {
       getBestSellersProducts,
       getNewsProducts,
     ]);
-    console.log(News)
+ 
 
     setOfferProducts(Offer.data.products);
     setBestSellersProducts(BestSellers.data.products);
@@ -51,11 +51,10 @@ const Home = () => {
 
   useEffect(() => {
     fetchWithPromiseAll();
+    console.log(process.env.REACT_APP_API_ADDRESS)
   },[]);
 
-  useEffect(() =>
-  console.log(BestSellersProducts.length )
-  )
+
   return (
     <>
       <SliderTop items={sliderItems} />

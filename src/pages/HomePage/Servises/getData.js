@@ -1,5 +1,6 @@
 import axios from "axios";
-const apiAddress = "http://localhost:4000/product"
+const apiAddress =process.env.REACT_APP_API_ADDRESS_DOMAIN_NAME; 
+
 
 const headers = {
     "Content-Type": "application/json"
@@ -15,6 +16,6 @@ export  const HomeService = {
         let params = {
             "category": category
         }
-        return axios.get(apiAddress+"/byCategory", {headers,params})
+        return axios.get(apiAddress+"/product/byCategory", {headers,params})
     }
 }
