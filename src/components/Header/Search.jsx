@@ -21,7 +21,7 @@ import {
   CartIconWrapper,
 } from "./styles/search";
 import { Link } from "react-router-dom";
-import CustomDropDownMenu from "../CustomDropDownMenu/CustomDropDownMenu";
+
 import { Menu, MenuItem } from "@mui/material";
 
 const Search = () => {
