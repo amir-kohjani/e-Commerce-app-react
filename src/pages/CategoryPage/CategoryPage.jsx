@@ -36,6 +36,7 @@ const CategoryPage = (props) => {
 
   const onChangeFilterProp = (prop) => {
     setFilterProp(prop);
+    console.log(prop)
     closeDialog();
   };
 
@@ -61,6 +62,11 @@ const CategoryPage = (props) => {
     setLoading(true);
       fetchWithPromiseAll(categoryName);
   }, [categoryName]);
+
+
+  useEffect(()=>{
+
+  },)
 
   return (
     <Container>
