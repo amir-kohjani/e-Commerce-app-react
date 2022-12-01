@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiAddress ="http://localhost:4000"
+const apiAddress =process.env.REACT_APP_API_ADDRESS_DOMAIN_NAME; 
 
 const headers = {
     "Content-Type": "application/json"
