@@ -8,8 +8,9 @@ import styled from "styled-components";
 
 import { regPhoneNumber } from "../../util/regexs";
 import { useEffect } from "react";
+import { MobileMode } from "../../util/MobileMode";
 const Container = styled.div`
-  width: 750px;
+  width: ${MobileMode() ? "100%":"750px"};
   height: 500px;
   display: flex;
   justify-content: center;
@@ -22,7 +23,7 @@ const Wrapper = styled.div`
   direction: rtl;
   border-radius: 16px;
   background-color: #ffffff;
-  padding: 30px 15px;
+  padding: 30px 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -71,7 +72,7 @@ const InputWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  width: 50%;
+  width: 100%;
   direction: ltr;
 `;
 
@@ -179,6 +180,7 @@ const ValidationNumber = ({ numberPhone, editNumberPhone, submit,incorrectCode }
           <ReactInputVerificationCode
             autoFocus={true}
             placeholder=""
+            length={4}
             onChange={(n) => PN.convertPeToEn(setNumber(n))}
             value={PN.convertEnToPe(number)}
           />

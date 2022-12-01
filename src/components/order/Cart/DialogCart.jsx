@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import PN from "persian-number";
 import styled from "styled-components";
 import { pink } from "@mui/material/colors";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ItemCartDialog from "./ItemCartDialog";
 import { Link } from "react-router-dom";
 import { MobileMode } from "../../../util/MobileMode";
 import { deleteItem } from "../../../redux/cart";
+import LoginWrapper from "../../LoginAndRegister/LoginWrapper";
+import CustomDialog from "../../CustomDialog/CustomDialog";
 
 const Container = styled.div`
   max-width: 1000px;
@@ -20,6 +22,7 @@ const EmpetyWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   height: 100%;
+  margin: 10px;
 `;
 
 const EmpetyIcon = styled.span`
@@ -74,7 +77,27 @@ const BtnContinue = styled.button`
   border: none;
   border-radius: 10px;
 `;
+const LoginButton = styled.button`
+  width: 40%;
+  line-height: 60px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 30px;
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: none;
+  background-color: ${pink[500]};
+`;
 const DialogCart = ({ items, onClose, cartSubmit }) => {
+  const [loginDialogFlag, setLoginDialogFlag] = useState(false);
+
+  const user = useSelector((state) => state.user.user);
+
   const [totalPrice, setTotalPrice] = useState(
     items.reduce((acc, item) => acc + parseInt(item.price), 0)
   );
@@ -86,9 +109,30 @@ const DialogCart = ({ items, onClose, cartSubmit }) => {
   const removeItemHandler = (item) => {
     dispatch(deleteItem(item));
   };
-  // useEffect(() => {
-  //   items.map((item) => {});
-  // }, [items]);
+const dialogLoginHandler = () => {
+    setLoginDialogFlag((perv) => !perv);
+    
+  };
+  
+if(!user.id){
+  return(
+    <>
+  <Container>
+        <EmpetyWrapper>
+          <EmpetyIcon className="user-label" />
+          <Title>لطفا ابتدا وارد حساب خود شوید!</Title>
+        <LoginButton onClick={dialogLoginHandler} >ورود یا ثبت نام</LoginButton>
+        </EmpetyWrapper>
+      </Container>
+       <CustomDialog
+       open={loginDialogFlag}
+       onClose={() => dialogLoginHandler()}
+       >
+       <LoginWrapper onClose={() => dialogLoginHandler()} />
+     </CustomDialog>
+       </>
+  )
+}
 
   if (items.length == 0) {
     return (

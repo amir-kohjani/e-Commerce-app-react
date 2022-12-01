@@ -3,9 +3,10 @@ import PN from "persian-number";
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
+import { MobileMode } from "../../util/MobileMode";
 import  {regPhoneNumber} from "../../util/regexs"
 const Container = styled.div`
-  width: 750px;
+  width: ${MobileMode() ? "100%":"750px"};
   height: 500px;
   display: flex;
   justify-content: center;
@@ -18,7 +19,7 @@ const Wrapper = styled.div`
   direction: rtl;
   border-radius: 16px;
   background-color: #ffffff;
-  padding: 30px 15px;
+  padding: 30px 0px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -39,7 +40,8 @@ const Description = styled.p`
 const InputWrapper = styled.div`
   border: ${prop=>prop.error ? `1px solid red `:`1px solid gray`};
   border-radius: 10px;
-  width: 40%;
+  width: ${MobileMode()? "90%":"40%"};
+  
 `;
 const InputNumber = styled.input`
   width: 100%;
@@ -59,7 +61,7 @@ const ErrorMessage = styled.p`
   font-size: 10pt;
 `;
 const SubmitButton = styled.button`
-  width: 40%;
+  width:${MobileMode() ? "90%":"40%"};
   line-height: 60px;
   border-radius: 12px;
   text-align: center;
