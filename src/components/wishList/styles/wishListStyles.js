@@ -1,3 +1,4 @@
+import { pink } from "@mui/material/colors";
 import styled from "styled-components";
 import {MobileMode} from  '../../../util/MobileMode'
 
@@ -27,4 +28,20 @@ export const Title = styled.h1`
   width: 100%;
   text-align: center;
   margin: 10px 0px;
+`;
+export const LoginButton = styled.button`
+  width: 40%;
+  line-height: 60px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 30px;
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: none;
+  background-color: ${pink[500]};
 `;
