@@ -32,9 +32,9 @@ const Search = () => {
   const open = Boolean(anchorEl);
   const cartItems = useSelector((state) => state.cart.items);
   const user = useSelector((state) => state.user.user);
-  window.addEventListener("scroll", function () {
-    window.scrollY > 100 ? setscrolled(true) : setscrolled(false);
-  });
+  // window.addEventListener("scroll", function () {
+  //   window.scrollY > 150 ? setscrolled(true) : setscrolled(false);
+  // });
 
   const dialogCartHandler = () => {
     setCartDialogFlag((perv) => !perv);
