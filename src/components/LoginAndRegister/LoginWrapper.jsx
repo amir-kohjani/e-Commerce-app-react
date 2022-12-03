@@ -31,6 +31,7 @@ const LoginWrapper = ({ onClose }) => {
       .catch((error) => console.log(error));
   };
   const fetchUser = (code,callback) => {
+ 
     const validateCodeRequest = authService.validateCode(numberPhone, code);
     Promise.all([validateCodeRequest])
       .then((response) => {
