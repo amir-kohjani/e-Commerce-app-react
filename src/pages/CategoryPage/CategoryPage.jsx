@@ -20,7 +20,9 @@ import {
   PaginationWrapper,
 } from "./styles/CategoryPageStyles";
 import { categoryService } from "./Servises/getData";
+import useMobileMode from "../../hooks/useMobileMode";
 const CategoryPage = (props) => {
+  const mobileMode = useMobileMode()
   const [items, setItems] = useState(popularProducts);
   const [products, setProducts] = useState(null);
   const [open, setOpen] = useState(false);
@@ -64,17 +66,14 @@ const CategoryPage = (props) => {
   }, [categoryName]);
 
 
-  useEffect(()=>{
-
-  },)
 
   return (
     <Container>
       <Title>{}</Title>
       <MainContainer>
-        <FilterWrapper>
+         <FilterWrapper mobileMode={mobileMode}>
           <FilterContainer onSubmit={onChangeFilterProp} />
-        </FilterWrapper>
+        </FilterWrapper> 
         <CustomDialog open={open} onClose={closeDialog}>
           <FilterContainerMobile onSubmit={onChangeFilterProp} />
         </CustomDialog>
@@ -91,7 +90,7 @@ const CategoryPage = (props) => {
           )}
         </ProductWrapper>
       </MainContainer>
-      <FixedButtonWrapper onClick={() => openDialog()}>
+      <FixedButtonWrapper onClick={() => openDialog()} mobile={mobileMode}>
         <FixedButton />
       </FixedButtonWrapper>
     </Container>

@@ -8,14 +8,15 @@ import { MobileMode } from "../../util/MobileMode";
 import { useLocation } from "react-router-dom";
 import { ContactsOutlined } from "@ant-design/icons";
 import GoBackHeader from "./GoBackHeader";
+import useMobileMode from "../../hooks/useMobileMode";
 
 const Header = () => {
-  const [mobileMode, setMobileMode] = useState(MobileMode);
+  const mobileMode = useMobileMode();
   const [noLogo, setNologo] = useState(false);
   const { pathname } = useLocation();
-  useEffect(() => {
-    setMobileMode(MobileMode);
-  }, [MobileMode]);
+  // useEffect(() => {
+  //   setMobileMode(MobileMode);
+  // }, [MobileMode]);
 
   useEffect(() => {
     if (

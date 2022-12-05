@@ -13,6 +13,7 @@ import CustomSpinner from "../../components/customSpinner/CustomSpinner";
 
 import { productService } from "./services/getData";
 import CustomSnakbar from "../../components/snakbar/CustomSnakbar";
+import useMobileMode from "../../hooks/useMobileMode";
 
 const Container = styled.div``;
 const SuggestWrapper = styled.div``;
@@ -27,7 +28,7 @@ const ProductPage = () => {
   const [loading, setLoading] = useState(true);
   const [openSnakbar, setOpenSnakbar] = useState(false);
   const [snakMassage, setSnakMassage] = useState('')
-  const [mobileMode, setMobileMode] = useState(MobileMode);
+  const mobileMode= useMobileMode();
   const [wished, setWished] = useState(false);
 
 //read data from redux
@@ -131,10 +132,7 @@ const ProductPage = () => {
     }
   };
 
-  //this func for check mobile Mode
-  useEffect(() => {
-    setMobileMode(MobileMode);
-  }, [MobileMode]);
+
   //this func for check productId changed , refetch data and scrolled page to up
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
