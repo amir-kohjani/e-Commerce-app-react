@@ -1,20 +1,20 @@
 import styled from "styled-components";
 import { orange, pink } from "@mui/material/colors";
-import { MobileMode } from "../../../../util/MobileMode";
+import { MobileMode } from "../../../util/MobileMode";
 
 export const  Container = styled.div`
 display: flex;
 position: relative;
 padding: 10px;
 justify-content: space-between;
-align-items: center;
+align-items:center;
 flex-direction: ${!MobileMode()? ' ':'column'};
 
 `;
 export const  ImageWrapper = styled.div`
 padding: 10px;
-max-width: 200px;
-  min-width: 180px;
+max-width: 150px;
+  min-width: 150px;
 
 display: flex;
 align-items: center;
@@ -28,6 +28,8 @@ export const  Image = styled.img`
 export const  InfoWrapper = styled.div`
 display: flex;
 flex-direction: column;
+align-items: center;
+justify-content: center;
 `;
 export const  Title = styled.h1`
 text-align: right;
@@ -35,7 +37,7 @@ font-size: 12pt;
 font-weight: bold;
 `;
 export const  Description = styled.p`
-text-align: right;
+text-align: center;
 font-size: 12pt;
 font-weight: normal;
 `;
