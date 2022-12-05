@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import SearchIcon from "@mui/icons-material/Search";
 import LoginWrapper from "../LoginAndRegister/LoginWrapper";
+import WishList from "../wishList/WishList"
 import CustomDialog from "../CustomDialog/CustomDialog";
 import logo from "../assets/images/logo.svg";
 import DialogCart from "../order/Cart/DialogCart";
@@ -13,8 +14,6 @@ import {
   ImageLogo,
   SearchBox,
   Icons,
-  IconCircle,
-  UserIcon,
   Cart,
   LoginText,
   Icon,
@@ -28,6 +27,7 @@ const Search = () => {
   const [scrolled, setscrolled] = useState(false);
   const [cartDialogFlag, setCartDialogFlag] = useState(false);
   const [loginDialogFlag, setLoginDialogFlag] = useState(false);
+  const [wishListDialogFlag, setWishListDialogFlag] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const cartItems = useSelector((state) => state.cart.items);
@@ -51,12 +51,17 @@ const Search = () => {
     setAnchorEl(null);
   };
 
-  const logOutUserHandler  = ()=>{
-    localStorage.removeItem('_ID');
-    localStorage.removeItem('_t');
+  const logOutUserHandler = () => {
+    localStorage.removeItem("_ID");
+    localStorage.removeItem("_t");
     handleCloseDropDown();
     window.location.reload();
-  }
+  };
+
+  const wishListDialogHandler = () => {
+    setWishListDialogFlag((prev) => !prev);
+    handleCloseDropDown();
+  };
   // useEffect(() => {
   //   console.log(user)
   // })
@@ -108,6 +113,9 @@ const Search = () => {
                     }}
                   >
                     <MenuItem onClick={logOutUserHandler}>خروج</MenuItem>
+                    <MenuItem onClick={wishListDialogHandler}>
+                      لیست علاقه مندی ها
+                    </MenuItem>
                   </Menu>
                 </CartIconWrapper>
               </>
@@ -117,11 +125,11 @@ const Search = () => {
         <CustomDialog open={cartDialogFlag} onClose={() => dialogCartHandler()}>
           <DialogCart items={cartItems} onClose={() => dialogCartHandler()} />
         </CustomDialog>
-        <CustomDialog
-          open={loginDialogFlag}
-          onClose={() => dialogLoginHandler()}
-        >
-          <LoginWrapper onClose={() => dialogLoginHandler()} />
+        <CustomDialog open={loginDialogFlag} onClose={dialogLoginHandler}>
+          <LoginWrapper onClose={dialogLoginHandler} />
+        </CustomDialog>
+        <CustomDialog open={wishListDialogFlag} onClose={wishListDialogHandler}>
+          <WishList onClose={wishListDialogHandler} />
         </CustomDialog>
       </Container>
     </Searche>
