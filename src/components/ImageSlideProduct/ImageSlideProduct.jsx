@@ -10,6 +10,8 @@ const Container = styled.div`
 const ImageWrapper = styled.div`
   min-width: 250px;
   direction: ltr;
+  display: flex;
+  justify-content:center;
 `;
 
 
