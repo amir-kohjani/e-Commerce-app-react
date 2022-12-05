@@ -24,10 +24,23 @@ export const productService = {
         return axios.get(apiAddress + "/product/bySuggest", { headers, params })
 
     },
-    addItemToCartByUserId : (item,userId) => {
+    addItemToCartByUserId: (item, userId) => {
         let data = {
-            item,userId
+            item, userId
         }
-        return axios.post(apiAddress + "/cart/addItemToCartByUserId",data,{headers});
-    }
+        return axios.post(apiAddress + "/cart/addItemToCartByUserId", data, { headers });
+    },
+    addItemToWishListByUserId: (userId, item) => {
+        let data = {
+            userId, item
+        }
+        return axios.post(apiAddress + "/wishList/addItemToWishListByUserId", data, { headers });
+    },
+    removeItemToWishListByUserId: (userId, item) => {
+        let data = {
+            userId, item
+        }
+        return axios.post(apiAddress + "/wishList/removeItemFromWishListByUserId", data, { headers });
+    },
+
 }

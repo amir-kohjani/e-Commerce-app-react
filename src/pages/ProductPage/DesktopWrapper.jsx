@@ -30,6 +30,9 @@ import {
   DeliveryInfo,
   ImgContainer,
   ErrorMassage,
+  WrapperLikeAndInfo,
+  LikeContainer,
+  Like,
 } from "./styles/DesctopStyles";
 
 import ImageSlideProduct from "../../components/ImageSlideProduct/ImageSlideProduct";
@@ -40,16 +43,27 @@ import PN from "persian-number";
 import CustomSnakbar from "../../components/snakbar/CustomSnakbar";
 import { useEffect } from "react";
 import CustomImageButton from "../../components/customImageButton/CustomImageButton";
+import { useSelector } from "react-redux";
 
 // import ListComments from "../components/ListComments";
 
-const DesktopWrapper = ({ addToCart, product }) => {
+const DesktopWrapper = ({
+  addToCart,
+  product,
+  addWishList,
+  productWished,
+  removeWishList,
+}) => {
   const [data, setData] = useState({});
   const [loadingProduct, setLoadingProduct] = useState(false);
+  const [wished, setWished] = useState(false);
   const [curentColor, setCurentColor] = useState([]);
   const selectColorHandler = (color) => {
     const indexColor = data.colors.indexOf(color);
-    setData({ ...data, colorSelected:{name:color.name,image:color.images[0]} });
+    setData({
+      ...data,
+      colorSelected: { name: color.name, image: color.images[0] },
+    });
     // console.log(color);
     if (color !== undefined) setCurentColor(color);
   };
@@ -66,10 +80,20 @@ const DesktopWrapper = ({ addToCart, product }) => {
       }, 2000);
     }
   };
-
+  const likedHandler = () => {
+    if (!productWished) {
+      addWishList(data, (wishedProduct) => {
+        if (wishedProduct) setWished(true);
+        else setWished(false);
+      });
+    } else {
+      removeWishList(data);
+      setWished(false);
+    }
+  };
   useEffect(() => {
     setData(product);
-    // setCurentColorIndex(0);
+    setWished(productWished);
     setCurentColor(product.colors[0]);
   }, [product]);
   return (
@@ -79,21 +103,32 @@ const DesktopWrapper = ({ addToCart, product }) => {
           <Title>{data.title}</Title>
           <Divider />
           <PropertyContainer>
-            <InfoContainer>
-              <Categoyr>
-                <span>دسته بندی:</span>
-                <a>{data.category}</a>
-              </Categoyr>
-              <Brand>{data.brand}</Brand>
-              <Description>{data.desc}</Description>
-            </InfoContainer>
+            <WrapperLikeAndInfo>
+              <LikeContainer>
+                <Like
+                  className={wished ? "heart-fill-label" : "heart-label"}
+                  onClick={likedHandler}
+                ></Like>
+              </LikeContainer>
+              <InfoContainer>
+                <Categoyr>
+                  <span>دسته بندی:</span>
+                  <a>{data.category}</a>
+                </Categoyr>
+                <Brand>{data.brand}</Brand>
+                <Description>{data.desc}</Description>
+              </InfoContainer>
+            </WrapperLikeAndInfo>
             <PriceContainer>
               {data.discount ? (
                 <>
                   {" "}
                   <PriceAndDiscountWrapper>
                     <Price className="price-label">
-                      <span>  {PN.convertEnToPe(PN.sliceNumber(data.price))}</span>
+                      <span>
+                        {" "}
+                        {PN.convertEnToPe(PN.sliceNumber(data.price))}
+                      </span>
                     </Price>
                     <Discount>
                       <span>تخیف برای شما :</span>
@@ -101,15 +136,18 @@ const DesktopWrapper = ({ addToCart, product }) => {
                     </Discount>
                   </PriceAndDiscountWrapper>
                   <CurrentPrice>
-                  <span>قیمت : </span>
-                    <span  className="price-label">     {PN.convertEnToPe(PN.sliceNumber( data.priceWithDiscount))}</span>
+                    <span>قیمت : </span>
+                    <span className="price-label">
+                      {" "}
+                      {PN.convertEnToPe(PN.sliceNumber(data.priceWithDiscount))}
+                    </span>
                   </CurrentPrice>
                 </>
               ) : (
                 <CurrentPrice>
                   <span>قیمت : </span>
                   <span className="price-label">
-                    {PN.convertEnToPe(PN.sliceNumber( data.price))}
+                    {PN.convertEnToPe(PN.sliceNumber(data.price))}
                   </span>
                 </CurrentPrice>
               )}
@@ -119,7 +157,10 @@ const DesktopWrapper = ({ addToCart, product }) => {
             {data.colors && (
               <Filter>
                 <FilterTitle>رنگ بندی</FilterTitle>
-                <CustomImageButton colors={data.colors} colorSelected={(color)=>selectColorHandler(color)}/>
+                <CustomImageButton
+                  colors={data.colors}
+                  colorSelected={(color) => selectColorHandler(color)}
+                />
               </Filter>
             )}
 
@@ -167,7 +208,6 @@ const DesktopWrapper = ({ addToCart, product }) => {
           <ImageSlideProduct item={curentColor?.images} />
         </ImgContainer>
       )}
-      
 
       {/* <CustomSpinner/> */}
     </Wrapper>

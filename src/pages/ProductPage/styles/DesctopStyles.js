@@ -4,6 +4,7 @@ import { pink, orange, blue, magenta, cyan, red } from "@mui/material/colors";
 export const  Wrapper = styled.div`
 padding: 100px 30px;
 display: flex;
+flex-wrap: wrap-reverse;
 `;
 
 export const  ImgContainer = styled.div`
@@ -173,4 +174,24 @@ export const ErrorMassage = styled.p`
 margin: 10px;
 color:${red[500]};
 visibility : ${props=>props.show ? 'visible' : 'hidden'};
+`
+export const WrapperLikeAndInfo = styled.div`
+display: flex;
+direction: ltr;
+justify-content:space-between;
+align-items:center;
+
+`
+export const  LikeContainer = styled.div`
+flex:1;
+display: flex;
+justify-content:center;
+` 
+export const Like = styled.span`
+font-size: 25pt;
+color:${pink[500]};
+&:hover{
+ font-size:27pt;
+ transition: all 0.2s ease;
+}
 `
