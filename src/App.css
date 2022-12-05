@@ -312,9 +312,16 @@ p {
   font-size: 100%;
 }
 .heart-label::before {
-  content: "\F036";
+  content: "\F02b";
   font-family: digikala;
   font-size: 100%;
+  transition: all 0.2s ease; 
+}
+.heart-fill-label::before {
+  content: "\F02a";
+  font-family: digikala;
+  font-size: 100%;
+  transition: all 0.2s ease; 
 }
 .profile-label::before {
   content: "\F044";
