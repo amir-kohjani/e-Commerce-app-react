@@ -22,5 +22,12 @@ export const appService = {
             "userId": id
         }
         return axios.get(apiAddress + "/cart/getCartByUserId", { headers, params });
-    }
+    },
+    getWishListByUserId: (userId) => {
+        console.log(userId)
+          let params = {
+              "userId": userId
+          }
+          return axios.get(apiAddress+"/wishList/getWishListByUserId", {headers,params})
+      }
 }
