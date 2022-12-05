@@ -20,52 +20,55 @@ import WishListPage from './pages/WishList/WishListPage';
 import { addUser } from './redux/user';
 import { appService } from './appServises/appservices';
 import { addItems } from './redux/cart';
+import { addItemsWishList } from './redux/wishList'
 import { useState } from 'react';
 function App() {
-  const [userId,setUserId] = useState(window.localStorage.getItem('_ID'))
+  const [userId, setUserId] = useState(window.localStorage.getItem('_ID'))
   const dispatch = useDispatch();
-    const setUserInRedux = (user) => {
-      dispatch(addUser(user));
-    }
-    const setItemCartInRedux = (cart) => {
-      dispatch(addItems(cart.itemList));
-      
-    } 
-  
-    const featchuser = (id) => {
-  const getUserRequest = appService.getUserById(id)
-  const getCartRequest = appService.getCartByUserId(id)
-  Promise.all([getUserRequest,getCartRequest])
-  .then((response) =>{
 
-    const user = response[0].data._doc;
-    const cart = response[1].data._doc;
-  window.localStorage.setItem("_t",user.token);
-  setUserInRedux(user);
-  setItemCartInRedux(cart);
-  })
-  .catch((err)=>{
-  console.log(err)
-  })
-    }
-  
+  const setUserInRedux = (user) => {
+    dispatch(addUser(user));
+  }
+  const setItemCartInRedux = (cart) => {
+    dispatch(addItems(cart.itemList));
+  }
+  const setItemWishListInRedux = (wishList) => {
+    dispatch(addItemsWishList(wishList.itemList));
+  }
+
+  const featchUser = (id) => {
+    const getUserRequest = appService.getUserById(id);
+    const getCartRequest = appService.getCartByUserId(id);
+    const getWishListRequest = appService.getWishListByUserId(id);
+    Promise.all([getUserRequest, getCartRequest, getWishListRequest])
+      .then((response) => {
+        const user = response[0].data._doc;
+        const cart = response[1].data._doc;
+        const wishList = response[2].data._doc;
+        window.localStorage.setItem("_t", user.token);
+        setUserInRedux(user);
+        setItemCartInRedux(cart);
+        setItemWishListInRedux(wishList);
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+ 
   useEffect(() => {
-console.log(userId)
     if (userId) {
-      featchuser(userId);
+      featchUser(userId);
     }
     else {
       console.log(`user not exists`);
-
     }
   }, [])
   return (
     <>
       <Router>
         <Header />
-
         <Routes>
-
           <Route path='/' exact element={<Home />} />
           <Route path='/category/:categoryName' exact element={<CategoryPage />} />
           <Route path='/mobileSearch/' exact element={<MobileSearch />} />
