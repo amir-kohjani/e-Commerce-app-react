@@ -1,4 +1,9 @@
+import { Divider } from "@mui/material";
+
 import React from "react";
+import { useState } from "react";
+import PN from "persian-number";
+
 import {
   Container,
   Image,
@@ -16,20 +21,29 @@ import {
   FinalPrice,
   Remove,
 } from "./styles/ItemWishListStyles";
-const ItemWishList = ({item}) => {
+const ItemWishList = ({item,removeItem}) => {
+
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
+
+  const deleteItem = () => {
+    removeItem(item);
+    setDeleteConfirmation(false);
+  };
+
+ 
   return (
     <>
       <Divider />
       <Container>
-      <Remove className="remove-label" />
+      {/* <Remove className="remove-label" /> */}
         <ImageWrapper>
-          <Image src={item.colors[0].images[0]} />
+          <Image src={item.image} />
         </ImageWrapper>
         <InfoWrapper>
           <Title>{item.brand}</Title>
           <Description>{item.title}</Description>
         </InfoWrapper>
-        <PriceWrapper>
+        {/* <PriceWrapper>
           <Price className="price-label">{item.price}</Price>
           <DiscountWrapper>
             <Discount>{PN.convertEnToPe(item.discount)}</Discount>
@@ -42,7 +56,7 @@ const ItemWishList = ({item}) => {
           <FinalPrice className="price-label">
             {PN.convertEnToPe(item.priceWithDiscount)}
           </FinalPrice>
-        </FimalPriceWrapper>
+        </FimalPriceWrapper> */}
       </Container>
     </>
   );
