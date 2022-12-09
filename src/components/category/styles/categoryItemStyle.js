@@ -2,26 +2,23 @@ import styled from "styled-components";
 import { mobile } from "../../../responsive";
 
 export const Container = styled.div`
+flex:1;
+margin: 10px;
+
+width: 250px;
+max-width: 270px;
+min-width: 170px;
+position: relative;
+a{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
-  margin: 10px;
-  padding: 20px;
-  height: 350px;
-  width: 350px;
-  //min-width: 420px;
-  max-width: 420px;
-  ${mobile({
-
-    maxWidth: '500px',
-    minWidth: '350px',
-})}
+  }
 `;
 export const Image = styled.img`
   border-radius: 10%;
-  width: 70%;
+  width: 100%;
   object-fit: cover;
   &:hover{
     transform:scale(1.2);
@@ -45,4 +42,5 @@ export const Title = styled.h1`
   text-align: center;
   font-size: 20px;
   margin: 20px;
+
 `;
