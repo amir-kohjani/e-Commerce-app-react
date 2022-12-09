@@ -8,6 +8,7 @@ import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import Product from "./ProductCard/Product";
 import { mobile } from "../responsive";
 import { Divider } from "@mui/material";
+import useMobileMode from "../hooks/useMobileMode";
 
 const Container = styled.div`
   margin: 10px 0px;
@@ -36,7 +37,7 @@ const HeaderRight = styled.div`
   color: grey;
 `;
 const Icon = styled.div`
-display: flex;
+  display: flex;
   font-size: 40px;
   color: #e94560;
   margin: 10px;
@@ -71,57 +72,57 @@ const Arrow = styled.div`
   z-index: 2;
 `;
 
-
 const ProductSlider = ({ items, title, ICON }) => {
-  const [mobileMode, setMobileMode] = useState(true);
   const [slidToShowCount, setSlidToShowCount] = useState(4);
-  useEffect(() => {
+  const [screenWidth, setScreenWidth] = useState();
+
+  const mobileMode = useMobileMode();
+
+  const handleResize = () => {
     if (window.outerWidth > 1290) setSlidToShowCount(4);
-    else if (window.outerWidth > 1000) setSlidToShowCount(3);
-    else if (window.outerWidth > 700) setSlidToShowCount(2);
-    else setSlidToShowCount(1);
-  }, []);
-
-
+    else if (window.outerWidth > 1000&&window.innerWidth < 1290) setSlidToShowCount(3);
+    else if (window.outerWidth > 700 && window.innerWidth < 1000) setSlidToShowCount(2);
+    else if (window.outerWidth >470 && window.innerWidth <700)setSlidToShowCount(1);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  });
 
   const settings = {
     autoplay: false,
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: slidToShowCount,
+    slidesToShow:mobileMode ? 1: slidToShowCount,
     slidesToScroll: 1,
     fade: false,
     rtl: true,
-    rows:1
-   
+    rows: 1,
   };
 
-
-if(items=={}){
-  return <>no products</>
-}
-else
-  return (
-    <Container>
-      <Header>
-        <HeaderLeft>
-          <Icon>{<ICON style={{ fontSize: "45px" }} />}</Icon>
-          <a>
-            <Title>{title}</Title>
-          </a>
-        </HeaderLeft>
-      </Header>
-      <Divider />
-      <Wrapper>
-        <Slider {...settings}>
-          {items.map((item, key) => {
-            return <Product product={item} key={key} />;
-          })}
-        </Slider>
-      </Wrapper>
-    </Container>
-  );
+  if (items == {}) {
+    return <>no products</>;
+  } else
+    return (
+      <Container>
+        <Header>
+          <HeaderLeft>
+            <Icon>{<ICON style={{ fontSize: "45px" }} />}</Icon>
+            <a>
+              <Title>{title}</Title>
+            </a>
+          </HeaderLeft>
+        </Header>
+        <Divider />
+        <Wrapper>
+          <Slider {...settings}>
+            {items.map((item, key) => {
+              return <Product product={item} key={key} />;
+            })}
+          </Slider>
+        </Wrapper>
+      </Container>
+    );
 };
 
 export default ProductSlider;
