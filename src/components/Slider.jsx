@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { mobile } from "../responsive";
 const Container = styled.div`
   width: 100%;
-height: 100%;
 max-height: 350px;
 padding: 20px;
 

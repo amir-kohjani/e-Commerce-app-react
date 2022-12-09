@@ -14,9 +14,7 @@ const Header = () => {
   const mobileMode = useMobileMode();
   const [noLogo, setNologo] = useState(false);
   const { pathname } = useLocation();
-  // useEffect(() => {
-  //   setMobileMode(MobileMode);
-  // }, [MobileMode]);
+ 
 
   useEffect(() => {
     if (
