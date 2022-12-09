@@ -6,7 +6,7 @@ import Products from "../../components/Products";
 import FilterContainer from "../../components/FilterProduct/FilterContainer";
 import FixedButton from "../../components/FixedButton";
 import CustomDialog from "../../components/CustomDialog/CustomDialog";
-import FilterContainerMobile from "../../components/FilterProduct/FilterContainerMobile";
+
 import CustomSpinner from "../../components/customSpinner/CustomSpinner";
 import { popularProducts } from "../../data";
 import {
@@ -22,11 +22,13 @@ import {
 import { categoryService } from "./Servises/getData";
 import useMobileMode from "../../hooks/useMobileMode";
 const CategoryPage = (props) => {
-  const mobileMode = useMobileMode()
+  const mobileMode = useMobileMode();
   const [items, setItems] = useState(popularProducts);
   const [products, setProducts] = useState(null);
   const [open, setOpen] = useState(false);
   const [filterProp, setFilterProp] = useState({});
+  const [countPage, setCountPage] = useState(0);
+  const [curentPage, setCurentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const { categoryName } = useParams();
   const openDialog = () => {
@@ -36,55 +38,58 @@ const CategoryPage = (props) => {
     setOpen(false);
   };
 
-  const onChangeFilterProp = (prop) => {
-    setFilterProp(prop);
-    console.log(prop)
+  const onChangeFilterProp = (filters) => {
+    setFilterProp(filters);
     closeDialog();
   };
-
-  const fetchWithPromiseAll = async (categoryName) => {
-    const getProducts = categoryService.getProductsByCategory(categoryName);
+const changePageHandler = (page)=>{
+  setCurentPage(page);
+}
+  const fetchWithPromiseAll = async (categoryName, filters) => {
+    const getProducts = categoryService.getProductsByCategory(
+      categoryName,
+      filters,
+curentPage
+    );
     // this func for add products from server
     Promise.all([getProducts])
-    .then((Products)=> {
-  
-      setProducts(Products[0].data.products)
-      setLoading(false);
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-   
-    
+      .then((Products) => {
+        console.log(Products[0].data)
+        setCountPage(Products[0].data.products.totalPages);
+        setProducts(Products[0].data.products.docs);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     // console.log(products);
   };
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setLoading(true);
-      fetchWithPromiseAll(categoryName);
-  }, [categoryName]);
-
-
+    fetchWithPromiseAll(categoryName, filterProp);
+  }, [categoryName, filterProp,curentPage]);
 
   return (
     <Container>
       <Title>{}</Title>
       <MainContainer>
-         <FilterWrapper mobileMode={mobileMode}>
+        <FilterWrapper mobileMode={mobileMode}>
           <FilterContainer onSubmit={onChangeFilterProp} />
-        </FilterWrapper> 
+        </FilterWrapper>
         <CustomDialog open={open} onClose={closeDialog}>
-          <FilterContainerMobile onSubmit={onChangeFilterProp} />
+          <FilterContainer onSubmit={onChangeFilterProp} />
         </CustomDialog>
         <ProductWrapper>
           {loading ? (
             <CustomSpinner />
           ) : (
             <div>
-             { products ? <Products items={items} products={products} /> : null }
+              {products ? <Products items={items} products={products} /> : null}
               <PaginationWrapper>
-                <CustomPagination />
+                <CustomPagination count={countPage} changePage={changePageHandler}curentPage={curentPage} />
               </PaginationWrapper>
             </div>
           )}

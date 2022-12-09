@@ -6,11 +6,18 @@ const headers = {
 };
 
 export  const categoryService = {
-    getProductsByCategory: (category) => {
-        console.log(apiAddress)
+    getProductsByCategory: (category,filters,curentPage) => {
+  
         let params = {
-            "category": category
+            "category": category,
+            "page":curentPage,
+            ...filters?.color ? {"color":filters?.color} : {},
+            ...filters?.size ? {"size":filters?.size} : {},
+            ...filters?.sort ? {"sort":filters?.sort} : {},
+
+        
         }
+  
         return axios.get(apiAddress + "/product/byCategory", { headers, params })
     },
     test:()=>{

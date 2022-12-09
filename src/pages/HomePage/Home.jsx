@@ -4,26 +4,15 @@ import PercentIcon from "@mui/icons-material/Percent";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import NewReleasesIcon from "@mui/icons-material/NewReleases";
 import SliderTop from "../../components/Slider";
-import { useLocation } from "react-router-dom";
-import Products from "../../components/Products";
 import Newsletter from "../../components/Newsletter";
 import {
-  popularProducts,
-  TopCategoris,
-  NewProduct,
-  BigOfferData,
-  BannerCardData,
   categories,
   banners,
   sliderItems,
 } from "../../data";
 import ProductSlider from "../../components/ProductSlider";
-import SliderCart from "../../components/SliderCart";
-import BigOffercart from "../../components/BigOffercart";
-import BannerCard from "../../components/BannerCard/BannerCard";
 import Banners from "../../components/banner/Banners.jsx.jsx";
 import Categories from "../../components/category/Categories";
-import Header from "../../components/Header/Header";
 import Footer from "../../components/footer/Footer";
 import { HomeService } from "./Servises/getData";
 const Home = () => {
@@ -44,9 +33,9 @@ const Home = () => {
     ]);
  
 
-    setOfferProducts(Offer.data.products);
-    setBestSellersProducts(BestSellers.data.products);
-    setNewsProducts(News.data.products);
+    setOfferProducts(Offer.data.products.docs);
+    setBestSellersProducts(BestSellers.data.products.docs);
+    setNewsProducts(News.data.products.docs);
   };
 
   useEffect(() => {

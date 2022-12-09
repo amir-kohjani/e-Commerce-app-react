@@ -3,14 +3,21 @@ import Pagination from "@mui/material/Pagination";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { PaginationItem } from "@mui/material";
 import PN from "persian-number";
-const CustomPagination = ({ COLOR = "#e94560", TEXTCOLOR = "#fff" }) => {
+import useMobileMode from "../../hooks/useMobileMode";
+const CustomPagination = ({
+  COLOR = "#e94560",
+  TEXTCOLOR = "#fff",
+  count,
+  curentPage,
+  changePage,
+}) => {
   const [color] = useState(COLOR);
   const [textColor] = useState(TEXTCOLOR);
-  const [mobileMode, setMobileMode] = useState(false);
+  const mobileMode = useMobileMode();
 
-  useEffect(() => {
-    window.innerWidth < 480 ? setMobileMode(true) : setMobileMode(false);
-  });
+  const changePageHandler = (page) => {
+    changePage(page);
+  };
   const Theme = createTheme({
     palette: {
       color: {
@@ -22,12 +29,14 @@ const CustomPagination = ({ COLOR = "#e94560", TEXTCOLOR = "#fff" }) => {
   return (
     <ThemeProvider theme={Theme}>
       <Pagination
-        count={5}
+        count={count > 1 ? count : 1}
         shape="rounded"
         size={mobileMode ? "medium" : "large"}
         color="color"
+        page={curentPage}
+        onChange={(e, value) => changePageHandler(value)}
         // renderItem={(item) => (
-        //   <PaginationItem 
+        //   <PaginationItem
         //   component={(props)=><button {...props}>{PN.convertEnToPe( item.page)}</button>} />
         // )}
       />
