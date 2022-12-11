@@ -22,6 +22,7 @@ import { appService } from './appServises/appservices';
 import { addItems } from './redux/cart';
 import { addItemsWishList } from './redux/wishList'
 import { useState } from 'react';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 function App() {
   const [userId, setUserId] = useState(window.localStorage.getItem('_ID'))
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ function App() {
           <Route path='/order' exact element={<OrderPage />} />
           <Route path='/login' exact element={<LoginOrRegisteryPage />} />
           <Route path='/wishList' exact element={<WishListPage />} />
+          <Route path='/profile' exact element={<ProfilePage />} />
 
           <Route path='/test' exact element={<TestPage />} />
           {/* //this is for error 404 */}
