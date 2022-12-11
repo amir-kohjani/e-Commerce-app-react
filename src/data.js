@@ -34,37 +34,43 @@ export const categories = [
     id: 2,
     img: "../images/categoris/shomeiz.png",
     title: "شومیز",
-    categoryName:'shomiz'
+    categoryName:'shomiz',
+    to:'/shomiz'
   },
   {
     id: 3,
     img: "../images/categoris/hodi.png",
     title: "هودی",
-    categoryName:'hodi'
+    categoryName:'hodi',
+    to:'/hodi'
   },
   {
     id: 4,
     img: "../images/categoris/lag.png",
     title: "شلوار و لگ",
-    categoryName:'lagandpants'
+    categoryName:'lagandpants',
+    to:'/pants'
   },
   {
     id: 5,
     img: "../images/categoris/crap.png",
     title: "کراپ",
-    categoryName:'crap'
+    categoryName:'crap',
+    to:'/crap'
   },
   {
     id: 6,
     img: "../images/categoris/sport.png",
     title: "ورزشی",
-    categoryName:'sport'
+    categoryName:'sport',
+    to:'/sport'
   },
   {
     id: 7,
     img: "../images/categoris/polishirt.png",
     title: "پولیشرت",
-    categoryName:'polishirt'
+    categoryName:'polishirt',
+    to:'/polishert'
   },
 ];
 
