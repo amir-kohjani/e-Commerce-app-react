@@ -28,7 +28,7 @@ const Container = styled.div`
 const Item = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   width: 25%;
   padding: 8px 0px 3px;
@@ -86,19 +86,18 @@ const MobileNavbar = () => {
           <Title>سبد خرید</Title>
         </Link>
       </Item>
-      <Item  active={pathname == "/wishList" ? true : false}>
+      <Item active={pathname == "/wishList" ? true : false}>
         <Link to="/wishList">
           <Icon className="heart-label"></Icon>
 
           <Title>مورد علاقه</Title>
         </Link>
       </Item>
-      <Item>
-        <a>
+      <Item active={pathname=="/profile" }>
+        <Link  to="/profile">
           <Icon className="profile-label"></Icon>
-
           <Title>پروفایل</Title>
-        </a>
+        </Link>
       </Item>
     </Container>
   );
