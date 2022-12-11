@@ -29,18 +29,19 @@ import {
 } from "./styles/itemCartDialogStyles";
 import CustomDialog from "../../CustomDialog/CustomDialog";
 import { green, red } from "@mui/material/colors";
+import useMobileMode from "../../../hooks/useMobileMode";
 
 const ItemCartDialog = ({
   item,
-  noQuantity = false,
   noPrice = false,
-  noDiscount = false,
+  border = false,
   removeItem,
 }) => {
   const [quantity, setQuantity] = useState();
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
+
+  const mobileMode = useMobileMode();
   useEffect(() => {
-    console.log(item)
     if (item.quantity) {
       setQuantity(item.quantity);
     } else {
@@ -65,21 +66,21 @@ const ItemCartDialog = ({
   return !deleteConfirmation ? (
     <>
       <Divider />
-      <Container>
+      <Container border={border} mobile={mobileMode} noPrice={noPrice}>
         <Link to={`/product/${item.id}`}>
           <ImageWrapper>
             <Image src={item.colorSelected.image} />
           </ImageWrapper>
-          <InfoWrapper>
+          <InfoWrapper  mobile={mobileMode}>
             <Title>{item.brand}</Title>
-            <Description>{item.title}</Description>
+            <Description  mobile={mobileMode}>{item.title}</Description>
             <SizeColorWrapper>
               <Size>{item.sizeSelected}</Size>
               <Color>{item.colorSelected.name}</Color>
             </SizeColorWrapper>
           </InfoWrapper>
         </Link>
-        {!noQuantity && (
+{    !noPrice &&    <>
           <QuntityWrapper>
             <Add className="add-label" onClick={() => addQuantityHandler()} />
             <Count>{PN.convertEnToPe(quantity)}</Count>
@@ -88,9 +89,9 @@ const ItemCartDialog = ({
               onClick={() => removeQuantityHandler()}
             />
           </QuntityWrapper>
-        )}
-        {!noDiscount &&
-          (item.discount ? (
+      
+        
+          {(item.discount ? (
             <PriceWrapper>
               <Price className="price-label">{item.price}</Price>
               <DiscountWrapper>
@@ -98,7 +99,7 @@ const ItemCartDialog = ({
               </DiscountWrapper>
             </PriceWrapper>
           ) : null)}
-        {!noPrice && (
+        
           <FimalPriceWrapper>
             <FinalPrice className="price-label">
               {item.discount
@@ -106,13 +107,13 @@ const ItemCartDialog = ({
                 : PN.convertEnToPe(item.price)}
             </FinalPrice>
           </FimalPriceWrapper>
-        )}
+          </>}
       </Container>
     </>
   ) : (
-    <Container>
+    <Container mobile={mobileMode}>
       <Title>محصول از سبد شما حذف شود؟!</Title>
-      <ButtonWrapper>
+      <ButtonWrapper  mobile={mobileMode}>
         <ConfirmationBtn backgroundColor={green[500]} onClick={()=>deleteItem()}>بله</ConfirmationBtn>
         <ConfirmationBtn backgroundColor={red[500]} onClick={()=>setDeleteConfirmation(false)}>خیر</ConfirmationBtn>
       </ButtonWrapper>
@@ -120,12 +121,5 @@ const ItemCartDialog = ({
   );
 };
 
-const Test = () => {
-  return (
-    <CustomDialog open={true}>
-      <h1>test</h1>
-    </CustomDialog>
-  );
-};
 
 export default ItemCartDialog;

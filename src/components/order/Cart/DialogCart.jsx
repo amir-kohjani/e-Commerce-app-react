@@ -5,15 +5,16 @@ import { pink } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import ItemCartDialog from "./ItemCartDialog";
 import { Link } from "react-router-dom";
-import { MobileMode } from "../../../util/MobileMode";
 import { deleteItem } from "../../../redux/cart";
 import LoginWrapper from "../../LoginAndRegister/LoginWrapper";
 import CustomDialog from "../../CustomDialog/CustomDialog";
+import useMobileMode from "../../../hooks/useMobileMode";
+import { appService } from "../../../appServises/appservices";
 
 const Container = styled.div`
   max-width: 1000px;
-  min-width: ${!MobileMode() ? "750px" : "100%"};
-  padding-bottom: ${!MobileMode() ? null : "70px"};
+  min-width: ${props=>!props.mobile ? "750px" : "100%"};
+  padding-bottom: ${props=>!props.mobile  ? null : "70px"};
   height: 100%;
 `;
 const EmpetyWrapper = styled.div`
@@ -39,11 +40,11 @@ const Title = styled.h1`
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: ${!MobileMode() ? "space-between" : ""};
-  align-items: ${!MobileMode() ? "" : "center"};
+  justify-content: ${props=>!props.mobile  ? "space-between" : ""};
+  align-items: ${props=>!props.mobile  ? "" : "center"};
 
   background-color: #f5f5f5;
-  flex-direction: ${!MobileMode() ? "" : "column"};
+  flex-direction: ${props=>!props.mobile  ? "" : "column"};
   padding-bottom: 70px;
 `;
 const FinalPriceWrapper = styled.div`
@@ -70,7 +71,7 @@ const PayablePrice = styled.span`
 const BtnContinue = styled.button`
   font-size: 14pt;
   color: white;
-  width: ${!MobileMode() ? "30%" : "90%"};
+  width: ${props=>!props.mobile  ? "30%" : "90%"};
   height: 50px;
   margin: 10px;
   background-color: ${pink[500]};
@@ -94,10 +95,8 @@ const LoginButton = styled.button`
   background-color: ${pink[500]};
 `;
 const DialogCart = ({ items, onClose, cartSubmit }) => {
-  const [loginDialogFlag, setLoginDialogFlag] = useState(false);
-
   const user = useSelector((state) => state.user.user);
-
+  const [loginDialogFlag, setLoginDialogFlag] = useState(false);
   const [totalPrice, setTotalPrice] = useState(
     items.reduce((acc, item) => acc + parseInt(item.price), 0)
   );
@@ -105,9 +104,17 @@ const DialogCart = ({ items, onClose, cartSubmit }) => {
     items.reduce((acc, item) => acc + parseInt(item.priceWithDiscount), 0)
   );
 
+  const mobileMode = useMobileMode();
   const dispatch = useDispatch();
+
   const removeItemHandler = (item) => {
-    dispatch(deleteItem(item));
+    const userId = user.id;
+    const removeItemRequest = appService.removeItemCartByUserId(item,userId);
+    Promise.all([removeItemRequest])
+    .then((res)=>{
+console.log(res)
+      dispatch(deleteItem(item));
+    })
   };
 const dialogLoginHandler = () => {
     setLoginDialogFlag((perv) => !perv);
@@ -117,7 +124,7 @@ const dialogLoginHandler = () => {
 if(!user.id){
   return(
     <>
-  <Container>
+  <Container mobile={mobileMode}>
         <EmpetyWrapper>
           <EmpetyIcon className="user-label" />
           <Title>لطفا ابتدا وارد حساب خود شوید!</Title>
@@ -136,7 +143,7 @@ if(!user.id){
 
   if (items.length == 0) {
     return (
-      <Container>
+      <Container mobile={mobileMode}>
         <EmpetyWrapper>
           <EmpetyIcon className="emptyCart-label" />
           <Title>سبد شما خالی می باشد!</Title>
@@ -145,7 +152,7 @@ if(!user.id){
     );
   }
   return (
-    <Container>
+    <Container mobile={mobileMode}>
       <Title>سبد خرید شما </Title>
       {items &&
         items.map((item, index) => {
@@ -158,7 +165,7 @@ if(!user.id){
           );
         })}
 
-      <Wrapper>
+      <Wrapper mobile={mobileMode}>
         <FinalPriceWrapper>
           <TotalPrice>
             <span>قیمت کل سفارش: </span>
@@ -172,14 +179,14 @@ if(!user.id){
           </PayablePrice>
         </FinalPriceWrapper>
 
-        {!MobileMode() ? (
-          <BtnContinue onClick={() => onClose(true)}>
+        {!mobileMode ? (
+          <BtnContinue onClick={() => onClose(true)} mobile={mobileMode}>
             <Link to="/order" style={{ color: "white" }}>
               ثبت سفارش
             </Link>
           </BtnContinue>
         ) : (
-          <BtnContinue onClick={() => cartSubmit(true)}>ثبت سفارش</BtnContinue>
+          <BtnContinue onClick={() => cartSubmit(true)} mobile={mobileMode}>ثبت سفارش</BtnContinue >
         )}
       </Wrapper>
     </Container>
