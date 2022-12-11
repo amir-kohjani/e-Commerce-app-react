@@ -4,6 +4,7 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { pink } from "@mui/material/colors";
 import ToggleSenddingItem from "./ToggleSenddingItem";
+import useMobileMode from "../../../hooks/useMobileMode";
 import { MobileMode } from "../../../util/MobileMode";
 
 const Container = styled.div`
@@ -37,29 +38,35 @@ const Info = styled.p`
   color: gray;
 `;
 
-const toggleButtonGroupStyle = {
-  padding: "10px",
-  direction: "rtl",
-  background: "none",
-  display: !MobileMode() ? '':'flex',
-  flexDirection:!MobileMode() ? '' : 'column',
-  justifyContent: "center",
-  ".Mui-selected": {
-    border: `2px solid ${pink[500]} !important`,
-    background: "none !important",
-  },
+const toggleButtonGroupStyle = (mobileMode) => {
+  const style ={
+    padding: "10px",
+    direction: "rtl",
+    background: "none",
+    display: !mobileMode ? "" : "flex",
+    flexDirection: !mobileMode ? "" : "column",
+    justifyContent: "center",
+    ".Mui-selected": {
+      border: `2px solid ${pink[500]} !important`,
+      background: "none !important",
+    },
+  }
+  return style;
 };
-const toggleButtonStyle = {
-  width:!MobileMode()? "40%" : '100%',
-  marginRight:!MobileMode() ?"20px !important":"0px !important",
-  marginTop: "20px !important",
-  border: "none",
-  borderRadius: "10px !important",
+const toggleButtonStyle = (mobileMode) => {
+  const style={
+    width: !mobileMode ? "40%" : "100%",
+    marginRight: !mobileMode ? "20px !important" : "0px !important",
+    marginTop: "20px !important",
+    border: "none",
+    borderRadius: "10px !important",
+  }
+  return style;
 };
 
-const SendingMethod = ({submitIndex}) => {
+const SendingMethod = ({ submitIndex }) => {
   const [alignment, setAlignment] = useState("");
-
+  const mobileMode = useMobileMode();
   const handleAlignment = (event, newAlignment) => {
     setAlignment(newAlignment);
     submitIndexHandler(newAlignment);
@@ -68,9 +75,6 @@ const SendingMethod = ({submitIndex}) => {
   const submitIndexHandler = (newAlignment) => {
     submitIndex(newAlignment);
   };
-
-
-
 
   return (
     <Container>
@@ -83,16 +87,25 @@ const SendingMethod = ({submitIndex}) => {
           value={alignment}
           exclusive
           onChange={handleAlignment}
-          sx={toggleButtonGroupStyle}
+          sx={toggleButtonGroupStyle(mobileMode)}
         >
-          <ToggleButton value={'tipax'} size="small" sx={toggleButtonStyle}>
-            <ToggleSenddingItem icon='./images/tipax.jpg' title='تیپاکس' description='ارسال تا ۷۲ ساعت کار-۱۰ هزار تومان تخفیف' price='۱۹۰۰۰' />
+          <ToggleButton value={"tipax"} size="small" sx={toggleButtonStyle(mobileMode)}>
+            <ToggleSenddingItem
+              icon="./images/tipax.jpg"
+              title="تیپاکس"
+              description="ارسال تا ۷۲ ساعت کار-۱۰ هزار تومان تخفیف"
+              price="۱۹۰۰۰"
+            />
           </ToggleButton>
-          
-          <ToggleButton value={'pishtaz'} size="small" sx={toggleButtonStyle}>
-            <ToggleSenddingItem icon='./images/pishtaz.jpg' title='پست پیشتاز' description='تا ۷۲ ساعت کاری' price='۲۵۰۰۰' />
+
+          <ToggleButton value={"pishtaz"} size="small" sx={toggleButtonStyle(mobileMode)}>
+            <ToggleSenddingItem
+              icon="./images/pishtaz.jpg"
+              title="پست پیشتاز"
+              description="تا ۷۲ ساعت کاری"
+              price="۲۵۰۰۰"
+            />
           </ToggleButton>
-          
         </ToggleButtonGroup>
       </Wrapper>
     </Container>

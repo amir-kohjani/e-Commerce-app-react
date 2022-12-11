@@ -1,6 +1,7 @@
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import React, { useState } from "react";
+import useMobileMode from "../../../hooks/useMobileMode";
 import {
     BankDisc,
     BankImg,
@@ -23,8 +24,7 @@ import {
 
 const PaymentMethod = ({submitBankSelect}) => {
     const [alignment, setAlignment] = useState("mellatBank");
-    const [bankSelected, setBankSelected] = useState("");
-
+const mobileMode = useMobileMode();
     const handleAlignment = (event, newAlignment) => {
         setAlignment(newAlignment);
         submitbankSelectHandler(newAlignment);
@@ -35,9 +35,9 @@ const PaymentMethod = ({submitBankSelect}) => {
       };
 
   return (
-    <Container>
+    <Container  mobile={mobileMode}>
       <Title>انتخاب شیوه پرداخت</Title>
-      <Wrapper>
+      <Wrapper mobile={mobileMode}>
         <InternetPay>
           <RadioWrapper>
             <RadioButton type="radio" aria-label="eeeee" checked />

@@ -7,7 +7,8 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ToggleAddressItem from "./ToggleAddressItem";
 import CustomDialog from "../../CustomDialog/CustomDialog";
 import AddAdressDialog from "./AddAdressDialog";
-import { MobileMode } from "../../../util/MobileMode";
+import useMobileMode from "../../../hooks/useMobileMode";
+
 
 const Container = styled.div`
   display: flex;
@@ -55,30 +56,39 @@ const Info = styled.p`
   color: gray;
 `;
 
-const toggleButtonGroupStyle =
- {
-  padding: "10px",
-  direction: "rtl",
-  background: "none",
-  overflow: !MobileMode() ? '':'scroll',
-  flexWrap: !MobileMode() ? "wrap":'noWrap',
-  ".Mui-selected": {
-    border: `2px solid ${pink[500]} !important`,
-    background: "none !important",
-  },
+const toggleButtonGroupStyle = (mobile) => {
+  const style = {
+    padding: "10px",
+    direction: "rtl",
+    background: "none",
+    overflowY: !mobile ? "" : "scroll",
+    flexWrap: !mobile ? "wrap" : "noWrap",
+    ".Mui-selected": {
+      border: `2px solid ${pink[500]} !important`,
+      background: "none !important",
+    },
+  };
+  return style;
 };
-const toggleButtonStyle = {
+const toggleButtonStyle =()=>{
+  
+  const style ={
+    flex:"1",
   width: "335px",
-  minWidth:"250px",
+  minWidth: "250px",
+  maxWidth: "350px",
   marginRight: "20px !important",
   marginTop: "20px !important",
   border: "none",
   borderRadius: "10px !important",
 };
+return style;
+}
 const AddressMethod = ({ address, submitIndex }) => {
   const [alignment, setAlignment] = useState("one");
   const [openDialog, setOpenDialog] = useState(false);
   const [addressinfo, setAddressInfo] = useState(address);
+  const mobileMode = useMobileMode();
   const testArray = [];
   const openDialogHandler = () => {
     setOpenDialog(true);
@@ -121,7 +131,7 @@ const AddressMethod = ({ address, submitIndex }) => {
           value={alignment}
           exclusive
           onChange={handleAlignment}
-          sx={toggleButtonGroupStyle}
+          sx={toggleButtonGroupStyle(mobileMode)}
         >
           {addressinfo &&
             addressinfo.map((adres, index) => {

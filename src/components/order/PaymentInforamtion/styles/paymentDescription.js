@@ -1,9 +1,13 @@
 import { green, orange } from "@mui/material/colors"
 import styled from "styled-components"
 
-export const Container = styled.div``
+export const Container = styled.div`
+flex:1;
+min-width:300px;
+`
 
 export const ShippingSummary  = styled.div`
+
     border-radius: 16px;
     background-color: #f8f8f9;
     font-size: 16px;

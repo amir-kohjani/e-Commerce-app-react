@@ -13,27 +13,26 @@ import {
   Title,
 } from "./styles/paymentInfoStyles";
 import { useSelector } from "react-redux";
+import useMobileMode from "../../../hooks/useMobileMode";
 
 const PaymentInformation = ({cartItems, address }) => {
   const [bankSelected, setBankSelected] = useState("");
 
-
+const mobileMode = useMobileMode();
   const selectBankHandler = (bank) => {
     setBankSelected(bank);
   };
-  const submitHandler = ()=>{
 
-  }
   useEffect(() => {
     console.log(cartItems);
   }, [cartItems]);
   return (
     <Container>
-      <PaymentWrapper>
+      <PaymentWrapper mobile={mobileMode}>
         <PaymentMethod submitBankSelect={(bank) => selectBankHandler(bank)} />
         <PaymentDescription address={address} />
       </PaymentWrapper>
-      <SubmitWrapper>
+      <SubmitWrapper  mobile={mobileMode}>
         <p>
           <span>با انتخاب دکمه پرداخت و تکمیل خرید، موافقت خود را با</span>
           <ColorLink> قوانین و مقررات</ColorLink>
@@ -41,15 +40,15 @@ const PaymentInformation = ({cartItems, address }) => {
           <ColorLink>شرایط بازگشت کالا  </ColorLink>
           <span>اعلام نموده اید.</span>
         </p>
-        <ButtonSubmit>
+        <ButtonSubmit  mobile={mobileMode}>
           پرداخت و تکمیل خرید ...
         </ButtonSubmit>
       </SubmitWrapper>
-      <ProductWrapper>
         <Title>لیست سبد شما :</Title>
+      <ProductWrapper  mobile={mobileMode}>
         {cartItems &&
           cartItems.map((item, index) => (
-            <ItemCartDialog item={item} key={index} noQuantity noPrice noDiscount />
+            <ItemCartDialog item={item} key={index} border noPrice />
           ))}
       </ProductWrapper>
     </Container>

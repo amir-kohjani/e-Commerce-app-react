@@ -4,9 +4,11 @@ import { MobileMode } from "../../../../util/MobileMode";
 
 
 export const Container = styled.div`
+flex:1;
+max-width: 750px;
     border-radius: 16px;
     border: solid 1px #d8d8d8;
-    padding: ${!MobileMode()? "32px 64px":"10px 5px"};
+    padding: ${props=>!props.mobile ? "32px 64px":"10px 5px"};
     margin: 15px;
 `
 
@@ -19,7 +21,7 @@ export const Title = styled.p`
 export const Wrapper = styled.div`
     display: block;
     position: relative;
-    padding-right:${!MobileMode()? "26px" : "0px"};
+    padding-right:${props=>!props.mobile ? "26px" : "0px"};
     margin-bottom: 12px;
     cursor: pointer;
     font-size: 22px;
@@ -121,7 +123,7 @@ export const toggleButtonGroupStyle = {
   };
 
  export const toggleButtonStyle = {
-    width:'100%',
+    width:'90%',
  
     border: "none",
     borderRadius: "10px !important",
