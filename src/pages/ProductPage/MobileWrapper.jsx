@@ -25,6 +25,8 @@ import {
   DeliveryInfo,
   ImgContainer,
   ErrorMassage,
+  LikeContainer,
+  Like
 } from "./styles/MobileStyles";
 import { useState } from "react";
 import CustomImageButton from "../../components/customImageButton/CustomImageButton";
@@ -32,17 +34,24 @@ import PN from "persian-number";
 import CustomSnakbar from "../../components/snakbar/CustomSnakbar";
 import { useEffect } from "react";
 
-const MobileWrapper = ({ addToCart, product }) => {
+const MobileWrapper = ({
+  addToCart,
+  product,
+  addWishList,
+  productWished,
+  removeWishList,
+}) => {
   const [data, setData] = useState(product);
-
   const [loading, setLoading] = useState(false);
   const [curentColor, setCurentColor] = useState([]);
-
+  const [wished, setWished] = useState(false);
 
   const selectColorHandler = (color) => {
-    
-    setData({ ...data, colorSelected:{name:color.name,image:color.images[0]} });
-    
+    setData({
+      ...data,
+      colorSelected: { name: color.name, image: color.images[0] },
+    });
+
     if (color !== undefined) setCurentColor(color);
   };
   const selectSizeHanlder = (size) => {
@@ -57,16 +66,35 @@ const MobileWrapper = ({ addToCart, product }) => {
       }, 2000);
     }
   };
-
+  const likedHandler = () => {
+    if (!productWished) {
+      addWishList(data, (wishedProduct) => {
+        if (wishedProduct) setWished(true);
+        else setWished(false);
+      });
+    } else {
+      removeWishList(data);
+      setWished(false);
+    }
+  };
   useEffect(() => {
     setData(product);
+    setWished(productWished);
     setCurentColor(product.colors[0]);
   }, [product]);
-
+useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+},[curentColor])
   return (
     <Wrapper>
       {curentColor?.images && (
         <ImgContainer>
+         <LikeContainer>
+                <Like
+                  className={wished ? "heart-fill-label" : "heart-label"}
+                  onClick={likedHandler}
+                ></Like>
+              </LikeContainer>
           <ImageSlideProduct item={curentColor?.images} />
         </ImgContainer>
       )}
@@ -84,14 +112,17 @@ const MobileWrapper = ({ addToCart, product }) => {
           </InfoContainer>
           <PriceContainer>
             <Price className="price-label">
-            <span>  {PN.convertEnToPe(PN.sliceNumber(data.price))}</span>
+              <span> {PN.convertEnToPe(PN.sliceNumber(data.price))}</span>
             </Price>
             <Discount>
               <span>تخفیف بر ای شما : </span>
               <span>{PN.convertEnToPe(data.discount)}%</span>
             </Discount>
             <CurrentPrice className="price-label">
-            <span>  {PN.convertEnToPe(PN.sliceNumber(data.priceWithDiscount))}</span>
+              <span>
+                {" "}
+                {PN.convertEnToPe(PN.sliceNumber(data.priceWithDiscount))}
+              </span>
             </CurrentPrice>
           </PriceContainer>
         </PropertyContainer>
@@ -141,7 +172,6 @@ const MobileWrapper = ({ addToCart, product }) => {
           </div>
         </DeliveryInfo>
       </WrapperInfo>
-     
     </Wrapper>
   );
 };
