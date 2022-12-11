@@ -8,7 +8,7 @@ position: relative;
 padding: 10px;
 justify-content: space-between;
 align-items:center;
-flex-direction: ${!MobileMode()? ' ':'column'};
+flex-direction: ${props=>!props.mobile? ' ':'column'};
 
 `;
 export const  ImageWrapper = styled.div`

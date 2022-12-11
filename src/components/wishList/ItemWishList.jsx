@@ -21,10 +21,12 @@ import {
   FinalPrice,
   Remove,
 } from "./styles/ItemWishListStyles";
+import useMobileMode from "../../hooks/useMobileMode";
 const ItemWishList = ({item,removeItem}) => {
 
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
 
+  const mobileMode= useMobileMode();
   const deleteItem = () => {
     removeItem(item);
     setDeleteConfirmation(false);
@@ -34,7 +36,7 @@ const ItemWishList = ({item,removeItem}) => {
   return (
     <>
       <Divider />
-      <Container>
+      <Container mobile={mobileMode}>
       {/* <Remove className="remove-label" /> */}
         <ImageWrapper>
           <Image src={item.image} />

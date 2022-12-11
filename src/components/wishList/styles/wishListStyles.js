@@ -1,11 +1,11 @@
 import { pink } from "@mui/material/colors";
 import styled from "styled-components";
-import {MobileMode} from  '../../../util/MobileMode'
+
 
 export const Container = styled.div`
   max-width: 1000px;
-  min-width: ${!MobileMode() ? "750px" : "100%"};
-  padding-bottom: ${!MobileMode() ? null : "70px"};
+  min-width: ${props=>!props.mobile ? "750px" : "100%"};
+  padding-bottom: ${props=>!props.mobile ? null : "70px"};
   height: 100%;
 `;
 
