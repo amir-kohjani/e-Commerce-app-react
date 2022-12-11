@@ -6,6 +6,7 @@ import authService from "./services/authService";
 import { addUser } from "../../redux/user";
 import { useDispatch } from "react-redux";
 import { addItems } from "../../redux/cart";
+import { addItemsWishList } from "../../redux/wishList";
 import { appService } from "../../appServises/appservices";
 const Container = styled.div``;
 const LoginWrapper = ({ onClose }) => {
@@ -19,6 +20,9 @@ const LoginWrapper = ({ onClose }) => {
   };
   const setItemCartInRedux = (cart) => {
     dispatch(addItems(cart.itemList));
+  };
+  const setItemWishListInRedux = (wishList) => {
+    dispatch(addItemsWishList(wishList.itemList));
   };
   const loginOrRegisterSubmitHandler = (num) => {
     const genCodeRequest = authService.genCode(num);
@@ -49,10 +53,13 @@ const LoginWrapper = ({ onClose }) => {
 
   const fetchCart = (id) => {
     const getCartRequest = appService.getCartByUserId(id);
-    Promise.all([getCartRequest])
+    const getWishListRequest = appService.getWishListByUserId(id);
+    Promise.all([getCartRequest,getWishListRequest])
       .then((response) => {
         const cart = response[0].data._doc;
+        const wishList = response[1].data._doc;
         setItemCartInRedux(cart);
+        setItemWishListInRedux(wishList);
         onClose(true)
       })
       .catch((error) => {
