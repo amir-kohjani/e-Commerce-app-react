@@ -21,6 +21,7 @@ import {
 } from "./styles/CategoryPageStyles";
 import { categoryService } from "./Servises/getData";
 import useMobileMode from "../../hooks/useMobileMode";
+import { Divider } from "@mui/material";
 const CategoryPage = (props) => {
   const mobileMode = useMobileMode();
   const [items, setItems] = useState(popularProducts);
@@ -42,19 +43,19 @@ const CategoryPage = (props) => {
     setFilterProp(filters);
     closeDialog();
   };
-const changePageHandler = (page)=>{
-  setCurentPage(page);
-}
+  const changePageHandler = (page) => {
+    setCurentPage(page);
+  };
   const fetchWithPromiseAll = async (categoryName, filters) => {
     const getProducts = categoryService.getProductsByCategory(
       categoryName,
       filters,
-curentPage
+      curentPage
     );
     // this func for add products from server
     Promise.all([getProducts])
       .then((Products) => {
-        console.log(Products[0].data)
+        console.log(Products[0].data);
         setCountPage(Products[0].data.products.totalPages);
         setProducts(Products[0].data.products.docs);
         setLoading(false);
@@ -70,31 +71,40 @@ curentPage
     window.scrollTo({ top: 0, behavior: "smooth" });
     setLoading(true);
     fetchWithPromiseAll(categoryName, filterProp);
-  }, [categoryName, filterProp,curentPage]);
+  }, [categoryName, filterProp, curentPage]);
 
   return (
     <Container>
-      <Title>{}</Title>
-      <MainContainer>
-        <FilterWrapper mobileMode={mobileMode}>
-          <FilterContainer onSubmit={onChangeFilterProp} />
-        </FilterWrapper>
-        <CustomDialog open={open} onClose={closeDialog}>
-          <FilterContainer onSubmit={onChangeFilterProp} />
-        </CustomDialog>
-        <ProductWrapper>
-          {loading ? (
-            <CustomSpinner />
-          ) : (
+      <Title>{categoryName}</Title>
+      <Divider />
+      {loading ? (
+        <CustomSpinner />
+      ) : products?.length === 0? (
+        <MainContainer>
+          <Title>هیچ محصولی در این دسته بندی یافت نشد</Title>
+        </MainContainer>
+      ) : (
+        <MainContainer>
+          <FilterWrapper mobileMode={mobileMode}>
+            <FilterContainer onSubmit={onChangeFilterProp} />
+          </FilterWrapper>
+          <CustomDialog open={open} onClose={closeDialog}>
+            <FilterContainer onSubmit={onChangeFilterProp} />
+          </CustomDialog>
+          <ProductWrapper>
             <div>
               {products ? <Products items={items} products={products} /> : null}
               <PaginationWrapper>
-                <CustomPagination count={countPage} changePage={changePageHandler}curentPage={curentPage} />
+                <CustomPagination
+                  count={countPage}
+                  changePage={changePageHandler}
+                  curentPage={curentPage}
+                />
               </PaginationWrapper>
             </div>
-          )}
-        </ProductWrapper>
-      </MainContainer>
+          </ProductWrapper>
+        </MainContainer>
+      )}
       <FixedButtonWrapper onClick={() => openDialog()} mobile={mobileMode}>
         <FixedButton />
       </FixedButtonWrapper>

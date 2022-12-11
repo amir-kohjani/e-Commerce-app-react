@@ -5,14 +5,17 @@ background-color: white;
 display: flex;
 flex-direction:column;
 direction: rtl;
+height: 100%;
 `;
 export const Title = styled.h1`
 margin: 0px 20px;
 padding: 20px;
 text-align: center;
+font-size:18pt;
 `;
 export const MainContainer = styled.div`
 display: flex;
+justify-content:center;
 `;
 export const ProductWrapper = styled.div`
 flex: 9;
