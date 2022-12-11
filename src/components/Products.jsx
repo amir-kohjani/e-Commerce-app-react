@@ -53,8 +53,7 @@ const Products = ({ items, ICON, title, products }) => {
   //   console.log(Products);
   // }, [products]);
 
-  if (Products.length == 0) return <>No products</>;
-  else
+
     return (
       <Container>
         {ICON && title && (
