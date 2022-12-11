@@ -2,6 +2,7 @@ import { pink } from "@mui/material/colors";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
+import useMobileMode from "../../../hooks/useMobileMode";
 import { MobileMode } from "../../../util/MobileMode";
 import AddressMethod from "./AddressMethod";
 import SendingMethod from "./SendingMethod";
@@ -10,8 +11,8 @@ const Container = styled.div`
   display: flex;
   padding: 10px;
   flex-direction: column;
-  margin-bottom: ${!MobileMode() ? "50px" : "60px"};
-  padding-bottom: ${!MobileMode() ? "50px" : "60px"};
+  margin-bottom: ${props=>!props.mobile  ? "50px" : "60px"};
+  padding-bottom: ${props=>!props.mobile  ? "50px" : "60px"};
 `;
 
 const SendingWrapper = styled.div`
@@ -32,7 +33,7 @@ const ButtonSubmit = styled.button`
   color: white;
   border: none;
   border-radius: 10px;
-  width: ${!MobileMode() ? "20%" : "100%"};
+  width: ${props=>!props.mobile  ? "20%" : "100%"};
   height: 50px;
   &:disabled {
     background-color: ${pink[100]};
@@ -45,6 +46,7 @@ const ShippingIformation = ({ address, submitInfo }) => {
     senddingIndex: "",
   });
 
+  const mobileMode = useMobileMode()
   const addressIndexHandler = (index) => {
     setState({ ...state, addressIndex: address[index] });
   };
@@ -64,7 +66,7 @@ const ShippingIformation = ({ address, submitInfo }) => {
   });
 
   return (
-    <Container>
+    <Container mobile={mobileMode}>
       <AddressWrapper>
         <AddressMethod address={address} submitIndex={addressIndexHandler} />
       </AddressWrapper>
@@ -76,6 +78,7 @@ const ShippingIformation = ({ address, submitInfo }) => {
         <ButtonSubmit
           disabled={state.addressIndex && state.senddingIndex ? false : true}
           onClick={() => submitHandler()}
+          mobile={mobileMode}
         >
           مرحله بعد ...
         </ButtonSubmit>
