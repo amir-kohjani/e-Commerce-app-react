@@ -15,6 +15,11 @@ a{
   justify-content: center;
   flex-direction: column;
   }
+  &:hover{
+    a{
+      text-decoration: none;
+    }
+  }
 `;
 export const Image = styled.img`
   border-radius: 10%;
