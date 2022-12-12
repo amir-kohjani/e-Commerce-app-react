@@ -19,7 +19,7 @@ import {
   Icon,
   CartIconWrapper,
 } from "./styles/search";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
 import { Menu, MenuItem } from "@mui/material";
 
@@ -62,6 +62,10 @@ const Search = () => {
     setWishListDialogFlag((prev) => !prev);
     handleCloseDropDown();
   };
+
+  const myAccountHandler =()=>{
+    return redirect('/my-account');
+  }
   // useEffect(() => {
   //   console.log(user)
   // })
@@ -112,10 +116,15 @@ const Search = () => {
                       "aria-labelledby": "basic-button",
                     }}
                   >
-                    <MenuItem onClick={logOutUserHandler}>خروج</MenuItem>
+                 <Link style={{color:"black"}} to={'/my-account'}>
+                    <MenuItem   >
+                     حساب کاربری
+                    </MenuItem>
+                 </Link>
                     <MenuItem onClick={wishListDialogHandler}>
                       لیست علاقه مندی ها
                     </MenuItem>
+                    <MenuItem onClick={logOutUserHandler}>خروج</MenuItem>
                   </Menu>
                 </CartIconWrapper>
               </>
