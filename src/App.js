@@ -77,7 +77,9 @@ function App() {
           <Route path='/order' exact element={<OrderPage />} />
           <Route path='/login' exact element={<LoginOrRegisteryPage />} />
           <Route path='/wishList' exact element={<WishListPage />} />
-          <Route path='/profile' exact element={<ProfilePage />} />
+          <Route path='/my-account' exact element={<ProfilePage/>} />
+          <Route path='/my-orders' exact element={<ProfilePage/>} />
+          <Route path='/address-list' exact element={<ProfilePage/>} />
 
           <Route path='/test' exact element={<TestPage />} />
           {/* //this is for error 404 */}
