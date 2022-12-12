@@ -38,6 +38,11 @@ export const Container = styled.div`
 
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
     z-index: 200;
+ 
+    a{
+      text-decoration: none;
+    }
+  
   }
 `;
 export const ImageWrapper = styled.div`
