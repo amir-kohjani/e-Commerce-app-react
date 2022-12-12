@@ -67,6 +67,17 @@ input:focus {
   }
 }
 
+
+a{
+  text-decoration: none !important;
+  color: black !important;
+}
+a:hover {
+
+  text-decoration: none;
+  color:transparent;
+}
+
 h1,
 h2,
 h3,
@@ -169,23 +180,9 @@ p {
 
   content: "\F0B5";
   font-size: 18pt;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: normal;
-  line-height: 1.5;
-  width: 16px;
-  height: 16px;
   font-family: digikala;
   font-size: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  text-decoration: none;
-  text-transform: none;
-  line-height: 1;
-  box-sizing: inherit;
+
 }
 
 .shoppingCar-label:after {
@@ -325,6 +322,16 @@ p {
 }
 .profile-label::before {
   content: "\F044";
+  font-family: digikala;
+  font-size: 100%;
+}
+.order-label::before {
+  content: "\F09B";
+  font-family: digikala;
+  font-size: 100%;
+}
+.star-label::before {
+  content: "\F0AD";
   font-family: digikala;
   font-size: 100%;
 }
