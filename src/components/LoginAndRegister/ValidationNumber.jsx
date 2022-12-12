@@ -131,7 +131,7 @@ const ErrorTimeOut = styled.p`
   margin: 0;
 `;
 const { Countdown } = Statistic;
-const ValidationNumber = ({ numberPhone, editNumberPhone, submit,incorrectCode }) => {
+const ValidationNumber = ({ numberPhone, editNumberPhone, submit,incorrectCode,reSend }) => {
   const [number, setNumber] = useState("");
   const [error, setError] = useState(false);
   const [timeValid, setTimeValid] = useState(Date.now() + 1000 * 120);
@@ -160,6 +160,7 @@ const ValidationNumber = ({ numberPhone, editNumberPhone, submit,incorrectCode }
   const reSendHandler = () => {
     setErrorTimeOut(false);
     setTimeValid(Date.now() + 1000 * 120);
+    reSend(true);
     //resend validation code to user
   };
 

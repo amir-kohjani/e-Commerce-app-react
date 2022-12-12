@@ -8,12 +8,18 @@ import { useDispatch } from "react-redux";
 import { addItems } from "../../redux/cart";
 import { addItemsWishList } from "../../redux/wishList";
 import { appService } from "../../appServises/appservices";
-const Container = styled.div``;
+import CustomSpinner from "../customSpinner/CustomSpinner";
+import useMobileMode from "../../hooks/useMobileMode"
+const Container = styled.div`
+min-width: ${props=>props.mobile ? "350px":"750px"};
+`;
 const LoginWrapper = ({ onClose }) => {
   const [step, setStep] = useState(1);
   const [numberPhone, setNumberPhone] = useState("");
   const [numberValidate, setNumberValidate] = useState("");
   const [incorrectCode, setIncorrectCode] = useState(false);
+
+  const mobileMode = useMobileMode();
   const dispatch = useDispatch();
   const setUserInRedux = (user) => {
     dispatch(addUser(user));
@@ -26,6 +32,7 @@ const LoginWrapper = ({ onClose }) => {
   };
   const loginOrRegisterSubmitHandler = (num) => {
     const genCodeRequest = authService.genCode(num);
+    setStep(0);
     Promise.all([genCodeRequest])
       .then((response) => {
         console.log(response);
@@ -77,7 +84,8 @@ const LoginWrapper = ({ onClose }) => {
     if (flag) setStep(1);
   };
   return (
-    <Container>
+    <Container mobile={mobileMode}>
+      {step === 0 && <CustomSpinner/>}
       {step === 1 && <LoginOrRegister submit={loginOrRegisterSubmitHandler} />}
       {step === 2 && (
         <ValidationNumber
@@ -85,6 +93,7 @@ const LoginWrapper = ({ onClose }) => {
           submit={validateNumberHandler}
           editNumberPhone={editNumberPhoneHandler}
           incorrectCode={incorrectCode}
+          reSend={()=>loginOrRegisterSubmitHandler(numberPhone)}
         />
       )}
     </Container>
